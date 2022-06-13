@@ -1,11 +1,8 @@
-#from tkinter import *
-
-#config tela
-
-
-#root = Tk()
-#root.geometry('400x300+720+350') # declara o tamanho da jenela (400x300) tamanho inicial/ +100 +100 lugar onde ela vai abrir 
-#root.config(background='#fff') #background color
+from tkinter import *
+#MODELO CRIADO POR BRENO
+root = Tk()
+root.geometry('400x300+720+350') # declara o tamanho da jenela (400x300) tamanho inicial/ +100 +100 lugar onde ela vai abrir 
+root.config(background='#fff') #background color
 
 #-------------------------- Functions --------------------------#
 
@@ -40,18 +37,29 @@
 #Frame 0 - Gustavo
 
 #Frame 1 - Samuel
+fr1 = Frame(root)
 
+lb0_fr1 = Label(fr1, text='Usuario:', font="Arial 20")
+lb1_fr1 = Label(fr1, text='Senha:', font="Arial 20")
+
+fr1.grid()
+
+lb0_fr1.grid(row=0, column=2,sticky=W, padx=5)
+lb1_fr1.grid(row=1, column=2,sticky=W, padx=5)
 #Frame 2 - Breno
 
 #Frame 3 - Felipe
 
 #Frame 4 - Ewerson
-from tkinter import *
 
-root = Tk()
-root.title('Banco ___')
 fr4 = LabelFrame(root, padx=10, pady=10, bg='#49A', text='Usuário', font='Arial 25', borderwidth=1, relief="sunken")
 
-lb0_fr4
+root.grid_rowconfigure(0, weight=1)
+root.grid_columnconfigure(0, weight=1)
+
+lb0_fr4 = Label(fr4, text='Início', font='Arial 20')
+lb0_fr4.grid(row=0, column=0)
+
+fr4.grid()
 
 root.mainloop()
