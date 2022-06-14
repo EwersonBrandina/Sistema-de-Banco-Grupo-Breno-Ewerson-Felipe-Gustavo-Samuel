@@ -43,27 +43,29 @@ root.grid_columnconfigure(1, weight=1)
 #Frame 0 - Gustavo
 
 #Frame 1 - Samuel
-fr1 = Frame(root)
-lb0_fr1 = Label(fr1, text='Usuario:', font="Arial 20")
-lb1_fr1 = Label(fr1, text='Senha:', font="Arial 20")
+fr1 = Frame(root, bg='green')
+lb0_fr1 = Label(fr1, text='Login do Funcionario', font='Arial 22',bg='green')
+lb1_fr1 = Label(fr1, text='Usuario:', font="Arial 20",bg='green')
+lb2_fr1 = Label(fr1, text='Senha:', font="Arial 20",bg='green')
 #--Entrada ---
-lb2_fr1 = Entry(fr1, font='Arial 18')
-lb3_fr1 = Entry(fr1, font='Arial 18')
+int0_fr1 = Entry(fr1, font='Arial 18', width=35)
+int1_fr1 = Entry(fr1, font='Arial 18', width=35)
 #--Button ---
-tb0_fr1 = Button(fr1,text='Entrar', font="Arial 20",width=5)
-tb1_fr1 = Button(fr1, text='Voltar', font="Arial 20",width=5)
+tb0_fr1 = Button(fr1,text='Entrar', font="Arial 20",width=15,bg='black', fg='white')
+tb1_fr1 = Button(fr1, text='Voltar', font="Arial 20",width=15,bg='black', fg='white')
 #---Configuração do Frame---
 fr1.grid()
 #organizar os widgets
 #---Frame 1---w
-lb0_fr1.grid(row=0, column=2,sticky=W, padx=5)
-lb1_fr1.grid(row=1, column=2,sticky=W, padx=5)
+lb0_fr1.grid(row=0,column=1,sticky=W,padx=150)
+lb1_fr1.grid(row=1, column=1,sticky=W, padx=5)
+lb2_fr1.grid(row=2, column=1,sticky=W, padx=5)
 #--Entrada --
-lb2_fr1.grid(row=0,column=2,sticky=W,padx=110)
-lb3_fr1.grid(row=1,column=2,sticky=W,padx=110)
+int0_fr1.grid(row=1,column=1,sticky=W,padx=110)
+int1_fr1.grid(row=2,column=1,sticky=W,padx=110)
 #---Butoon Função---
-tb0_fr1.grid(row=3, column=2, sticky=W, padx=60)
-tb1_fr1.grid(row=3, column=2, sticky=W,padx=180)
+tb0_fr1.grid(row=4, column=1, sticky=W, padx=55)
+tb1_fr1.grid(row=4, column=1, sticky=E,padx=110)
 #executar a janel4
 
 #Frame 2 - Breno
@@ -89,7 +91,7 @@ lb0_1_fr4_1 = Entry(fr4_1,font='Arial 20', bg='#49A').grid(row=0, column=1)
 lb1_fr4_1 = Entry(fr4_1, font='Arial 20', bg='#49A').grid(row=1, column=1)
 bt2_fr4_1 = Button(fr4_1, text='Confirmar', font='Arial 20',padx=5, pady=0, bg='#49A',width=12).grid(row=2, column=0, columnspan=1, sticky=E)
 lb3_fr4_1 = Label(fr4_1, text='Mensagem de Confirmação', font='Arial 20',padx=5, pady=0, bg='#49A',width=38).grid(row=3, column=0, columnspan=3, sticky=W)
-bt4_fr4_1 = Button(fr4_1, text='Voltar', font='Arial 20',padx=5, pady=0, bg='#49A',width=12).grid(row=4, column=0, sticky=E)
+bt4_fr4_1 = Button(fr4_1, text='Voltar', font='Arial 20',padx=5, pady=0, bg='#49A',width=12, command= lambda: [fr4_1.grid_remove(), fr4_2.grid_remove(), fr4_3.grid_remove(), fr4_4.grid_remove(),fr4.grid(row=0, column=1)]).grid(row=4, column=0, sticky=E)
 bt4_1_fr4_1 = Button(fr4_1, text='Logout', font='Arial 20',padx=5, pady=0, bg='#49A',width=12).grid(row=4, column=1, sticky=W)
 #fr4_1.grid()
 #Frame 4_2 - Ewerson
