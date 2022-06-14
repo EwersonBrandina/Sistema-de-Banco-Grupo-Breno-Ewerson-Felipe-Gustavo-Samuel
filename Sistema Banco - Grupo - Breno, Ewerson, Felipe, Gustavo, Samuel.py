@@ -63,21 +63,17 @@ def transferencia(event=None):
     in0_fr4_3.delete(0, 'end')
     in0_fr4_3.insert(0, y)
 def extrato(event=None):
-    x = in0_fr4_4.get().replace(',', '.')
+    x = in0_fr4_4.get().replace('/', '').replace('--','')[:16]
     y = ''
     if event.keysym.lower() == "backspace": return
     for i in range(len(x)):
-        if x[i] in '0123456789':
-            y += x[i]
-        elif x[i] in '.':
-            y += x[i]
+        if not x[i] in '0123456789': continue
+        if i in [1, 3, 9, 11]:
+            y += x[i] + '/'
+        elif i in [7]:
+            y += x[i] + '--'
         else:
-            y += ''
-    if y.count('.') > 1:
-        y=y[:-1]
-    #y=float(y)
-    #y=round(y)
-    #y=str(y)
+            y += x[i]
     in0_fr4_4.delete(0, 'end')
     in0_fr4_4.insert(0, y)
 #NSEW
@@ -357,6 +353,18 @@ lb3_fr4_4 = Label(fr4_4, text='Mensagem de Confirmação', font='Arial 20',padx=
 bt4_fr4_4 = Button(fr4_4, text='Voltar', font='Arial 20',padx=5, pady=0, bg='#49A',width=12, command= lambda: [fr4_1.grid_remove(), fr4_2.grid_remove(), fr4_3.grid_remove(), fr4_4.grid_remove(),fr4.grid(row=0, column=0, sticky=NSEW)]).grid(row=4, column=0, sticky=E)
 bt4_1_fr4_4 = Button(fr4_4, text='Logout', font='Arial 20',padx=5, pady=0, bg='#49A',width=12).grid(row=4, column=1, sticky=W)
 #fr4_4.grid()
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
