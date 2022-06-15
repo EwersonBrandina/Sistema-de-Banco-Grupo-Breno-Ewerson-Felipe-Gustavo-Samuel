@@ -3,7 +3,7 @@ from tkinter import *
 root = Tk()
 altura = root.winfo_screenheight()
 largura = root.winfo_screenwidth()
-root.geometry('590x470') # declara o tamanho da jenela (400x300) tamanho inicial/ +100 +100 lugar onde ela vai abrir
+root.geometry('750x470') # declara o tamanho da jenela (400x300) tamanho inicial/ +100 +100 lugar onde ela vai abrir
 root.config(background='#fff') #background color
 #root.grid_rowconfigure(0, weight=1)
 #root.grid_columnconfigure(0, weight=1)
@@ -115,7 +115,7 @@ fr0 = LabelFrame ()
 
 lb0_fr0 = Label(fr0, text='Seja Muito Bem-Vindo', font='Arial 30').grid(row=0,column=0, sticky=E,padx=300,ipady=200)
 bt0_fr0 = Button(fr0, text='Funcionário', font='Arial 25',width=10, command= lambda: [fr0.grid_remove(), fr1.grid(row=0, column=0)]).grid(row=1, column=0, sticky=W, padx=300)
-bt1_fr0 = Button(fr0, text='Usuario', font='Arial 25',width=8, command= lambda: [fr0.grid_remove(), fr4.grid(row=0, column=0)]).grid(row=1, column=0, sticky=E, padx=305)
+bt1_fr0 = Button(fr0, text='Usuario', font='Arial 25',width=8, command= lambda: [fr0.grid_remove(), fr3.grid(row=0, column=0)]).grid(row=1, column=0, sticky=E, padx=305)
 
 fr0.grid(row=0, column=0, sticky=NSEW)
 
@@ -302,8 +302,7 @@ bt2_fr4 = Button(fr4, text='Depósito', font='Arial 20',padx=5, pady=0, bg='#49A
 bt3_fr4 = Button(fr4, text='Saque', font='Arial 20',padx=5, pady=0, bg='#49A',width=12, command= lambda: [fr4.grid_remove(), fr4_2.grid(row=0, column=1)]).grid(row=3, column=0, sticky=W)
 bt4_fr4 = Button(fr4, text='Transferência', font='Arial 20',padx=5, pady=0, bg='#49A',width=12, command= lambda: [fr4.grid_remove(), fr4_3.grid(row=0, column=1)]).grid(row=4, column=0, sticky=W)
 bt5_fr4 = Button(fr4, text='Extrato', font='Arial 20',padx=5, pady=0, bg='#49A',width=12, command= lambda: [fr4.grid_remove(), fr4_4.grid(row=0, column=1)]).grid(row=5, column=0, sticky=W)
-bt6_fr4 = Button(fr4, text='Pix', font='Arial 20',padx=5, pady=0, bg='#49A',width=12).grid(row=6, column=0, sticky=W)
-bt7_fr4 = Button(fr4, text='Logout', font='Arial 20',padx=5, pady=0, bg='#49A',width=14).grid(row=7, column=2, sticky=E)
+bt6_fr4 = Button(fr4, text='Logout', font='Arial 20',padx=5, pady=0, bg='#49A',width=14).grid(row=7, column=2, sticky=E)
 #fr4.grid(row=0, column=0, sticky=NSEW)
 #Frame 4_1 - Ewerson
 fr4_1 = LabelFrame(root, padx=10, pady=5, bg='#49A', text='Depósito', font='Arial 25', borderwidth=1, relief="sunken", width=5)
