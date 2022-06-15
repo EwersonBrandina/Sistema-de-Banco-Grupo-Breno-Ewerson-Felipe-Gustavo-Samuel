@@ -3,7 +3,7 @@ from tkinter import *
 root = Tk()
 altura = root.winfo_screenheight()
 largura = root.winfo_screenwidth()
-root.geometry('750x470') # declara o tamanho da jenela (400x300) tamanho inicial/ +100 +100 lugar onde ela vai abrir
+root.geometry('1000x700') # declara o tamanho da jenela (400x300) tamanho inicial/ +100 +100 lugar onde ela vai abrir
 root.config(background='#fff') #background color
 #root.grid_rowconfigure(0, weight=1)
 #root.grid_columnconfigure(0, weight=1)
