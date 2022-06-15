@@ -7,25 +7,75 @@ root.geometry('590x470') # declara o tamanho da jenela (400x300) tamanho inicial
 root.config(background='#fff') #background color
 #root.grid_rowconfigure(0, weight=1)
 #root.grid_columnconfigure(0, weight=1)
-##Funções
-#def saque(event=None):
-#    x=in0_fr4_1.get()
-#    y=''
-#    if event.keysym.lower() == "backspace": return
-#    for i in range(len(x)):
-#        if x[i] in '0123456789':
-#            if i.count('.') == 1:
-#                y+=x[i]
-#            elif i.count('.') > 1:
-#                y+=x[i]
-#                
-#
-#
-#            else:
-#                y+=x[i]
-#    in0_fr4_1.delete(0, 'end')
-#    in0_fr4_1.insert(0, y)
-
+#Funções
+def deposito(event=None):
+    x = in0_fr4_1.get().replace(',', '.')
+    y = ''
+    if event.keysym.lower() == "backspace": return
+    for i in range(len(x)):
+        if x[i] in '0123456789':
+            y += x[i]
+        elif x[i] in '.':
+            y += x[i]
+        else:
+            y += ''
+    if y.count('.') > 1:
+        y=y[:-1]
+    #y=float(y)
+    #y=round(y)
+    #y=str(y)
+    in0_fr4_1.delete(0, 'end')
+    in0_fr4_1.insert(0, y)
+def saque(event=None):
+    x = in0_fr4_2.get().replace(',', '.')
+    y = ''
+    if event.keysym.lower() == "backspace": return
+    for i in range(len(x)):
+        if x[i] in '0123456789':
+            y += x[i]
+        elif x[i] in '.':
+            y += x[i]
+        else:
+            y += ''
+    if y.count('.') > 1:
+        y=y[:-1]
+    #y=float(y)
+    #y=round(y)
+    #y=str(y)
+    in0_fr4_2.delete(0, 'end')
+    in0_fr4_2.insert(0, y)
+def transferencia(event=None):
+    x = in0_fr4_3.get().replace(',', '.')
+    y = ''
+    if event.keysym.lower() == "backspace": return
+    for i in range(len(x)):
+        if x[i] in '0123456789':
+            y += x[i]
+        elif x[i] in '.':
+            y += x[i]
+        else:
+            y += ''
+    if y.count('.') > 1:
+        y=y[:-1]
+    #y=float(y)
+    #y=round(y)
+    #y=str(y)
+    in0_fr4_3.delete(0, 'end')
+    in0_fr4_3.insert(0, y)
+def extrato(event=None):
+    x = in0_fr4_4.get().replace('/', '').replace('--','')[:12]
+    y = ''
+    if event.keysym.lower() == "backspace": return
+    for i in range(len(x)):
+        if not x[i] in '0123456789': continue
+        if i in [1, 7]:
+            y += x[i] + '/'
+        elif i in [5]:
+            y += x[i] + '--'
+        else:
+            y += x[i]
+    in0_fr4_4.delete(0, 'end')
+    in0_fr4_4.insert(0, y)
 #NSEW
 #-------------------------- Functions --------------------------#
 
@@ -62,11 +112,12 @@ root.config(background='#fff') #background color
 
 fr0 = LabelFrame ()
 
-lb0_fr0 = Label(fr0, text='Seja Muito Bem-Vindo', font='Arial 30').grid(row=0,column=0, sticky=E,padx=50)
-bt0_fr0 = Button(fr0, text='Funcionário', font='Arial 25', command= lambda: [fr0.grid_remove(), fr1.grid(row=0, column=0)]).grid(row=1, column=0, sticky=W, padx=20)
-bt1_fr0 = Button(fr0, text='Usuario', font='Arial 25', command= lambda: [fr0.grid_remove(), fr3.grid(row=0, column=0)]).grid(row=1, column=0, sticky=E, padx=50)
+lb0_fr0 = Label(fr0, text='Seja Muito Bem-Vindo', font='Arial 30').grid(row=0,column=0, sticky=E,padx=300,ipady=200)
+bt0_fr0 = Button(fr0, text='Funcionário', font='Arial 25',width=10, command= lambda: [fr0.grid_remove(), fr1.grid(row=0, column=0)]).grid(row=1, column=0, sticky=W, padx=300)
+bt1_fr0 = Button(fr0, text='Usuario', font='Arial 25',width=8, command= lambda: [fr0.grid_remove(), fr4.grid(row=0, column=0)]).grid(row=1, column=0, sticky=E, padx=305)
 
 fr0.grid(row=0, column=0, sticky=NSEW)
+
 #Frame 1 - Samuel
 
 #criar janela
@@ -75,28 +126,27 @@ fr1 = LabelFrame(root)
 
 #criar os widgets
 
-#---Frame 1---
 lb0_fr1 = Label(fr1, text='Login do Funcionário', font='Arial 22').grid(row=0,column=1,sticky=W,padx=150)
 lb1_fr1 = Label(fr1, text='Usuário:', font="Arial 20").grid(row=1, column=1,sticky=W, padx=5)
 lb2_fr1 = Label(fr1, text='Senha:', font="Arial 20",width=7).grid(row=2, column=1,sticky=W, padx=5)
 
 #--Entrada ---
 int0_fr1 = Entry(fr1, font='Arial 18', width=35).grid(row=1,column=1,sticky=W,padx=110)
-int1_fr1 = Entry(fr1, font='Arial 18', width=35).grid(row=2,column=1,sticky=W,padx=110)
+int1_fr1 = Entry(fr1, font='Arial 18', width=35,show="*").grid(row=2,column=1,sticky=W,padx=110)
 #--Button ---
 tb0_fr1 = Button(fr1,text='Entrar', font="Arial 20",width=15,bg='black', fg='white').grid(row=4, column=1, sticky=W, padx=110)
 tb1_fr1 = Button(fr1, text='Voltar', font="Arial 20",width=15,bg='black', fg='white', command= lambda: [fr1.grid_remove(),fr0.grid(row=0, column=0)]).grid(row=4, column=1, sticky=E,padx=100)
 
 #---Configuração do Frame---
-##fr1.grid()
-#
-##organizar os widgets
-#
-##--Entrada --
-#
-##---Butoon Função---
-#
-##executar a janel4
+#fr1.grid()
+
+#organizar os widgets
+
+#--Entrada --
+
+#---Butoon Função---
+
+#executar a janel4
 
 #Frame 2 - Breno
 
@@ -147,8 +197,6 @@ bt1_fr1 = Button(fr2_1, text="Listar Dados", font='Georfia 10').grid(row=8, colu
 
 
 #Frame 3 - Felipe
-
-from tkinter import *
 
 #criando janela
 
@@ -260,7 +308,7 @@ bt7_fr4 = Button(fr4, text='Logout', font='Arial 20',padx=5, pady=0, bg='#49A',w
 fr4_1 = LabelFrame(root, padx=10, pady=5, bg='#49A', text='Depósito', font='Arial 25', borderwidth=1, relief="sunken", width=5)
 lb0_fr4_1 = Label(fr4_1, text='Valor a Ser Depositado', font='Arial 20',padx=5, pady=0, bg='#49A').grid(row=0, column=0 , sticky=W)
 in0_fr4_1 = Entry(fr4_1, font='Arial 20', bg='#49A')
-#in0_fr4_1.bind("<KeyRelease>", saque)
+in0_fr4_1.bind("<KeyRelease>", deposito)
 in0_fr4_1.grid(row=0, column=1)
 in1_fr4_1 = Entry(fr4_1, font='Arial 20', bg='#49A').grid(row=1, column=1)
 bt2_fr4_1 = Button(fr4_1, text='Confirmar', font='Arial 20',padx=5, pady=0, bg='#49A',width=12).grid(row=2, column=0, columnspan=1, sticky=E)
@@ -272,7 +320,9 @@ bt4_1_fr4_1 = Button(fr4_1, text='Logout', font='Arial 20',padx=5, pady=0, bg='#
 #Frame 4_2 - Ewerson
 fr4_2 = LabelFrame(root, padx=10, pady=5, bg='#49A', text='Saque', font='Arial 25', borderwidth=1, relief="sunken", width=5)
 lb0_fr4_2 = Label(fr4_2, text='Valor a Ser Sacado', font='Arial 20',padx=5, pady=0, bg='#49A').grid(row=0, column=0 , sticky=W)
-in0_fr4_2 = Entry(fr4_2,font='Arial 20', bg='#49A').grid(row=0, column=1)
+in0_fr4_2 = Entry(fr4_2,font='Arial 20', bg='#49A')
+in0_fr4_2.bind('<KeyRelease>', saque)
+in0_fr4_2.grid(row=0, column=1)
 in1_fr4_2 = Entry(fr4_2, font='Arial 20', bg='#49A').grid(row=1, column=1)
 bt2_fr4_2 = Button(fr4_2, text='Confirmar', font='Arial 20',padx=5, pady=0, bg='#49A',width=12).grid(row=2, column=0, columnspan=1, sticky=E)
 lb3_fr4_2 = Label(fr4_2, text='Mensagem de Confirmação', font='Arial 20',padx=5, pady=0, bg='#49A',width=31).grid(row=3, column=0, columnspan=3, sticky=W)
@@ -282,7 +332,9 @@ bt4_1_fr4_2 = Button(fr4_2, text='Logout', font='Arial 20',padx=5, pady=0, bg='#
 #Frame 4_3 - Ewerson
 fr4_3 = LabelFrame(root, padx=10, pady=5, bg='#49A', text='Transferência', font='Arial 25', borderwidth=1, relief="sunken", width=5)
 lb0_fr4_3 = Label(fr4_3, text='Valor a Ser Transferido', font='Arial 20',padx=5, pady=0, bg='#49A').grid(row=0, column=0 , sticky=W)
-in0_fr4_3 = Entry(fr4_3,font='Arial 20', bg='#49A').grid(row=0, column=1)
+in0_fr4_3 = Entry(fr4_3,font='Arial 20', bg='#49A')
+in0_fr4_3.bind('<KeyRelease>', transferencia)
+in0_fr4_3.grid(row=0, column=1)
 in1_fr4_3 = Entry(fr4_3, font='Arial 20', bg='#49A').grid(row=1, column=1)
 bt2_fr4_3 = Button(fr4_3, text='Confirmar', font='Arial 20',padx=5, pady=0, bg='#49A',width=12).grid(row=2, column=0, columnspan=1, sticky=E)
 lb3_fr4_3 = Label(fr4_3, text='Mensagem de Confirmação', font='Arial 20',padx=5, pady=0, bg='#49A',width=31).grid(row=3, column=0, columnspan=3, sticky=W)
@@ -292,23 +344,17 @@ bt4_1_fr4_3 = Button(fr4_3, text='Logout', font='Arial 20',padx=5, pady=0, bg='#
 #Frame 4_4 - Ewerson
 fr4_4 = LabelFrame(root, padx=10, pady=5, bg='#49A', text='Extrato', font='Arial 25', borderwidth=1, relief="sunken", width=5)
 lb0_fr4_4 = Label(fr4_4, text='PERIODO', font='Arial 20',padx=5, pady=0, bg='#49A').grid(row=0, column=0 , sticky=W)
-in0_fr4_4 = Entry(fr4_4,font='Arial 20', bg='#49A').grid(row=0, column=1)
+
+in0_fr4_4 = Entry(fr4_4,font='Arial 20', bg='#49A')
+in0_fr4_4.bind('<KeyRelease>', extrato)
+in0_fr4_4.grid(row=0, column=1)
+in0_fr4_4.insert(0, 'MM/AAAA')
 in1_fr4_4 = Entry(fr4_4, font='Arial 20', bg='#49A').grid(row=1, column=1)
 bt2_fr4_4 = Button(fr4_4, text='Confirmar', font='Arial 20',padx=5, pady=0, bg='#49A',width=12).grid(row=2, column=0, columnspan=1, sticky=E)
 lb3_fr4_4 = Label(fr4_4, text='Mensagem de Confirmação', font='Arial 20',padx=5, pady=0, bg='#49A',width=27).grid(row=3, column=0, columnspan=3, sticky=W)
 bt4_fr4_4 = Button(fr4_4, text='Voltar', font='Arial 20',padx=5, pady=0, bg='#49A',width=12, command= lambda: [fr4_1.grid_remove(), fr4_2.grid_remove(), fr4_3.grid_remove(), fr4_4.grid_remove(),fr4.grid(row=0, column=0, sticky=NSEW)]).grid(row=4, column=0, sticky=E)
 bt4_1_fr4_4 = Button(fr4_4, text='Logout', font='Arial 20',padx=5, pady=0, bg='#49A',width=12).grid(row=4, column=1, sticky=W)
 #fr4_4.grid()
-
-
-
-
-
-
-
-
-
-
 
 
 
