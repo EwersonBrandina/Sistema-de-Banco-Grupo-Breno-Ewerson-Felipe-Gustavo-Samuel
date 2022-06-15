@@ -3,10 +3,10 @@ from tkinter import *
 root = Tk()
 altura = root.winfo_screenheight()
 largura = root.winfo_screenwidth()
-root.geometry('1000x700') # declara o tamanho da jenela (400x300) tamanho inicial/ +100 +100 lugar onde ela vai abrir
+root.geometry('750x470') # declara o tamanho da jenela (400x300) tamanho inicial/ +100 +100 lugar onde ela vai abrir
 root.config(background='#fff') #background color
-#root.grid_rowconfigure(0, weight=1)
-#root.grid_columnconfigure(0, weight=1)
+root.grid_rowconfigure(0, weight=1)
+root.grid_columnconfigure(0, weight=1)
 #Funções
 def deposito(event=None):
     x = in0_fr4_1.get().replace(',', '.')
@@ -109,13 +109,11 @@ def extrato(event=None):
 
 #INÍCIO DO CÓDIGO
 
-#Frame 0 - Gustavo
-
 fr0 = LabelFrame ()
 
-lb0_fr0 = Label(fr0, text='Seja Muito Bem-Vindo', font='Arial 30').grid(row=0,column=0, sticky=E,padx=300,ipady=200)
-bt0_fr0 = Button(fr0, text='Funcionário', font='Arial 25',width=10, command= lambda: [fr0.grid_remove(), fr1.grid(row=0, column=0)]).grid(row=1, column=0, sticky=W, padx=300)
-bt1_fr0 = Button(fr0, text='Usuario', font='Arial 25',width=8, command= lambda: [fr0.grid_remove(), fr3.grid(row=0, column=0)]).grid(row=1, column=0, sticky=E, padx=305)
+lb0_fr0 = Label(fr0, text='Seja Muito Bem-Vindo', font = ("Mongolian Baiti", "32" )).grid(row=0,column=0,columnspan=3, sticky=W,padx=170,ipady=120)
+bt0_fr0 = Button(fr0, text='Funcionário', font=('Mongolian Baiti' ,'26', "bold") ,width=10, command= lambda: [fr0.grid_remove(), fr1.grid(row=0, column=0)]).grid(row=1, column=0,columnspan=1, sticky=W, padx=150)
+bt1_fr0 = Button(fr0, text='Usuario', font= ('Mongolian Baiti' ,'26', "bold"),width=8, command= lambda: [fr0.grid_remove(), fr4.grid(row=0, column=0)]).grid(row=1, column=0,columnspan=2,sticky=W, padx=400)
 
 fr0.grid(row=0, column=0, sticky=NSEW)
 
@@ -135,7 +133,7 @@ lb2_fr1 = Label(fr1, text='Senha:', font="Arial 20",width=7).grid(row=2, column=
 int0_fr1 = Entry(fr1, font='Arial 18', width=35).grid(row=1,column=1,sticky=W,padx=110)
 int1_fr1 = Entry(fr1, font='Arial 18', width=35,show="*").grid(row=2,column=1,sticky=W,padx=110)
 #--Button ---
-tb0_fr1 = Button(fr1,text='Entrar', font="Arial 20",width=15,bg='black', fg='white').grid(row=4, column=1, sticky=W, padx=110)
+tb0_fr1 = Button(fr1,text='Entrar', font="Arial 20",width=15,bg='black', fg='white', command= lambda: [fr1.grid_remove(),fr2.grid(row=0, column=0, pady=50)] ).grid(row=4, column=1, sticky=W, padx=110)
 tb1_fr1 = Button(fr1, text='Voltar', font="Arial 20",width=15,bg='black', fg='white', command= lambda: [fr1.grid_remove(),fr0.grid(row=0, column=0)]).grid(row=4, column=1, sticky=E,padx=100)
 
 #---Configuração do Frame---
@@ -153,50 +151,27 @@ tb1_fr1 = Button(fr1, text='Voltar', font="Arial 20",width=15,bg='black', fg='wh
 
 #-------------------------- Frame 2 --------------------------#
 
-fr2 = LabelFrame(root, background='#fff', text='Dados Pessoais', fg="blue", font='Georgia 12')
-#fr2.grid(row=0, padx= 15)
+fr2 = LabelFrame(root, text="Banco Dellux", bg="green")
 
-#Linha 1
-lb0_fr2 = Label(fr2, text="Nome:", font='Georgia 10').grid(row=1, column=0)
-in0_fr2 = Entry(fr2, fg='blue', font='Georgia 10').grid(row=1, column=1, columnspan=5, sticky=NSEW)
+# Infos
 
-#Linha 2
-lb1_fr2 = Label(fr2, text="CPF:", font='Georgia 10').grid(row=2, column=0)
-in1_fr2 = Entry(fr2, fg='blue', font='Georgia 10').grid(row=2, column=1)
+lb0_fr2 = Label(fr2, text="Bem vindo a home dos funcionarios", font=("Mongolian Baiti", "17"),background="#8a37cc", fg="#f5f5f5").grid(row=1, column=0, columnspan=6, padx=200, sticky=EW)
 
-lb2_fr2 = Label(fr2, text="Data Nasc:", font='Georgia 10').grid(row=2, column=2)
-in2_fr2 = Entry(fr2, fg='blue', font='Georgia 10', cursor="gobbler").grid(row=2, column=3)
+lb1_fr2 = Label(fr2, text="BRENO KAUAN", font=("Mongolian Baiti", "17"), background="#8a37cc", fg="#f5f5f5").grid(row=2, column=0, columnspan=6, sticky=EW, pady=10)
+#lb1_fr2 o label acima se possivel é pra ser usado pra mostrar o nome do usuario registrado, ou sej aretirando o nome Breno Depois durante a finalização
 
-lb3_fr2 = Label(fr2, text="Telefone:", font='Georgia 10').grid(row=2, column=4)
-in3_fr2 = Entry(fr2, fg='blue', font='Georgia 10').grid(row=2, column=5)
+lb2_fr2 = Label(fr2, text="Avisos:", font=("Mongolian Baiti", "14", "bold"),background="#8a37cc", fg="#f5f5f5").grid(row=3, column=0, columnspan=6,)
 
-#Linha 3
-lb4_fr2 = Label(fr2, text="Rua:", font='Georgia 10').grid(row=3, column=0)
-lb4_fr2 = Entry(fr2, fg='blue', font='Georgia 10').grid(row=3, column=1, columnspan=3, sticky=NSEW)
+lb3_fr2 = Label(fr2, text="Nenhuma atualização relevante no sistema ", font=("Mongolian Baiti", "10"),background="#8a37cc", fg="#f5f5f5").grid(row=4, column=0, columnspan=6, sticky=EW, pady=10)
 
-lb5_fr2 = Label(fr2, text="  N° da casa:", font='Georgia 10').grid(row=3, column=4)
-lb5_fr2 = Entry(fr2, fg='blue', font='Georgia 10').grid(row=3, column=5)
+# Botões
+bt0_fr2 = Button(fr2, text="Logout do sistema ", font=("Mongolian Baiti", "11", "bold"), height=2,width=24, bg="#eb8334", fg="#fff").grid(row=5, column=1, columnspan=2, sticky=EW, pady=30)
 
-#linha 4
-lb6_fr2 = Label(fr2, text="Bairro:", font='Georgia 10').grid(row=4, column=0,)
-lb6_fr2 = Entry(fr2, fg='blue', font='Georgia 10').grid(row=4, column=1)
+bt1_fr2 = Button(fr2, text="Cadastrar novo cliente", font=("Mongolian Baiti", "11", "bold"), height=2, bg="#eb8334", fg="#fff").grid(row=5, column=3, sticky=EW)
 
-lb7_fr2 = Label(fr2, text="Cidade:", font='Georgia 10').grid(row=4, column=2)
-lb7_fr2 = Entry(fr2, fg='blue', font='Georgia 10').grid(row=4, column=3)
+bt3_fr2 = Button(fr2, text="Excluir usuarios", font=("Mongolian Baiti", "11"," bold"), height=2, bg="#eb8334", fg="#fff").grid(row=5, column=4, sticky=EW)
 
-lb8_fr2 = Label(fr2, text=" Estado:", font='Georgia 10').grid(row=4, column = 4)
-lb8_fr2 = Entry(fr2, fg='blue', font='Georgia 10').grid(row=4, column=5)
-
-#-------------------------- Frame 2.1 --------------------------#
-
-fr2_1 = LabelFrame(root, background='#fff', text='Finalize seu cadastro', fg="blue", font='Georgia 12')
-#fr2_1.grid(row=2, padx= 15, sticky=NSEW)
-
-#Linha 8
-bt0_fr1 = Button(fr2_1, text="Gravar Dados", font='Georfia 10').grid(row=8, column=0)
-bt1_fr1 = Button(fr2_1, text="Listar Dados", font='Georfia 10').grid(row=8, column=1)
-
-
+#grid(row=0, column=0, pady=50)
 #Frame 3 - Felipe
 
 #criando janela
