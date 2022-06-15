@@ -63,24 +63,14 @@ def transferencia(event=None):
     in0_fr4_3.delete(0, 'end')
     in0_fr4_3.insert(0, y)
 def extrato(event=None):
-<<<<<<< HEAD
     x = in0_fr4_4.get().replace('/', '').replace('--','')[:12]
-=======
-    x = in0_fr4_4.get().replace('/', '').replace('--','')[:16]
->>>>>>> 81ad6c4b77ab3a74f7528f25e21a8d87ff3908e2
     y = ''
     if event.keysym.lower() == "backspace": return
     for i in range(len(x)):
         if not x[i] in '0123456789': continue
-<<<<<<< HEAD
         if i in [1, 7]:
             y += x[i] + '/'
         elif i in [5]:
-=======
-        if i in [1, 3, 9, 11]:
-            y += x[i] + '/'
-        elif i in [7]:
->>>>>>> 81ad6c4b77ab3a74f7528f25e21a8d87ff3908e2
             y += x[i] + '--'
         else:
             y += x[i]
@@ -354,17 +344,11 @@ bt4_1_fr4_3 = Button(fr4_3, text='Logout', font='Arial 20',padx=5, pady=0, bg='#
 #Frame 4_4 - Ewerson
 fr4_4 = LabelFrame(root, padx=10, pady=5, bg='#49A', text='Extrato', font='Arial 25', borderwidth=1, relief="sunken", width=5)
 lb0_fr4_4 = Label(fr4_4, text='PERIODO', font='Arial 20',padx=5, pady=0, bg='#49A').grid(row=0, column=0 , sticky=W)
-<<<<<<< HEAD
 
 in0_fr4_4 = Entry(fr4_4,font='Arial 20', bg='#49A')
 in0_fr4_4.bind('<KeyRelease>', extrato)
 in0_fr4_4.grid(row=0, column=1)
 in0_fr4_4.insert(0, 'MM/AAAA')
-=======
-in0_fr4_4 = Entry(fr4_4,font='Arial 20', bg='#49A')
-in0_fr4_4.bind('<KeyRelease>', extrato)
-in0_fr4_4.grid(row=0, column=1)
->>>>>>> 81ad6c4b77ab3a74f7528f25e21a8d87ff3908e2
 in1_fr4_4 = Entry(fr4_4, font='Arial 20', bg='#49A').grid(row=1, column=1)
 bt2_fr4_4 = Button(fr4_4, text='Confirmar', font='Arial 20',padx=5, pady=0, bg='#49A',width=12).grid(row=2, column=0, columnspan=1, sticky=E)
 lb3_fr4_4 = Label(fr4_4, text='Mensagem de Confirmação', font='Arial 20',padx=5, pady=0, bg='#49A',width=27).grid(row=3, column=0, columnspan=3, sticky=W)
