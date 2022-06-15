@@ -4,7 +4,7 @@ root = Tk()
 altura = root.winfo_screenheight()
 largura = root.winfo_screenwidth()
 root.geometry('750x470') # declara o tamanho da jenela (400x300) tamanho inicial/ +100 +100 lugar onde ela vai abrir
-root.config(background='#fff') #background color
+root.config(background='#8a37cc') #background color
 root.grid_rowconfigure(0, weight=1)
 root.grid_columnconfigure(0, weight=1)
 #Funções
@@ -140,15 +140,15 @@ bt2_fr1 = Button(fr1, text='👁', font=('Mongolian Baiti', "18", "bold"),bg='#e
 
 fr2 = LabelFrame(root, bg="#8a37cc")
 # Infos
-lb0_fr2 = Label(fr2, text="Bem vindo a home dos funcionarios", font=("Mongolian Baiti", "17"),background="#8a37cc", fg="#f5f5f5").grid(row=1, column=0, columnspan=6, padx=200, sticky=EW)
-lb1_fr2 = Label(fr2, text="BRENO KAUAN", font=("Mongolian Baiti", "17"), background="#8a37cc", fg="#f5f5f5").grid(row=2, column=0, columnspan=6, sticky=EW, pady=10)
+lb0_fr2 = Label(fr2, text="Bem Vindo a Home Dos Funcionarios", font=("Mongolian Baiti", "32"),background="#8a37cc", fg="#f5f5f5").grid(row=1, column=0, columnspan=6, padx=50, sticky=W)
+lb1_fr2 = Label(fr2, text="BRENO KAUAN", font=("Mongolian Baiti", "20"), background="#8a37cc", fg="#f5f5f5").grid(row=2, column=0, columnspan=6, sticky=W, pady=10,padx=300)
 #lb1_fr2 o label acima se possivel é pra ser usado pra mostrar o nome do usuario registrado, ou sej aretirando o nome Breno Depois durante a finalização
-lb2_fr2 = Label(fr2, text="Avisos:", font=("Mongolian Baiti", "14", "bold"),background="#8a37cc", fg="#f5f5f5").grid(row=3, column=0, columnspan=6,)
-lb3_fr2 = Label(fr2, text="Nenhuma atualização relevante no sistema ", font=("Mongolian Baiti", "10"),background="#8a37cc", fg="#f5f5f5").grid(row=4, column=0, columnspan=6, sticky=EW, pady=10)
+lb2_fr2 = Label(fr2, text="Avisos:", font=("Mongolian Baiti", "17", "bold"),background="#8a37cc", fg="#f5f5f5").grid(row=3, column=0,sticky=W,padx=350)
+lb3_fr2 = Label(fr2, text="Nenhuma atualização relevante no sistema ", font=("Mongolian Baiti", "15"),background="#8a37cc", fg="#f5f5f5").grid(row=4, column=0, sticky=W,padx=220, pady=10)
 # Botões
-bt0_fr2 = Button(fr2, text="Logout do sistema ", font=("Mongolian Baiti", "11", "bold"), height=2,width=24, bg="#eb8334", fg="#fff", command= lambda: [fr2.grid_remove(), fr1.grid(row=0, column=0)] ).grid(row=5, column=1, columnspan=2, sticky=EW, pady=30)
-bt1_fr2 = Button(fr2, text="Cadastrar novo cliente", font=("Mongolian Baiti", "11", "bold"), height=2, bg="#eb8334", fg="#fff", command= lambda:[fr2.grid_remove(), fr2_1.grid(row=0,column=0)] ).grid(row=5, column=3, sticky=EW)
-bt3_fr2 = Button(fr2, text="Excluir usuarios", font=("Mongolian Baiti", "11"," bold"), height=2, bg="#eb8334", fg="#fff", command= lambda:[fr2.grid_remove(), fr2_2.grid(row=0, column=0)] ).grid(row=5, column=4, sticky=EW)
+bt0_fr2 = Button(fr2, text="Logout", font=("Mongolian Baiti", "18", "bold"), height=2,width=20, bg="#eb8334", fg="#fff", command= lambda: [fr2.grid_remove(), fr1.grid(row=0, column=0)] ).grid(row=6, column=0,sticky=W,padx=250,pady=20)
+bt1_fr2 = Button(fr2, text="Cadastrar novo cliente", font=("Mongolian Baiti", "18", "bold"), height=2,width=20, bg="#eb8334", fg="#fff", command= lambda:[fr2.grid_remove(), fr2_1.grid(row=0,column=0)] ).grid(row=5,column=0,sticky=W,padx=100)
+bt3_fr2 = Button(fr2, text="Excluir usuarios", font=("Mongolian Baiti", "18"," bold"), height=2,width=20, bg="#eb8334", fg="#fff").grid(row=5, column=0,columnspan=2,sticky=W,padx=400)
 #Frame fr2_1
 fr2_1 = LabelFrame(root, bg="#8a37cc") #grid(row=0, column=0)
 lb0_fr2_1 = Label(fr2_1, text="Faça aqui o cadastro de novos Clientes", font=("Mongolian Baiti", "17"),background="#8a37cc", fg="#f5f5f5").grid(row=0, column=1, columnspan=5,pady=60)
@@ -195,7 +195,7 @@ bt1_fr2 = Button(fr2_2, text="Voltar", font=("Mongolian Baiti", "11", "bold"), h
 
 #Frame 3 - Felipe
 #criando janela
-fr3 = LabelFrame(root, text='Login / Cadastro', background='#10929c')
+fr3 = LabelFrame(root, text='Login / Cadastro', font='Arial 20', background='#10929c')
 fr3_1 = LabelFrame(root, text='Cadastro', background='#10929c')
 #criando widgets
 lb0_fr3 = Label(fr3, text='Bem Vindo ao Dellux', font='Arial 20', background='#10929c', foreground='#f5f5f5').grid(row=0, column=0, sticky=NSEW)
