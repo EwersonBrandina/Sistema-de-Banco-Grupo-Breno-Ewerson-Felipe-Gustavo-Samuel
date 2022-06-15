@@ -1,7 +1,7 @@
 from tkinter import *
 
 root = Tk()
-root.geometry('770x300') # declara o tamanho da jenela (400x300) tamanho inicial/ +100 +100 lugar onde ela vai abrir
+root.geometry('750x470') # declara o tamanho da jenela (400x300) tamanho inicial/ +100 +100 lugar onde ela vai abrir
 root.config(background='#8a37cc') #background color
 
 #-------------------------- Functions --------------------------#
@@ -9,7 +9,7 @@ root.config(background='#8a37cc') #background color
 
 #-------------------------- Home funcionario Frame 2 --------------------------#
 
-fr2 = LabelFrame(root, text="Banco Dellux", bg="green").grid(row=0, column=0, pady=15)
+fr2 = LabelFrame(root, text="Banco Dellux", bg="green").grid(row=0, column=0, pady=50)
 
 # Infos
 
@@ -27,7 +27,7 @@ bt0_fr2 = Button(fr2, text="Logout do sistema ", font=("Mongolian Baiti", "11", 
 
 bt1_fr2 = Button(fr2, text="Cadastrar novo cliente", font=("Mongolian Baiti", "11", "bold"), height=2, bg="#eb8334", fg="#fff").grid(row=5, column=3, sticky=EW)
 
-bt3_fr2 = Button(fr2, text="Verificar usuarios", font=("Mongolian Baiti", "11"," bold"), height=2, bg="#eb8334", fg="#fff").grid(row=5, column=4, sticky=EW)
+bt3_fr2 = Button(fr2, text="Excluir usuarios", font=("Mongolian Baiti", "11"," bold"), height=2, bg="#eb8334", fg="#fff").grid(row=5, column=4, sticky=EW)
 
 #-------------------------- Mostrar tela --------------------------#
 
