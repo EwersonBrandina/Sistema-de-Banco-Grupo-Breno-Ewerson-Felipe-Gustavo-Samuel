@@ -1,5 +1,5 @@
 from tkinter import *
-#MODELO CRIADO POR BRENO
+#MODELO CRIADO POR BRENO 
 root = Tk()
 altura = root.winfo_screenheight()
 largura = root.winfo_screenwidth()
@@ -76,6 +76,7 @@ def extrato(event=None):
             y += x[i]
     in0_fr4_4.delete(0, 'end')
     in0_fr4_4.insert(0, y)
+
 #NSEW
 #-------------------------- Functions --------------------------#
 
