@@ -1,3 +1,5 @@
+from cmath import e
+from tarfile import PAX_FIELDS
 from tkinter import *
 from turtle import width
 #MODELO CRIADO POR BRENO 
@@ -141,7 +143,7 @@ bt2_fr1 = Button(fr1, text='👁', font=('Mongolian Baiti', "18", "bold"),bg='#e
 
 fr2 = LabelFrame(root, bg="#8a37cc")
 # Infos
-lb0_fr2 = Label(fr2, text="Bem Vindo a Home Dos Funcionarios", font=("Mongolian Baiti", "32"),background="#8a37cc", fg="#f5f5f5").grid(row=1, column=0, columnspan=6, padx=40, sticky=W)
+lb0_fr2 = Label(fr2, text="Bem Vindo a Home Dos Funcionarios", font=("Mongolian Baiti", "32"),background="#8a37cc", fg="#f5f5f5").grid(row=1, column=0, columnspan=6, padx=50, sticky=W)
 lb1_fr2 = Label(fr2, text="BRENO KAUAN", font=("Mongolian Baiti", "20"), background="#8a37cc", fg="#f5f5f5").grid(row=2, column=0, columnspan=6, sticky=W, pady=10,padx=300)
 #lb1_fr2 o label acima se possivel é pra ser usado pra mostrar o nome do usuario registrado, ou sej aretirando o nome Breno Depois durante a finalização
 lb2_fr2 = Label(fr2, text="Avisos:", font=("Mongolian Baiti", "17", "bold"),background="#8a37cc", fg="#f5f5f5").grid(row=3, column=0,sticky=W,padx=350)
@@ -152,36 +154,36 @@ bt1_fr2 = Button(fr2, text="Cadastrar novo cliente", font=("Mongolian Baiti", "1
 bt3_fr2 = Button(fr2, text="Excluir usuarios", font=("Mongolian Baiti", "18"," bold"), height=2,width=20, bg="#eb8334", fg="#fff").grid(row=5, column=0,columnspan=2,sticky=W,padx=400)
 #Frame fr2_1
 fr2_1 = LabelFrame(root, bg="#8a37cc") #grid(row=0, column=0)
-lb0_fr2_1 = Label(fr2_1, text="Faça aqui o cadastro de novos Clientes", font=("Mongolian Baiti", "17"),background="#8a37cc", fg="#f5f5f5").grid(row=0, column=0,sticky=E, padx=150,pady=60)
+lb0_fr2_1 = Label(fr2_1, text="Faça aqui o cadastro de novos Clientes", font=("Mongolian Baiti", "20"),background="#8a37cc", fg="#f5f5f5").grid(row=0, column=0,sticky=W,pady=60,padx=0)
 #Linha 1
-lb1_fr2 = Label(fr2_1, text="Nome:", font=("Mongolian Baiti", "17"),background="#8a37cc", fg="#f5f5f5" ).grid(row=1, column=0, sticky=W,padx=85)
-in0_fr2 = Entry(fr2_1, font=("Mongolian Baiti", "17"," bold"),width=25, bg="#eb8334", fg="#fff").grid(row=1, column=0,sticky=W,padx=150)
+lb1_fr2 = Label(fr2_1, text="Nome:", font=("Mongolian Baiti", "17"),background="#8a37cc", fg="#f5f5f5" ).grid(row=1, column=0, sticky=W,padx=18)
+in0_fr2 = Entry(fr2_1, font=("Mongolian Baiti", "17"," bold"), bg="#eb8334", fg="#fff").grid(row=1, column=0, columnspan=1, sticky=W,padx=85)
 #Linha 2
-lb2_fr2 = Label(fr2_1, text="CPF:", font=("Mongolian Baiti", "17"),background="#8a37cc", fg="#f5f5f5" ).grid(row=2, column=0, sticky=W,padx=100)
-in1_fr2 = Entry(fr2_1, font=("Mongolian Baiti", "17"," bold"),width=25, bg="#eb8334", fg="#fff").grid(row=2, column=0, sticky=W,padx=150)
-lb3_fr2 = Label(fr2_1, text="Data Nasc:", font=("Mongolian Baiti", "17"),background="#8a37cc", fg="#f5f5f5" ).grid(row=2, column=0, sticky=E,padx=500)
-in2_fr2 = Entry(fr2_1, font=("Mongolian Baiti", "17"," bold"), bg="#eb8334", fg="#fff", cursor="gobbler").grid(row=2, column=3, sticky=W)
+lb2_fr2 = Label(fr2_1, text="CPF:", font=("Mongolian Baiti", "17"),background="#8a37cc", fg="#f5f5f5" ).grid(row=2, column=0, sticky=W,padx=33)
+in1_fr2 = Entry(fr2_1, font=("Mongolian Baiti", "17"," bold"), bg="#eb8334", fg="#fff").grid(row=2, column=0, sticky=W,padx=85)
+lb3_fr2 = Label(fr2_1, text="Data Nasc:", font=("Mongolian Baiti", "17"),background="#8a37cc", fg="#f5f5f5" ).grid(row=2, column=0,sticky=E)
+in2_fr2 = Entry(fr2_1, font=("Mongolian Baiti", "17"," bold"), bg="#eb8334", fg="#fff", cursor="gobbler").grid(row=2, column=2, sticky=W)
 #Linha 3
-lb4_fr2 = Label(fr2_1, text="Tel:", font=("Mongolian Baiti", "17"),background="#8a37cc", fg="#f5f5f5" ).grid(row=3, column=0, sticky=W,padx=111)
-in3_fr2 = Entry(fr2_1, font=("Mongolian Baiti", "17"," bold"),width=25, bg="#eb8334", fg="#fff").grid(row=3, column=0, sticky=W,padx=150)
-lb5_fr2 = Label(fr2_1, text="Logradouro:", font=("Mongolian Baiti", "17"),background="#8a37cc", fg="#f5f5f5" ).grid(row=4, column=0, sticky=W,padx=30)
-lb4_fr2 = Entry(fr2_1, font=("Mongolian Baiti", "11"," bold"),width=37, bg="#eb8334", fg="#fff").grid(row=4, column=0, sticky=W,padx=150)
-lb6_fr2 = Label(fr2_1, text="N°:", font=("Mongolian Baiti", "17"),background="#8a37cc", fg="#f5f5f5" ).grid(row=4, column=0, sticky=W,padx=560)
-lb5_fr2 = Entry(fr2_1, font=("Mongolian Baiti", "11"," bold"), bg="#eb8334", fg="#fff").grid(row=4, column=3,sticky=EW)
+lb4_fr2 = Label(fr2_1, text="Tel:", font=("Mongolian Baiti", "17"),background="#8a37cc", fg="#f5f5f5" ).grid(row=3, column=0, sticky=W,padx=45)
+in3_fr2 = Entry(fr2_1, font=("Mongolian Baiti", "17"," bold"), bg="#eb8334", fg="#fff").grid(row=3, column=0, sticky=W,padx=85)
+lb5_fr2 = Label(fr2_1, text="Logradouro:", font=("Mongolian Baiti", "17"),background="#8a37cc", fg="#f5f5f5" ).grid(row=4, column=0, sticky=W,padx=0)
+lb4_fr2 = Entry(fr2_1, font=("Mongolian Baiti", "17"," bold"), bg="#eb8334", fg="#fff").grid(row=4, column=0, sticky=W,padx=122)
+lb6_fr2 = Label(fr2_1, text="N°:", font=("Mongolian Baiti", "17"),background="#8a37cc", fg="#f5f5f5" ).grid(row=4, column=0,sticky=E)
+lb5_fr2 = Entry(fr2_1, font=("Mongolian Baiti", "17"," bold"), bg="#eb8334", fg="#fff").grid(row=4, column=2,sticky=W)
 #linha 5
-lb7_fr2 = Label(fr2_1, text="Bairro:", font=("Mongolian Baiti", "17"),background="#8a37cc", fg="#f5f5f5" ).grid(row=5, column=0, sticky=W,padx=83)
-lb6_fr2 = Entry(fr2_1, font=("Mongolian Baiti", "17"," bold"),width=25, bg="#eb8334", fg="#fff").grid(row=5, column=0, sticky=W,padx=150)
-lb8_fr2 = Label(fr2_1, text="Cidade:", font=("Mongolian Baiti", "17"),background="#8a37cc", fg="#f5f5f5" ).grid(row=5, column=0, sticky=W,padx=560)
-lb7_fr2 = Entry(fr2_1, font=("Mongolian Baiti", "17"," bold"), bg="#eb8334", fg="#fff").grid(row=5, column=3, sticky=EW)
-lb9_fr2 = Label(fr2_1, text="UF:", font=("Mongolian Baiti", "17"),background="#8a37cc", fg="#f5f5f5" ).grid(row=3, column = 0, sticky=W,padx=560)
-lb8_fr2 = Entry(fr2_1, font=("Mongolian Baiti", "17"," bold"), bg="#eb8334", fg="#fff").grid(row=3, column=3, sticky=EW)
-lb10_fr2 = Label(fr2_1, text="Email:", font=("Mongolian Baiti", "17"),background="#8a37cc", fg="#f5f5f5" ).grid(row=7, column=0, sticky=W,padx=560)
-in9_fr2 = Entry(fr2_1, font=("Mongolian Baiti", "17"," bold"),width=25, bg="#eb8334", fg="#fff").grid(row=6, column=0, sticky=W,padx=50)
-lb11_fr2 = Label(fr2_1, text="Senha:", font=("Mongolian Baiti", "17"),background="#8a37cc", fg="#f5f5f5" ).grid(row=6, column=0, sticky=EW)
-in10_fr2 = Entry(fr2_1, font=("Mongolian Baiti", "17"," bold"), bg="#eb8334", fg="#fff",show="*").grid(row=6, column=3, sticky=EW)
+lb7_fr2 = Label(fr2_1, text="Bairro", font=("Mongolian Baiti", "12"),background="#8a37cc", fg="#f5f5f5" ).grid(row=5, column=0, sticky=E,padx=185)
+lb6_fr2 = Entry(fr2_1, font=("Mongolian Baiti", "11"," bold"), bg="#eb8334", fg="#fff").grid(row=5, column=0, sticky=E)
+lb8_fr2 = Label(fr2_1, text="Cidade:", font=("Mongolian Baiti", "12"),background="#8a37cc", fg="#f5f5f5" ).grid(row=5, column=2)
+lb7_fr2 = Entry(fr2_1, font=("Mongolian Baiti", "11"," bold"), bg="#eb8334", fg="#fff").grid(row=5, column=3, sticky=EW)
+lb9_fr2 = Label(fr2_1, text="UF:", font=("Mongolian Baiti", "12"),background="#8a37cc", fg="#f5f5f5" ).grid(row=3, column = 2)
+lb8_fr2 = Entry(fr2_1, font=("Mongolian Baiti", "11"," bold"), bg="#eb8334", fg="#fff").grid(row=3, column=3, sticky=EW)
+lb10_fr2 = Label(fr2_1, text="Email:", font=("Mongolian Baiti", "12"),background="#8a37cc", fg="#f5f5f5" ).grid(row=6, column=0, sticky=E,padx=185)
+in9_fr2 = Entry(fr2_1, font=("Mongolian Baiti", "11"," bold"), bg="#eb8334", fg="#fff").grid(row=6, column=0, sticky=E)
+lb11_fr2 = Label(fr2_1, text="Senha:", font=("Mongolian Baiti", "12"),background="#8a37cc", fg="#f5f5f5" ).grid(row=6, column=2, sticky=EW)
+in10_fr2 = Entry(fr2_1, font=("Mongolian Baiti", "11"," bold"), bg="#eb8334", fg="#fff",show="*").grid(row=6, column=3, sticky=EW)
 # Botões
-bt0_fr2 = Button(fr2_1, text="Criar conta ", font=("Mongolian Baiti", "11", "bold"), height=2,width=15, bg="#eb8334", fg="#fff", command= lambda:[fr2_1.grid_remove(), fr2.grid(row=0, column=0)]).grid(row=8, column=0, sticky=W, pady= 30)
-bt1_fr2 = Button(fr2_1, text="Voltar", font=("Mongolian Baiti", "11", "bold"), height=2,width=15, bg="#eb8334", fg="#fff", command= lambda:[fr2_1.grid_remove(), fr2.grid(row=0, column=0)]).grid(row=8, column=1, sticky=W)
+bt0_fr2 = Button(fr2_1, text="Criar conta ", font=("Mongolian Baiti", "15", "bold"),width=15, bg="#eb8334", fg="#fff", command= lambda:[fr2_1.grid_remove(), fr2.grid(row=0, column=0)]).grid(row=8, column=0, sticky=W,pady=20,padx=30)
+bt1_fr2 = Button(fr2_1, text="Voltar", font=("Mongolian Baiti", "15", "bold"),width=15, bg="#eb8334", fg="#fff", command= lambda:[fr2_1.grid_remove(), fr2.grid(row=0, column=0)]).grid(row=8, column=0, sticky=E)
 #grid(row=0, column=0, pady=50)
 #Frame 2_2
 fr2_2 = LabelFrame(root, bg="#8a37cc") #grid(row=0, column=0,pady=50, padx=150)
