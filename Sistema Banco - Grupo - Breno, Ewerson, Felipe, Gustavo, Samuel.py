@@ -1,6 +1,6 @@
 from tkinter import *
-from classe_cliente import *
-from classe_conta import *
+#from classe_cliente import *
+#from classe_conta import *
 #MODELO CRIADO POR BRENO
 root = Tk()
 altura = root.winfo_screenheight()
@@ -309,8 +309,10 @@ lb0_fr3 = Label(fr3, text='Bem Vindo ao Dellux', font='Arial 20', background='#1
 lb1_fr3 = Label(fr3, text='O que deseja fazer?', font='Arial 20', background='#10929c', foreground='#f5f5f5').grid(row=1, column=0, sticky=NSEW)
 lb2_fr3 = Label(fr3, text='Usuário:', font='Arial 20', background='#10929c', foreground='#f5f5f5').grid(row=2, column=0, sticky=NE)
 lb3_fr3 = Label(fr3, text='Senha:', font='Arial 20', background='#10929c', foreground='#f5f5f5').grid(row=3, column=0, sticky=NE)
-in0_fr3 = Entry(fr3,text='', font='Arial 20', background='#10929c').grid(row=2, column=1, columnspan=2, sticky=NSEW)
-in1_fr3 = Entry(fr3,text='', font='Arial 20', background='#10929c',show="*").grid(row=3, column=1, columnspan=2, sticky=NSEW)
+in0_fr3 = Entry(fr3,text='', font='Arial 20', background='#10929c')
+in0_fr3.grid(row=2, column=1, columnspan=2, sticky=NSEW)
+in1_fr3 = Entry(fr3,text='', font='Arial 20', background='#10929c',show="*")
+in1_fr3.grid(row=3, column=1, columnspan=2, sticky=NSEW)
 #widgets j2
 lb4_fr3_1 = Label(fr3_1, text='Bem vindo a área de cadastro', font='Arial 20', background='#10929c', foreground='#f5f5f5').grid(row=0, column=0)
 lb5_fr3_1 = Label(fr3_1, text='Nome:', font='Arial 20', background='#10929c', foreground='#f5f5f5').grid(row=1, column=0)
@@ -322,23 +324,31 @@ lb10_fr3_1 = Label(fr3_1, text='Cidade:', font='Arial 20', background='#10929c',
 lb11_fr3_1 = Label(fr3_1, text='UF:', font='Arial 20', background='#10929c', foreground='#f5f5f5').grid(row=4, column=2)
 lb12_fr3_1 = Label(fr3_1, text='N°:', font='Arial 20', background='#10929c', foreground='#f5f5f5').grid(row=4, column=4)
 lb13_fr3_1 = Label(fr3_1, text='Email:', font='Arial 20', background='#10929c', foreground='#f5f5f5').grid(row=5, column=0)
-in2_fr3_1 = Entry(fr3_1, text='', font='Arial 20', textvariable=var, background='#10929c', foreground='#f5f5f5').grid(row=1, column=1, columnspan=3, sticky=NSEW) #NOME
-in3_fr3_1 = Entry(fr3_1, text='', font='Arial 20', background='#10929c', foreground='#f5f5f5').grid(row=2, column=1) #DATA NASC
+in2_fr3_1 = Entry(fr3_1, text='', font='Arial 20', textvariable=var, background='#10929c', foreground='#f5f5f5')
+in2_fr3_1.grid(row=1, column=1, columnspan=3, sticky=NSEW) #NOME
+in3_fr3_1 = Entry(fr3_1, text='', font='Arial 20', background='#10929c', foreground='#f5f5f5')
+in3_fr3_1.grid(row=2, column=1) #DATA NASC
 in4_fr3_1 = Entry(fr3_1, text='', font='Arial 20', background='#10929c', foreground='#f5f5f5')
 in4_fr3_1.bind('<KeyRelease>', cpf_cliente)
 in4_fr3_1.grid(row=2, column=3) #CPF
-in5_fr3_1 = Entry(fr3_1, text='', font='Arial 20', background='#10929c', foreground='#f5f5f5').grid(row=2, column=5) #CONTA
-in6_fr3_1 = Entry(fr3_1, text='', font='Arial 20', background='#10929c', foreground='#f5f5f5').grid(row=3, column=1)
-in7_fr3_1 = Entry(fr3_1, text='', font='Arial 20', background='#10929c', foreground='#f5f5f5').grid(row=4, column=1)
-in8_fr3_1 = Entry(fr3_1, text='', font='Arial 20', background='#10929c', foreground='#f5f5f5').grid(row=4, column=3)
-in9_fr3_1 = Entry(fr3_1, text='', font='Arial 20', background='#10929c', foreground='#f5f5f5').grid(row=4, column=5)
-in10_fr3_1 = Entry(fr3_1, text='', font='Arial 20', background='#10929c', foreground='#f5f5f5').grid(row=5, column=1, columnspan=3, sticky=NSEW)
+in5_fr3_1 = Entry(fr3_1, text='', font='Arial 20', background='#10929c', foreground='#f5f5f5')
+in5_fr3_1.grid(row=2, column=5) #CONTA
+in6_fr3_1 = Entry(fr3_1, text='', font='Arial 20', background='#10929c', foreground='#f5f5f5')
+in6_fr3_1.grid(row=3, column=1)
+in7_fr3_1 = Entry(fr3_1, text='', font='Arial 20', background='#10929c', foreground='#f5f5f5')
+in7_fr3_1.grid(row=4, column=1)
+in8_fr3_1 = Entry(fr3_1, text='', font='Arial 20', background='#10929c', foreground='#f5f5f5')
+in8_fr3_1.grid(row=4, column=3)
+in9_fr3_1 = Entry(fr3_1, text='', font='Arial 20', background='#10929c', foreground='#f5f5f5')
+in9_fr3_1.grid(row=4, column=5)
+in10_fr3_1 = Entry(fr3_1, text='', font='Arial 20', background='#10929c', foreground='#f5f5f5')
+in10_fr3_1.grid(row=5, column=1, columnspan=3, sticky=NSEW)
 #botões
-bt0_fr3 = Button(fr3, text='Login', font='Arial 20', background='#10929c', foreground='#f5f5f5', command= lambda:[fr3.grid_remove(), fr4.grid(row=0, column=0)]).grid(row=4, column=0, sticky=NSEW)
-bt1_fr3 = Button(fr3, text='Cadastro', font='Arial 20', background='#10929c', foreground='#f5f5f5', command= lambda:[fr3.grid_remove(), fr3_1.grid(row=0, column=0)] ).grid(row=4, column=1, sticky=NSEW)
-bt2_fr3 = Button(fr3, text='Voltar', font='Arial 20', background='#10929c', foreground='#f5f5f5', command= lambda:[fr3.grid_remove(), fr0.grid(row=0, column=0)]).grid(row=4, column=2, sticky=NSEW)
-bt3_fr3_1 = Button(fr3_1, text='Salvar', font='Arial 20', background='#10929c', foreground='#f5f5f5', command= lambda:[fr3_1.grid_remove(), fr3.grid(row=0, column=0)]).grid(row=6, column=0, sticky=NSEW)
-bt4_fr3_1 = Button(fr3_1, text='Voltar', font='Arial 20', background='#10929c', foreground='#f5f5f5', command= lambda:[fr3_1.grid_remove(), fr3.grid(row=0, column=0)]).grid(row=6, column=1, sticky=NSEW)
+bt0_fr3 = Button(fr3, text='Login', font='Arial 20', background='#10929c', foreground='#f5f5f5', command= lambda:[in0_fr3.delete(0, 'end'), in1_fr3.delete(0, 'end'), fr3.grid_remove(), fr4.grid(row=0, column=0)]).grid(row=4, column=0, sticky=NSEW)
+bt1_fr3 = Button(fr3, text='Cadastro', font='Arial 20', background='#10929c', foreground='#f5f5f5', command= lambda:[in0_fr3.delete(0, 'end'), in1_fr3.delete(0, 'end'), fr3.grid_remove(), fr3_1.grid(row=0, column=0)] ).grid(row=4, column=1, sticky=NSEW)
+bt2_fr3 = Button(fr3, text='Voltar', font='Arial 20', background='#10929c', foreground='#f5f5f5', command= lambda:[in0_fr3.delete(0, 'end'), in1_fr3.delete(0, 'end'), fr3.grid_remove(), fr0.grid(row=0, column=0)]).grid(row=4, column=2, sticky=NSEW)
+bt3_fr3_1 = Button(fr3_1, text='Salvar', font='Arial 20', background='#10929c', foreground='#f5f5f5', command= lambda:[in2_fr3_1.delete(0, 'end'),in3_fr3_1.delete(0, 'end'),in4_fr3_1.delete(0, 'end'),in5_fr3_1.delete(0, 'end'),in6_fr3_1.delete(0, 'end'),in7_fr3_1.delete(0, 'end'),in8_fr3_1.delete(0, 'end'),in9_fr3_1.delete(0, 'end'),in10_fr3_1.delete(0, 'end'),fr3_1.grid_remove(), fr3.grid(row=0, column=0)]).grid(row=6, column=0, sticky=NSEW)
+bt4_fr3_1 = Button(fr3_1, text='Voltar', font='Arial 20', background='#10929c', foreground='#f5f5f5', command= lambda:[in2_fr3_1.delete(0, 'end'),in3_fr3_1.delete(0, 'end'),in4_fr3_1.delete(0, 'end'),in5_fr3_1.delete(0, 'end'),in6_fr3_1.delete(0, 'end'),in7_fr3_1.delete(0, 'end'),in8_fr3_1.delete(0, 'end'),in9_fr3_1.delete(0, 'end'),in10_fr3_1.delete(0, 'end'),fr3_1.grid_remove(), fr3.grid(row=0, column=0)]).grid(row=6, column=1, sticky=NSEW)
 #frames
 #fr3.grid()
 #fr3_1.grid(padx=5)
