@@ -1,9 +1,11 @@
+from asyncio import wait_for
 from tkinter import *
 
 #config tela
 root = Tk()
-root.geometry('400x300+720+350') # declara o tamanho da jenela (400x300) tamanho inicial/ +100 +100 lugar onde ela vai abrir
+root.geometry('590x470') # declara o tamanho da jenela (400x300) tamanho inicial/ +100 +100 lugar onde ela vai abrir
 root.config(background='#fff') #background color
+root.title('Home - Dellux')
 
 #-------------------------- Functions --------------------------#
 
@@ -11,13 +13,13 @@ root.config(background='#fff') #background color
 
 #-------------------------- Frame 2 / Widgets --------------------------#
 
-fr2 = LabelFrame(root, background='#fff', text='Cadastro de fúncionarios', fg="gray", font='Georgia 15')
+fr2 = LabelFrame(root, background='#fff', text='Home funcionarios', fg="gray", font='Georgia 15')
 
-lb0_fr2 = Label(fr2, text="Insira a seguir todos os dados requisitados para cadastro", font='Georgia 10')
+lb0_fr2 = Label(fr2, text="Como podemos te ajudar hoje", font='Georgia 10')
 
 #nome
-lb1_fr2 = Label(fr2, text="Nome:", font='Georgia 15')
-in0_frX = Entry(fr2, font='Georgia 15')
+lb1_fr2 = Label(fr2, text="Nome:", font='Georgia 15').grid()
+in0_frX = Entry(fr2, font='Georgia 15').grid()
 
 #cpf
 lb2_fr2 = Label(fr2, text="CPF:")
@@ -55,7 +57,7 @@ fr2.grid()
 lb0_fr2.grid(row=0, column=0)
 
 #linha 1 
-lb1_fr2.grid()
+
 lb2_fr2.grid()
 lb3_fr2.grid()
 lb4_fr2.grid()
