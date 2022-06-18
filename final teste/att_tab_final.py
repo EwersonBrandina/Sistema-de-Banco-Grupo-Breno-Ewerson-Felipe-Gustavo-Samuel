@@ -5,7 +5,7 @@ from classe_conta import *
 root = Tk()
 altura = root.winfo_screenheight()
 largura = root.winfo_screenwidth()
-root.geometry('750x470') # declara o tamanho da jenela (400x300) tamanho inicial/ +100 +100 lugar onde ela vai abrir
+root.geometry('750x470+280+100') # declara o tamanho da jenela (400x300) tamanho inicial/ +100 +100 lugar onde ela vai abrir
 root.config(background='#8a37cc') #background color
 root.grid_rowconfigure(0, weight=1)
 root.grid_columnconfigure(0, weight=1)
@@ -290,7 +290,7 @@ def cadastrar_cliente():
 fr0 = LabelFrame (bg='#8a37cc')
 lb0_fr0 = Label(fr0, text='Seja Muito Bem-Vindo', font = ("Mongolian Baiti", "32"),bg='#8a37cc', fg='#f5f5f5',).grid(row=0,column=0,columnspan=3, sticky=W,padx=165,ipady=120)
 bt0_fr0 = Button(fr0, text='Funcionário', font=('Mongolian Baiti' ,'26', "bold"), bg='#eb8334',fg='#fff', width=10, command= lambda: [fr0.grid_remove(), fr1.grid(row=0, column=0, sticky=NSEW)]).grid(row=1, column=0,columnspan=1, sticky=W, padx=150)
-bt1_fr0 = Button(fr0, text='Usuario', font= ('Mongolian Baiti' ,'26', "bold"),bg='#eb8334',fg='#fff',width=8, command= lambda: [fr0.grid_remove(), fr3.grid(row=0, column=0)]).grid(row=1, column=0,columnspan=2,sticky=W, padx=400)
+bt1_fr0 = Button(fr0, text='Usuario', font= ('Mongolian Baiti' ,'26', "bold"),bg='#eb8334',fg='#fff',width=10, command= lambda: [fr0.grid_remove(), fr3.grid(row=0, column=0)]).grid(row=1, column=0,columnspan=2,sticky=W, padx=375)
 fr0.grid(row=0, column=0, sticky=NSEW)
 
 #Frame 1 - Samuel
@@ -388,8 +388,8 @@ lb2_fr2_2 = Label(fr2_2, text="Confirme sua senha:", font=("Mongolian Baiti", "1
 in1_fr2 = Entry(fr2_2, font=("Mongolian Baiti", "11"," bold"), bg="#eb8334", fg="#fff", width=30,show="*")
 in1_fr2.grid(row=3, column=1, columnspan=2, sticky=W)
 # Botões
-bt0_fr2 = Button(fr2_2, text="Deletar conta ", font=("Mongolian Baiti", "11", "bold"), height=2,width=15, bg="#eb8334", fg="#fff", command= lambda:[in0_fr2.delete(0,'end'),in1_fr2.delete(0,'end'), fr2_2.grid_remove(), fr2.grid(row=0,column=0)]).grid(row=4, column=0,columnspan=2, sticky=W, pady=60, padx=30) #Pura Gambiarra e ta tudo bem
-bt1_fr2 = Button(fr2_2, text="Voltar", font=("Mongolian Baiti", "11", "bold"), height=2,width=15, bg="#eb8334", fg="#fff", command= lambda:[in0_fr2.delete(0,'end'),in1_fr2.delete(0,'end'), fr2_2.grid_remove(), fr2.grid(row=0,column=0)]).grid(row=4, column=1, sticky=W, padx=50)
+bt0_fr2 = Button(fr2_2, text="Deletar conta ", font=("Mongolian Baiti", "15", "bold"), height=2,width=15, bg="#eb8334", fg="#fff", command= lambda:[in0_fr2.delete(0,'end'),in1_fr2.delete(0,'end'), fr2_2.grid_remove(), fr2.grid(row=0,column=0)]).grid(row=4, column=0,columnspan=2, sticky=W, pady=60, padx=20) #Pura Gambiarra e ta tudo bem
+bt1_fr2 = Button(fr2_2, text="Voltar", font=("Mongolian Baiti", "15", "bold"), height=2,width=15, bg="#eb8334", fg="#fff", command= lambda:[in0_fr2.delete(0,'end'),in1_fr2.delete(0,'end'), fr2_2.grid_remove(), fr2.grid(row=0,column=0)]).grid(row=4, column=1, sticky=W, padx=70)
 #grid(row=0, column=0,pady=50, padx=150)
 #Frame 3 - Felipe
 #criando janela
