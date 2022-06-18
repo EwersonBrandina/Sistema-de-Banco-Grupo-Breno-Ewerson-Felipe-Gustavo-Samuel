@@ -456,7 +456,7 @@ bt4_fr4 = Button(fr4, text='Transferência', font='Arial 20',padx=5, pady=0, bg=
 bt5_fr4 = Button(fr4, text='Extrato', font='Arial 20',padx=5, pady=0, bg='#eb8334',fg='#f5f5f5',width=12, command= lambda: [fr4.grid_remove(), fr4_4.grid(row=0, column=1)]).grid(row=5, column=0, sticky=W,pady=5)
 bt6_fr4 = Button(fr4, text='Logout', font='Arial 20',padx=5, pady=0, bg='#eb8334',fg='#f5f5f5',width=14, command= lambda:[fr4.grid_remove(), fr3.grid(row=0, column=0)]).grid(row=7, column=2, sticky=E)
 #Frame 4_1 - Ewerson
-fr4_1 = LabelFrame(root, pady=5, bg= '#8a37cc', text='Depósito',fg='#f5f5f5', font=('Mongolian Baiti', "19" ), borderwidth=1, relief="sunken",width=150)
+fr4_1 = LabelFrame(root, pady=5, bg= '#8a37cc', text='Depósito',fg='#f5f5f5', font=('Mongolian Baiti', "22" ), borderwidth=1, relief="sunken",width=150)
 lb0_fr4_1 = Label(fr4_1, text='Valor a Ser Depositado:',bg='#8a37cc',fg='#f5f5f5', font=('Mongolian Baiti', "17", "bold" ) ,padx=5, pady=0).grid(row=0, column=0 , sticky=W,padx=25)
 in0_fr4_1 = Entry(fr4_1, font='Arial 20', bg='#f5f5f5')
 in0_fr4_1.bind("<KeyRelease>", deposito)
