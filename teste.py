@@ -242,8 +242,16 @@ def numeros_cliente(event=None):
             y+=x[i]
     in9_fr3_1.delete(0, 'end')
     in9_fr3_1.insert(0, y)
+    
 #Front & Back
-
+def cadastrar_funcionario():
+    p1 = Cliente(nome=in0_fr2.get(), cpf=in1_fr2.get(), dataNasc=in2_fr2.get())#, telefone=in3_fr2.get()), uf=lb8_fr2.get(), logradouro=lb4_fr2.get(), numero=lb5_fr2.get(), bairro=lb6_fr2.get(), cidade=lb7_fr2.get(), email=in9_fr2.get(), senha=in10_fr2.get())
+    c1 = Conta(p1, num='123-4')
+    c1.extrato()
+def cadastrar_cliente():
+    p1 = Cliente(nome=in2_fr3_1.get(), cpf=in4_fr3_1.get(), dataNasc=in3_fr3_1.get())
+    c1 = Conta(p1, num='432-1')
+    c1.extrato()
 
 
 #Salvar os Usuários e Senhas de cada frame
@@ -280,10 +288,10 @@ def numeros_cliente(event=None):
 #Frame 0 - Gustavo
 
 fr0 = LabelFrame (bg='#8a37cc')
-lb0_fr0 = Label(fr0, text='Seja Muito Bem-Vindo', font = ("Mongolian Baiti", "32"),bg='#8a37cc', fg='#f5f5f5',).grid(row=0,column=0, sticky=W,padx=170,ipady=60)
-lb1_fr0 = Label(fr0, text='Bem Vindo ao Dellux', font='Arial 26', bg='#8a37cc', fg='#f5f5f5').grid(row=1, column=0, sticky=W,ipadx=210)
+lb0_fr0 = Label(fr0, text='Seja muito Bem-Vindo', font = ("Mongolian Baiti", "32"),bg='#8a37cc', fg='#f5f5f5',).grid(row=0,column=0, sticky=W,padx=170,ipady=60)
+lb1_fr0 = Label(fr0, text='ao Dellux', font=("Mongolian Baiti", "32"), bg='#8a37cc', fg='#f5f5f5').grid(row=1, column=0, sticky=W,ipadx=300)
 bt0_fr0 = Button(fr0, text='Funcionário', font=('Mongolian Baiti' ,'26', "bold"), bg='#eb8334',fg='#fff', width=10, command= lambda: [fr0.grid_remove(), fr1.grid(row=0, column=0, sticky=NSEW)]).grid(row=2, column=0,columnspan=1, sticky=W, padx=165,pady=70)
-bt1_fr0 = Button(fr0, text='Usuario', font= ('Mongolian Baiti' ,'26', "bold"),bg='#eb8334',fg='#fff',width=8, command= lambda: [fr0.grid_remove(), fr3.grid(row=0, column=0)]).grid(row=2, column=0,columnspan=2,sticky=W, padx=415)
+bt1_fr0 = Button(fr0, text='Usuário', font= ('Mongolian Baiti' ,'26', "bold"),bg='#eb8334',fg='#fff',width=8, command= lambda: [fr0.grid_remove(), fr3.grid(row=0, column=0)]).grid(row=2, column=0,columnspan=2,sticky=W, padx=415)
 fr0.grid(row=0, column=0, sticky=NSEW)
 
 
@@ -319,9 +327,9 @@ lb1_fr2 = Label(fr2, text="BRENO KAUAN", font=("Mongolian Baiti", "20"), backgro
 lb2_fr2 = Label(fr2, text="Avisos:", font=("Mongolian Baiti", "17", "bold"),background="#8a37cc", fg="#f5f5f5").grid(row=3, column=0,sticky=W,padx=350)
 lb3_fr2 = Label(fr2, text="Nenhuma atualização relevante no sistema ", font=("Mongolian Baiti", "15"),background="#8a37cc", fg="#f5f5f5").grid(row=4, column=0, sticky=W,padx=220, pady=10)
 #Botões
-bt0_fr2 = Button(fr2, text="Logout", font=("Mongolian Baiti", "18", "bold"), height=2,width=20, bg="#eb8334", fg="#fff", command= lambda: [fr2.grid_remove(), fr1.grid(row=0, column=0)] ).grid(row=6, column=0,sticky=W,padx=250,pady=20)
+bt0_fr2 = Button(fr2, text="Sair", font=("Mongolian Baiti", "18", "bold"), height=2,width=20, bg="#eb8334", fg="#fff", command= lambda: [fr2.grid_remove(), fr1.grid(row=0, column=0)] ).grid(row=6, column=0,sticky=W,padx=250,pady=20)
 bt1_fr2 = Button(fr2, text="Cadastrar novo cliente", font=("Mongolian Baiti", "18", "bold"), height=2,width=20, bg="#eb8334", fg="#fff", command= lambda:[fr2.grid_remove(), fr2_1.grid(row=0,column=0)] ).grid(row=5,column=0,sticky=W,padx=100)
-bt3_fr2 = Button(fr2, text="Excluir usuarios", font=("Mongolian Baiti", "18"," bold"), height=2,width=20, bg="#eb8334", fg="#fff", command= lambda:[fr2.grid_remove(), fr2_2.grid(row=0,column=0)]).grid(row=5, column=0,columnspan=2,sticky=W,padx=400)
+bt3_fr2 = Button(fr2, text="Excluir usuários", font=("Mongolian Baiti", "18"," bold"), height=2,width=20, bg="#eb8334", fg="#fff", command= lambda:[fr2.grid_remove(), fr2_2.grid(row=0,column=0)]).grid(row=5, column=0,columnspan=2,sticky=W,padx=400)
 #Frame fr2_1
 fr2_1 = LabelFrame(root, bg="#8a37cc") #grid(row=0, column=0)
 lb0_fr2_1 = Label(fr2_1, text="Faça aqui o cadastro de novos Clientes", font=("Mongolian Baiti", "20"),background="#8a37cc", fg="#f5f5f5").grid(row=0, column=0,sticky=W,pady=60,padx=165)
@@ -375,7 +383,7 @@ bt2_fr2 = Button(fr2_1, text='👁', font=('Mongolian Baiti', "12", "bold"),bg='
 fr2_2 = LabelFrame(root, bg="#8a37cc",padx = 100)
 
 lb0_fr2_2 = Label(fr2_2, text="Faça aqui a exclusão de usuarios", font=("Mongolian Baiti", "25"),bg="#8a37cc", fg="#f5f5f5").grid(row=1, column=0, sticky=W, padx=70,pady=30)
-lb1_fr2_2 = Label(fr2_2, text="Nome do usuario:", font=("Mongolian Baiti", "17"),bg="#8a37cc", fg="#f5f5f5").grid(row=2, column=0, sticky=W,padx=24)
+lb1_fr2_2 = Label(fr2_2, text="Nome do usuário:", font=("Mongolian Baiti", "17"),bg="#8a37cc", fg="#f5f5f5").grid(row=2, column=0, sticky=W,padx=24)
 in0_fr2_1 = Entry(fr2_2, font=('Arial 16'), bg="#f5f5f5", width=30)
 in0_fr2_1.grid(row=2, column=0, sticky=W,padx=195)
 lb2_fr2_2 = Label(fr2_2, text="Confirme sua senha:", font=("Mongolian Baiti", "17"),bg="#8a37cc", fg="#f5f5f5").grid(row=3, column=0, sticky=W)
@@ -450,7 +458,7 @@ bt2_fr4 = Button(fr4, text='Depósito', font='Arial 20',padx=5, pady=0, bg='#eb8
 bt3_fr4 = Button(fr4, text='Saque', font='Arial 20',padx=5, pady=0, bg='#eb8334',fg='#f5f5f5',width=12, command= lambda: [fr4.grid_remove(), fr4_2.grid(row=0, column=1)]).grid(row=3, column=0, sticky=W,pady=5)
 bt4_fr4 = Button(fr4, text='Transferência', font='Arial 20',padx=5, pady=0, bg='#eb8334',fg='#f5f5f5',width=12, command= lambda: [fr4.grid_remove(), fr4_3.grid(row=0, column=1)]).grid(row=4, column=0, sticky=W,pady=5)
 bt5_fr4 = Button(fr4, text='Extrato', font='Arial 20',padx=5, pady=0, bg='#eb8334',fg='#f5f5f5',width=12, command= lambda: [fr4.grid_remove(), fr4_4.grid(row=0, column=1)]).grid(row=5, column=0, sticky=W,pady=5)
-bt6_fr4 = Button(fr4, text='Logout', font='Arial 20',padx=5, pady=0, bg='#eb8334',fg='#f5f5f5',width=14, command= lambda:[fr4.grid_remove(), fr3.grid(row=0, column=0)]).grid(row=7, column=2, sticky=E)
+bt6_fr4 = Button(fr4, text='Sair', font='Arial 20',padx=5, pady=0, bg='#eb8334',fg='#f5f5f5',width=14, command= lambda:[fr4.grid_remove(), fr3.grid(row=0, column=0)]).grid(row=7, column=2, sticky=E)
 #Frame 4_1 - Ewerson
 fr4_1 = LabelFrame(root, pady=5, bg= '#8a37cc', text='Depósito',fg='#f5f5f5', font=('Mongolian Baiti', "19" ), borderwidth=1, relief="sunken",width=150)
 lb0_fr4_1 = Label(fr4_1, text='Valor a Ser Depositado:',bg='#8a37cc',fg='#f5f5f5', font=('Mongolian Baiti', "17", "bold" ) ,padx=5, pady=0).grid(row=0, column=0 , sticky=W,padx=25)
@@ -463,7 +471,7 @@ in1_fr4_1.grid(row=1, column=0,sticky=W,padx=280)
 bt2_fr4_1 = Button(fr4_1, text='Confirmar', font=('Mongolian Baiti', '19', 'bold'),padx=5, pady=0, bg='#eb8334',fg='#f5f5f5',width=19).grid(row=2, column=0, sticky=W,padx=282,pady=5)
 lb3_fr4_1 = Label(fr4_1, text='Mensagem de Confirmação', fg='#f5f5f5',font=('Mongolian Baiti', "17" ),padx=5, pady=0, bg= '#8a37cc',width=38).grid(row=3, column=0, columnspan=3, sticky=W,padx=175)
 bt4_fr4_1 = Button(fr4_1, text='Voltar', font=('Mongolian Baiti', '19', 'bold' ),padx=5, pady=0, bg='#eb8334',fg='#f5f5f5',width=15, command= lambda: [in0_fr4_1.delete(0, 'end'), in1_fr4_1.delete(0, 'end'), fr4_1.grid_remove(), fr4.grid(row=0, column=0, sticky=NSEW)]).grid(row=4, column=0, sticky=W,padx=450,pady=5)
-bt4_1_fr4_1 = Button(fr4_1, text='Logout', font=('Mongolian Baiti', '19', 'bold' ),padx=5, pady=0, bg= '#eb8334',fg='#f5f5f5',width=15, command= lambda:[in0_fr4_1.delete(0, 'end'), in1_fr4_1.delete(0, 'end'), fr4_1.grid_remove(), fr3.grid(row=0, column=0)]).grid(row=4, column=0, sticky=W,padx=190)
+bt4_1_fr4_1 = Button(fr4_1, text='Sair', font=('Mongolian Baiti', '19', 'bold' ),padx=5, pady=0, bg= '#eb8334',fg='#f5f5f5',width=15, command= lambda:[in0_fr4_1.delete(0, 'end'), in1_fr4_1.delete(0, 'end'), fr4_1.grid_remove(), fr3.grid(row=0, column=0)]).grid(row=4, column=0, sticky=W,padx=190)
 bt5_fr4_1 = Button(fr4_1, text='👁', font=('Mongolian Baiti', "14", "bold"),bg='#eb8334', fg='#fff').grid(row=1, column=0, sticky=W,padx=588,pady=5)
 #Frame 4_2 - Ewerson
 fr4_2 = LabelFrame(root, pady=5, bg= '#8a37cc',fg='#f5f5f5', text='Saque', font=('Mongolian Baiti', "22" ), borderwidth=1, relief="sunken", width=150)
@@ -477,7 +485,7 @@ in1_fr4_2.grid(row=1, column=0,sticky=W,padx=280)
 bt2_fr4_2 = Button(fr4_2, text='Confirmar', font=('Mongolian Baiti', '19', 'bold' ),padx=5, pady=0, bg='#eb8334',fg='#f5f5f5',width=19).grid(row=2, column=0, sticky=W,padx=282,pady=5)
 lb3_fr4_2 = Label(fr4_2, text='Mensagem de Confirmação', font=('Mongolian Baiti', "17" ),padx=5, pady=0, bg= '#8a37cc',fg='#f5f5f5',width=31).grid(row=3, column=0, columnspan=3, sticky=W,padx=220)
 bt4_fr4_2 = Button(fr4_2, text='Voltar', font=('Mongolian Baiti', '19', 'bold' ),padx=5, pady=0, bg='#eb8334',fg='#f5f5f5',width=15, command= lambda: [in0_fr4_2.delete(0, 'end'), in1_fr4_2.delete(0, 'end'), fr4_2.grid_remove(),fr4.grid(row=0, column=0, sticky=NSEW)]).grid(row=4, column=0, sticky=W,padx=450,pady=5)
-bt4_1_fr4_2 = Button(fr4_2, text='Logout', font=('Mongolian Baiti', '19', 'bold' ),padx=5, pady=0, bg='#eb8334',fg='#f5f5f5',width=15, command= lambda: [in0_fr4_2.delete(0, 'end'), in1_fr4_2.delete(0, 'end'), fr4_2.grid_remove(), fr3.grid(row=0, column=0)]).grid(row=4, column=0, sticky=W,padx=190)
+bt4_1_fr4_2 = Button(fr4_2, text='Sair', font=('Mongolian Baiti', '19', 'bold' ),padx=5, pady=0, bg='#eb8334',fg='#f5f5f5',width=15, command= lambda: [in0_fr4_2.delete(0, 'end'), in1_fr4_2.delete(0, 'end'), fr4_2.grid_remove(), fr3.grid(row=0, column=0)]).grid(row=4, column=0, sticky=W,padx=190)
 bt5_fr4_2 = Button(fr4_2, text='👁', font=('Mongolian Baiti', "14", "bold"),bg='#eb8334', fg='#fff').grid(row=1, column=0, sticky=W,padx=588,pady=5)
 #Frame 4_3 - Ewerson
 fr4_3 = LabelFrame(root, pady=5, bg= '#8a37cc',fg='#f5f5f5', text='Transferência', font=('Mongolian Baiti', "22" ), borderwidth=1, relief="sunken", width=150)
@@ -491,7 +499,7 @@ in1_fr4_3.grid(row=1, column=0, sticky=W,padx=280)
 bt2_fr4_3 = Button(fr4_3, text='Confirmar', font=('Mongolian Baiti', '19', 'bold' ),padx=5, pady=0, bg= '#eb8334',fg='#f5f5f5',width=19).grid(row=2, column=0, sticky=W, padx=282,pady=5)
 lb3_fr4_3 = Label(fr4_3, text='Mensagem de Confirmação', font=('Mongolian Baiti', "17" ),padx=5, pady=0,  bg= '#8a37cc',fg='#f5f5f5',width=31).grid(row=3, column=0, columnspan=3, sticky=W,padx=220)
 bt4_fr4_3 = Button(fr4_3, text='Voltar', font=('Mongolian Baiti', '19', 'bold' ),padx=5, pady=0,  bg= '#eb8334',fg='#f5f5f5',width=15, command= lambda: [in0_fr4_3.delete(0, 'end'), in1_fr4_3.delete(0, 'end'), fr4_3.grid_remove(), fr4.grid(row=0, column=0, sticky=NSEW)]).grid(row=4, column=0, sticky=W,padx=450,pady=5)
-bt4_1_fr4_3 = Button(fr4_3, text='Logout', font=('Mongolian Baiti', '19', 'bold' ),padx=5, pady=0, bg= '#eb8334',fg='#f5f5f5',width=15, command= lambda:[in0_fr4_3.delete(0, 'end'), in1_fr4_3.delete(0, 'end'), fr4_3.grid_remove(), fr3.grid(row=0, column=0)]).grid(row=4, column=0, sticky=W,padx=190)
+bt4_1_fr4_3 = Button(fr4_3, text='Sair', font=('Mongolian Baiti', '19', 'bold' ),padx=5, pady=0, bg= '#eb8334',fg='#f5f5f5',width=15, command= lambda:[in0_fr4_3.delete(0, 'end'), in1_fr4_3.delete(0, 'end'), fr4_3.grid_remove(), fr3.grid(row=0, column=0)]).grid(row=4, column=0, sticky=W,padx=190)
 bt5_fr4_3 = Button(fr4_3, text='👁', font=('Mongolian Baiti', "14", "bold"),bg='#eb8334', fg='#fff').grid(row=1, column=0, sticky=W,padx=588,pady=5)
 #Frame 4_4 - Ewerson
 fr4_4 = LabelFrame(root, pady=5, bg= '#8a37cc',fg='#f5f5f5', text='Extrato', font=('Mongolian Baiti', "22" ), borderwidth=1, relief="sunken", width=150)
@@ -506,7 +514,7 @@ in1_fr4_4.grid(row=1, column=0,sticky=W,padx=280)
 bt2_fr4_4 = Button(fr4_4, text='Confirmar', font=('Mongolian Baiti', '19', 'bold' ),padx=5, pady=0, bg= '#eb8334',fg='#f5f5f5',width=19).grid(row=2, column=0, sticky=W, padx=282,pady=5)
 lb3_fr4_4 = Label(fr4_4, text='Mensagem de Confirmação',  font=('Mongolian Baiti', "17" ),padx=5, pady=0,  bg= '#8a37cc',fg='#f5f5f5',width=31).grid(row=3, column=0, columnspan=3, sticky=W,padx=220)
 bt4_fr4_4 = Button(fr4_4, text='Voltar', font=('Mongolian Baiti', '19', 'bold' ),padx=5, pady=0,  bg= '#eb8334',fg='#f5f5f5',width=15, command= lambda: [in0_fr4_4.delete(0, 'end'), in1_fr4_4.delete(0, 'end'), fr4_4.grid_remove(),fr4.grid(row=0, column=0, sticky=NSEW)]).grid(row=4, column=0, sticky=W,padx=450,pady=5)
-bt4_1_fr4_4 = Button(fr4_4, text='Logout', font=('Mongolian Baiti', '19', 'bold' ),padx=5, pady=0, bg= '#eb8334',fg='#f5f5f5',width=15, command= lambda:[in0_fr4_4.delete(0, 'end'), in1_fr4_4.delete(0, 'end'), fr4_4.grid_remove(), fr3.grid(row=0, column=0)]).grid(row=4, column=0, sticky=W,padx=190)
+bt4_1_fr4_4 = Button(fr4_4, text='Sair', font=('Mongolian Baiti', '19', 'bold' ),padx=5, pady=0, bg= '#eb8334',fg='#f5f5f5',width=15, command= lambda:[in0_fr4_4.delete(0, 'end'), in1_fr4_4.delete(0, 'end'), fr4_4.grid_remove(), fr3.grid(row=0, column=0)]).grid(row=4, column=0, sticky=W,padx=190)
 bt5_fr4_4 = Button(fr4_4, text='👁', font=('Mongolian Baiti', "14", "bold"),bg='#eb8334', fg='#fff').grid(row=1, column=0, sticky=W,padx=588,pady=5)
 #Looping para tudo
 root.mainloop()
