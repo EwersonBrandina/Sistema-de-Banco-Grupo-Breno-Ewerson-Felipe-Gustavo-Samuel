@@ -1,5 +1,4 @@
 from tkinter import *
-from turtle import width
 from classe_cliente import *
 from classe_conta import *
 #MODELO CRIADO POR BRENO
@@ -135,6 +134,8 @@ def cpf_funcionario(event=None):
                 y+=x[i]
     in1_fr2_1.delete(0, 'end')
     in1_fr2_1.insert(0, y)
+
+
 def telefone_funcionario(event=None):
     x=in3_fr2.get().replace('(','').replace(')', '').replace('-', '')[:12]
     y=''
@@ -151,6 +152,8 @@ def telefone_funcionario(event=None):
             y+=x[i]
     in3_fr2.delete(0, 'end')
     in3_fr2.insert(0, y)
+
+
 def data_nasc(event=None):
     x=in2_fr2.get().replace('/','')[:8]
     y=''
@@ -249,12 +252,34 @@ def cadastrar_funcionario():
     p1 = Cliente(nome=in0_fr2.get(), cpf=in1_fr2.get(), dataNasc=in2_fr2.get(), telefone=in3_fr2.get(), uf=lb8_fr2.get(), logradouro=lb4_fr2.get(), numero=lb5_fr2.get(), bairro=lb6_fr2.get(), cidade=lb7_fr2.get(), email=in9_fr2.get(), senha=in10_fr2.get())
     c1 = Conta(p1, num='123-4')
     c1.extrato()
- 
-def cadastrar_cliente():
-    p1=[]
-    p1 = Cliente(nome=in2_fr3_1.get(), cpf=in4_fr3_1.get(), dataNasc=in3_fr3_1.get(), telefone=in6_fr3_1.get(), uf=in8_fr3_1.get(), logradouro=in6_fr3_1.get(), numero=in9_fr3_1.get(), bairro=(), cidade=in7_fr3_1.get(), email=in10_fr3_1.get(), senha=())
-    c1 = Conta(p1, num='432-1')
-    c1.extrato()
+#contador=0
+#def botao_cadastrar():
+#    contador=1
+#def botao_acessar():
+#    contador=2
+#def cadastrar_cliente():
+#    while contador == 1:
+#        p1=[]
+#        p1.append(Cliente(nome=in2_fr3_1.get(), cpf=in4_fr3_1.get(), dataNasc=in3_fr3_1.get(), telefone=in5_fr3_1.get(), uf=in8_fr3_1.get(), logradouro=in6_fr3_1.get(), numero=in9_fr3_1.get(), bairro='', cidade=in7_fr3_1.get(), email=in10_fr3_1.get(), senha=''))
+#        c1 = Conta(p1, num='432-1')
+#    if contador == 2:
+#        for i in range (len(p1)):
+#            if p1[1] == in4_fr3_1 and p1[10] == entry_senha:
+#                print('Acesso Permitido')
+#            else:
+#                print('Aceso Negado')
+#                in4_fr3_1 , entry_senha
+#                x=in0_fr4_1.get()
+#                c1.deposito(float(x))
+#                c1.extrato()
+
+#
+#Comparar a posição 1 e a 10
+#Entry do login -> a
+#Entry da senha -> b 
+# if posição 1 == a and posição 10 == b: print('longin aprovado')
+
+
 
 #Salvar os Usuários e Senhas de cada frame
 
@@ -427,7 +452,7 @@ in3_fr3_1.bind('<KeyRelease>', data_nasc1)
 in3_fr3_1.grid(row=2, column=0, sticky=W,padx=132) #DATA NASC OK
 in4_fr3_1 = Entry(fr3_1, text='', font= ('Arial 16'), bg='#f5f5f5')
 in4_fr3_1.bind('<KeyRelease>', cpf_cliente)
-in4_fr3_1.grid(row=2, column=0, sticky=W,padx=492) #CPF OK
+in4_fr3_1.grid(row=2, column=0, sticky=W,padx=492) #CPF OK  
 in5_fr3_1 = Entry(fr3_1, text='', font= ('Arial 16'), bg='#f5f5f5')
 in5_fr3_1.bind('<KeyRelease>', telefone_cliente)
 in5_fr3_1.grid(row=3, column=0, sticky=W,padx=492) #TELEFONE OK
@@ -470,7 +495,8 @@ in0_fr4_1.grid(row=0, column=0,sticky=W,padx=280)
 lb1_fr4_1 = Label(fr4_1, text='Senha:', font=('Mongolian Baiti', "17", "bold" ) ,padx=5, pady=0, bg= '#8a37cc',fg='#f5f5f5').grid(row=1, column=0, sticky=W,padx=203)
 in1_fr4_1 = Entry(fr4_1, font='Arial 20', bg='#f5f5f5',show="*")
 in1_fr4_1.grid(row=1, column=0,sticky=W,padx=280)
-bt2_fr4_1 = Button(fr4_1, text='Confirmar', font=('Mongolian Baiti', '19', 'bold'),padx=5, pady=0, bg='#eb8334',fg='#f5f5f5',width=19).grid(row=2, column=0, sticky=W,padx=282,pady=5)
+bt2_fr4_1 = Button(fr4_1, text='Confirmar', font=('Mongolian Baiti', '19', 'bold'),padx=5, pady=0, bg='#eb8334',fg='#f5f5f5',width=19, command= lambda: cadastrar_cliente())
+bt2_fr4_1.grid(row=2, column=0, sticky=W,padx=282,pady=5)
 lb3_fr4_1 = Label(fr4_1, text='Mensagem de Confirmação', fg='#f5f5f5',font=('Mongolian Baiti', "17" ),padx=5, pady=0, bg= '#8a37cc',width=38).grid(row=3, column=0, columnspan=3, sticky=W,padx=175)
 bt4_fr4_1 = Button(fr4_1, text='Voltar', font=('Mongolian Baiti', '19', 'bold' ),padx=5, pady=0, bg='#eb8334',fg='#f5f5f5',width=15, command= lambda: [in0_fr4_1.delete(0, 'end'), in1_fr4_1.delete(0, 'end'), fr4_1.grid_remove(), fr4.grid(row=0, column=0, sticky=NSEW)]).grid(row=4, column=0, sticky=W,padx=450,pady=5)
 bt4_1_fr4_1 = Button(fr4_1, text='Sair', font=('Mongolian Baiti', '19', 'bold' ),padx=5, pady=0, bg= '#eb8334',fg='#f5f5f5',width=15, command= lambda:[in0_fr4_1.delete(0, 'end'), in1_fr4_1.delete(0, 'end'), fr4_1.grid_remove(), fr3.grid(row=0, column=0)]).grid(row=4, column=0, sticky=W,padx=190)
