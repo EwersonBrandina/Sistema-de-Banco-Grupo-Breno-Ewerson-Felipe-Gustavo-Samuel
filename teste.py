@@ -1,6 +1,7 @@
 from tkinter import *
 from turtle import width
-
+from classe_cliente import *
+from classe_conta import *
 #MODELO CRIADO POR BRENO
 root = Tk()
 altura = root.winfo_screenheight()
