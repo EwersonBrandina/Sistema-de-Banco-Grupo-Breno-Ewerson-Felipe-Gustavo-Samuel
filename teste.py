@@ -252,29 +252,14 @@ def cadastrar_funcionario():
     p1 = Cliente(nome=in0_fr2.get(), cpf=in1_fr2.get(), dataNasc=in2_fr2.get(), telefone=in3_fr2.get(), uf=lb8_fr2.get(), logradouro=lb4_fr2.get(), numero=lb5_fr2.get(), bairro=lb6_fr2.get(), cidade=lb7_fr2.get(), email=in9_fr2.get(), senha=in10_fr2.get())
     c1 = Conta(p1, num='123-4')
     c1.extrato()
-#contador=0
-#def botao_cadastrar():
-#    contador=1
-#def botao_acessar():
-#    contador=2
-#def cadastrar_cliente():
-#    while contador == 1:
-#        p1=[]
-#        p1.append(Cliente(nome=in2_fr3_1.get(), cpf=in4_fr3_1.get(), dataNasc=in3_fr3_1.get(), telefone=in5_fr3_1.get(), uf=in8_fr3_1.get(), logradouro=in6_fr3_1.get(), numero=in9_fr3_1.get(), bairro='', cidade=in7_fr3_1.get(), email=in10_fr3_1.get(), senha=''))
-#        c1 = Conta(p1, num='432-1')
-#    if contador == 2:
-#        for i in range (len(p1)):
-#            if p1[1] == in4_fr3_1 and p1[10] == entry_senha:
-#                print('Acesso Permitido')
-#            else:
-#                print('Aceso Negado')
-#                in4_fr3_1 , entry_senha
-#                x=in0_fr4_1.get()
-#                c1.deposito(float(x))
-#                c1.extrato()
 
-#
-#Comparar a posição 1 e a 10
+def cadastrar_cliente():
+    p1=[]
+    p1 = Cliente(nome=in2_fr3_1.get(), cpf=in4_fr3_1.get(), dataNasc=in3_fr3_1.get(), telefone=in5_fr3_1.get(), uf=in8_fr3_1.get(), logradouro=in6_fr3_1.get(), numero=in9_fr3_1.get(), bairro='', cidade=in7_fr3_1.get(), email=in10_fr3_1.get(), senha='')
+    c1 = Conta(p1, num='432-1')
+    c1.extrato()
+
+#comparar a posição 1 e a 10
 #Entry do login -> a
 #Entry da senha -> b 
 # if posição 1 == a and posição 10 == b: print('longin aprovado')

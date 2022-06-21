@@ -247,12 +247,12 @@ def cadastrar_funcionario():
     p1 = Cliente(nome=in0_fr2.get(), cpf=in1_fr2.get(), dataNasc=in2_fr2.get())#, telefone=in3_fr2.get()), uf=lb8_fr2.get(), logradouro=lb4_fr2.get(), numero=lb5_fr2.get(), bairro=lb6_fr2.get(), cidade=lb7_fr2.get(), email=in9_fr2.get(), senha=in10_fr2.get())
     c1 = Conta(p1, num='123-4')
     c1.extrato()
+
 def cadastrar_cliente():
-    p1 = Cliente(nome=in2_fr3_1.get(), cpf=in4_fr3_1.get(), dataNasc=in3_fr3_1.get())
-    c1 = Conta(p1, num='432-1')
-    c1.extrato()
-
-
+        p1 = (Cliente(nome=in2_fr3_1.get(), cpf=in4_fr3_1.get(), dataNasc=in3_fr3_1.get(), telefone=in5_fr3_1.get(), uf=in8_fr3_1.get(), logradouro=in6_fr3_1.get(), numero=in9_fr3_1.get(), bairro='', cidade=in7_fr3_1.get(), email=in10_fr3_1.get(), senha=''))
+        c1 = Conta(p1, num='432-1')
+        c1.deposito(str(x))
+        c1.extrato()
 
 #Salvar os Usuários e Senhas de cada frame
 
