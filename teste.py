@@ -254,7 +254,6 @@ def cadastrar_funcionario():
     c1.extrato()
 
 def cadastrar_cliente():
-    p1=[]
     p1 = Cliente(nome=in2_fr3_1.get(), cpf=in4_fr3_1.get(), dataNasc=in3_fr3_1.get(), telefone=in5_fr3_1.get(), uf=in8_fr3_1.get(), logradouro=in6_fr3_1.get(), numero=in9_fr3_1.get(), bairro='', cidade=in7_fr3_1.get(), email=in10_fr3_1.get(), senha='')
     c1 = Conta(p1, num='432-1')
     c1.extrato()
@@ -323,7 +322,7 @@ def cadastrar_cliente():
 
 fr0 = LabelFrame (bg='#8a37cc')
 lb0_fr0 = Label(fr0, text='Seja muito Bem-Vindo', font = ("Mongolian Baiti", "32"),bg='#8a37cc', fg='#f5f5f5',).grid(row=0,column=0, sticky=W,padx=170,ipady=60)
-lb1_fr0 = Label(fr0, text='ao Dellux', font=("Mongolian Baiti", "32"), bg='#8a37cc', fg='#f5f5f5').grid(row=1, column=0, sticky=W,ipadx=300)
+lb1_fr0 = Label(fr0, text='ao Nubank', font=("Mongolian Baiti", "32"), bg='#8a37cc', fg='#f5f5f5').grid(row=1, column=0, sticky=W,ipadx=300)
 bt0_fr0 = Button(fr0, text='Funcionário', font=('Mongolian Baiti' ,'26', "bold"), bg='#eb8334',fg='#fff', width=10, command= lambda: [fr0.grid_remove(), fr1.grid(row=0, column=0, sticky=NSEW)]).grid(row=2, column=0,columnspan=1, sticky=W, padx=165,pady=70)
 bt1_fr0 = Button(fr0, text='Usuário', font= ('Mongolian Baiti' ,'26', "bold"),bg='#eb8334',fg='#fff',width=8, command= lambda: [fr0.grid_remove(), fr3.grid(row=0, column=0)]).grid(row=2, column=0,columnspan=2,sticky=W, padx=415)
 fr0.grid(row=0, column=0, sticky=NSEW)
