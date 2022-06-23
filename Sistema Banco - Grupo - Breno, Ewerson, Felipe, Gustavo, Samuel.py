@@ -327,7 +327,15 @@ def mostrar(*args):
 def esconder(*args): 
     in1_fr1 = Entry(fr1, textvariable=hello, font='Arial 18', width=35, show="*").grid(row=2,column=1,sticky=W,padx=154)
     bt2_fr1 = Button(fr1, text='👁', font=('Mongolian Baiti', "18", "bold"),bg='#eb8334', fg='#fff', command=mostrar).grid(row=2, column=1, padx=620)
-    
+
+hello_1=StringVar()
+def mostrar_1(*args):
+    in1_fr3 = Entry(fr3, textvariable=hello_1, font='Arial 20', bg='#fff').grid(row=3, column=0,sticky=W,padx=240,pady=10)
+    feecho = Button(fr3, text='👁', font=('Mongolian Baiti', "15", "bold"),bg='#eb8334', fg='#fff',command=esconder_1).grid(row=3, column=0, sticky=W,padx=550,pady=5)
+def esconder_1(*args):
+    in1_fr3 = Entry(fr3, textvariable=hello_1, font='Arial 20', bg='#fff',show="*").grid(row=3, column=0,sticky=W,padx=240,pady=10)
+    bt7_fr3 = Button(fr3, text='👁', font=('Mongolian Baiti', "15", "bold"),bg='#eb8334', fg='#fff',command=mostrar_1).grid(row=3, column=0, sticky=W,padx=550,pady=5)
+
 #Salvar os Usuários e Senhas de cada frame
 
 #NSEW
@@ -477,9 +485,9 @@ fr3_1 = LabelFrame(root, text='Cadastro',font=('Mongolian Baiti', '17'), bg='#8a
 lb2_fr3 = Label(fr3, text='Usuário:', font=('Mongolian Baiti', '23'), bg='#8a37cc', fg='#f5f5f5').grid(row=2, column=0, sticky=W,padx=128)
 lb3_fr3 = Label(fr3, text='Senha:', font=('Mongolian Baiti', '23'), bg='#8a37cc', fg='#f5f5f5').grid(row=3, column=0, sticky=W,padx=149)
 in0_fr3 = Entry(fr3, font='Arial 20', bg='#fff')
-in0_fr3.bind('<KeyRelease>', cpf_cliente_login)
+in0_fr3.bind('<KeyRelease>', cpf_cliente_login) #Usuário
 in0_fr3.grid(row=2, column=0,sticky=W,padx=240)
-in1_fr3 = Entry(fr3, font='Arial 20', bg='#fff',show="*")
+in1_fr3 = Entry(fr3, textvariable=hello_1, font='Arial 20', bg='#fff',show="*") #Senha
 in1_fr3.grid(row=3, column=0,sticky=W,padx=240,pady=10)
 #widgets j2
 lb4_fr3_1 = Label(fr3_1, text='Bem vindo a área de cadastro', font=('Mongolian Baiti', '22'), bg='#8a37cc', fg='#f5f5f5').grid(row=0, column=0,sticky=W, padx=193,pady=20)
@@ -519,7 +527,7 @@ in10_fr3_1.grid(row=5, column=0, sticky=W,padx=132) #EMAIL
 bt0_fr3 = Button(fr3, text='Login', font = ('Mongolian Baiti', '20', 'bold' ) , bg='#eb8334', fg='#f5f5f5',width=13, command= lambda:[login()]).grid(row=4, column=0, sticky=W,padx=30,pady=10)
 bt1_fr3 = Button(fr3, text='Cadastrar', font = ('Mongolian Baiti', "20", 'bold' ) , bg='#eb8334', fg='#f5f5f5',width=13, command= lambda:[in0_fr3.delete(0, 'end'), in1_fr3.delete(0, 'end'), fr3.grid_remove(), fr3_1.grid(row=0, column=0)] ).grid(row=4, column=0, sticky=W,padx=265)
 bt2_fr3 = Button(fr3, text='Voltar', font = ('Mongolian Baiti', "20", 'bold') , bg='#eb8334', fg='#f5f5f5',width=13 , command= lambda:[in0_fr3.delete(0, 'end'), in1_fr3.delete(0, 'end'), fr3.grid_remove(), fr0.grid(row=0, column=0)]).grid(row=4, column=0, sticky=W,padx=500)
-bt7_fr3 = Button(fr3, text='👁', font=('Mongolian Baiti', "15", "bold"),bg='#eb8334', fg='#fff').grid(row=3, column=0, sticky=W,padx=550,pady=5)
+bt7_fr3 = Button(fr3, text='👁', font=('Mongolian Baiti', "15", "bold"),bg='#eb8334', fg='#fff',command=mostrar_1).grid(row=3, column=0, sticky=W,padx=550,pady=5)
 bt3_fr3_1 = Button(fr3_1, text='Salvar', font = ('Mongolian Baiti', '19', 'bold' ), width= 18, bg='#eb8334', fg='#f5f5f5', command= lambda:[in2_fr3_1.delete(0, 'end'),in3_fr3_1.delete(0, 'end'),in4_fr3_1.delete(0, 'end'),in5_fr3_1.delete(0, 'end'),in6_fr3_1.delete(0, 'end'),in7_fr3_1.delete(0, 'end'),in8_fr3_1.delete(0, 'end'),in9_fr3_1.delete(0, 'end'),in10_fr3_1.delete(0, 'end'),fr3_1.grid_remove(), fr3.grid(row=0, column=0)]).grid(row=6, column=0,sticky=W,padx=130,pady=15)
 bt4_fr3_1 = Button(fr3_1, text='Voltar', font = ('Mongolian Baiti', '19', 'bold' ), width=18, bg='#eb8334', fg='#f5f5f5', command= lambda:[in2_fr3_1.delete(0, 'end'),in3_fr3_1.delete(0, 'end'),in4_fr3_1.delete(0, 'end'),in5_fr3_1.delete(0, 'end'),in6_fr3_1.delete(0, 'end'),in7_fr3_1.delete(0, 'end'),in8_fr3_1.delete(0, 'end'),in9_fr3_1.delete(0, 'end'),in10_fr3_1.delete(0, 'end'),fr3_1.grid_remove(), fr3.grid(row=0, column=0)]).grid(row=6, column=0, sticky=W,padx=460)
 
