@@ -324,7 +324,7 @@ hello=StringVar()
 def mostrar(*args):
     in1_fr1 = Entry(fr1, textvariable=hello, font='Arial 18', width=35).grid(row=2,column=1,sticky=W,padx=154)
     feecho = Button(fr1, text='👁', font=('Mongolian Baiti', "18", "bold"),bg='#eb8334', fg='#fff', command=esconder).grid(row=2, column=1, padx=620)
-def esconder(*args):
+def esconder(*args): 
     in1_fr1 = Entry(fr1, textvariable=hello, font='Arial 18', width=35, show="*").grid(row=2,column=1,sticky=W,padx=154)
     bt2_fr1 = Button(fr1, text='👁', font=('Mongolian Baiti', "18", "bold"),bg='#eb8334', fg='#fff', command=mostrar).grid(row=2, column=1, padx=620)
     
