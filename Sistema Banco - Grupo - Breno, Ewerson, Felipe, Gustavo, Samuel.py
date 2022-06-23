@@ -277,7 +277,7 @@ V_Cpf = []
 V_Senha = []
 contagem=0
 def confirmar():
-    global contagem
+    global contagem, V_Cadastro, V_Conta, V_Cpf, V_Senha, nome, cpf, dataNasc, tel, uf, logradouro, numero, bairro, cidade, email, senha
     V_Cadastro.append(Cliente(nome=in0_fr2.get(), cpf=in1_fr2_1.get(), dataNasc=in2_fr2.get(), tel=in3_fr2.get(), uf=lb8_fr2.get(), logradouro=lb4_fr2.get(), numero=lb5_fr2.get(), bairro=lb6_fr2.get(), cidade=lb7_fr2.get(), email=in9_fr2.get(), senha=in10_fr2.get()))
     V_Cpf.append(in1_fr2_1.get())
     V_Senha.append(in10_fr2.get())
@@ -292,26 +292,42 @@ def login():
             in0_fr3.delete(0, 'end'), in1_fr3.delete(0, 'end'), fr3.grid_remove(), fr4.grid(row=0, column=0)
             print('Usuário e Senha Corretos')
             login_aprovado = i
-            #lb0_fr4['text']=
+            lb0_fr4['text']=V_Conta[login_aprovado].titular
+            lb0_1_fr4['text']='Num. Conta: '+ V_Conta[login_aprovado].num
+            lb1_fr4['text']='R$ '+str(V_Conta[login_aprovado].saldo)
             break
         else:
             print('Usuário ou Senha incorretos')
 def deposito_calculo():
     V_Conta[login_aprovado].deposito(float(in0_fr4_1.get()))
     V_Conta[login_aprovado].extrato()
-    #lb3_fr4_1['text']='Depósito Realizado com Sucesso'
-    lb1_fr4['text']=V_Conta[login_aprovado].saldo
+    lb3_fr4_1['text']='Depósito de R$ '+ str(V_Conta[login_aprovado].saldo)+ ' Realizado Com Sucesso'
+    lb1_fr4['text']='R$ '+str(V_Conta[login_aprovado].saldo)
 def saque_calculo():
     V_Conta[login_aprovado].saque(float(in0_fr4_2.get()))
     V_Conta[login_aprovado].extrato()
-    #lb3_fr4_2['text'] = 'Saque Realizado Com Sucesso'
-    lb1_fr4['text']=V_Conta[login_aprovado].saldo
+    lb3_fr4_2['text'] = 'Saque de R$ '+ str(V_Conta[login_aprovado].saldo)+ ' Realizado Com Sucesso'
+    lb1_fr4['text']='R$ '+str(V_Conta[login_aprovado].saldo)
 def transfere_calculo():
-    V_Conta[login_aprovado].transfere(float(in0_fr4_3.get()))
-    V_Conta[login_aprovado].extrato()
-    #lb3_fr4_3['text'] = 'Transferência Realizada Com Sucesso'
-    lb1_fr4['text']=V_Conta[login_aprovado].saldo
+    for i in range (len(V_Conta)):
+            if V_Conta[i].num == in1_1_fr4_3.get():
+                V_Conta[login_aprovado].transfere(float(in0_fr4_3.get()),V_Conta[i])
+                V_Conta[login_aprovado].extrato()
+                lb3_fr4_3['text'] = 'Transferência de R$ '+ str(V_Conta[login_aprovado].saldo)+ ' Realizado Com Sucesso'
+                lb1_fr4['text']='R$ '+str(V_Conta[login_aprovado].saldo)
+            else:
+                lb3_fr4_3['text'] = 'Conta Destino Errada'
+def extrato_calculo():
+    lb7_fr4['text']=V_Conta[login_aprovado].extrato()
 
+hello=StringVar()
+def mostrar(*args):
+    in1_fr1 = Entry(fr1, textvariable=hello, font='Arial 18', width=35).grid(row=2,column=1,sticky=W,padx=154)
+    feecho = Button(fr1, text='👁', font=('Mongolian Baiti', "18", "bold"),bg='#eb8334', fg='#fff', command=esconder).grid(row=2, column=1, padx=620)
+def esconder(*args):
+    in1_fr1 = Entry(fr1, textvariable=hello, font='Arial 18', width=35, show="*").grid(row=2,column=1,sticky=W,padx=154)
+    bt2_fr1 = Button(fr1, text='👁', font=('Mongolian Baiti', "18", "bold"),bg='#eb8334', fg='#fff', command=mostrar).grid(row=2, column=1, padx=620)
+    
 #Salvar os Usuários e Senhas de cada frame
 
 #NSEW
@@ -363,12 +379,12 @@ lb2_fr1 = Label(fr1, text='Senha:', font=('Mongolian Baiti', "22" ),bg='#8a37cc'
 in0_fr1 = Entry(fr1, font='Arial 18', width=35)
 in0_fr1.bind('<KeyRelease>', cpf_funcionario_login)
 in0_fr1.grid(row=1,column=1,sticky=W,padx=154)
-in1_fr1 = Entry(fr1, font='Arial 18', width=35,show="*")
+in1_fr1 = Entry(fr1, textvariable=hello, font='Arial 18', width=35,show="*")
 in1_fr1.grid(row=2,column=1,sticky=W,padx=154)
 #--Button ---
 bt0_fr1 = Button(fr1,text='Entrar', font= ('Mongolian Baiti', "18", "bold") ,width=15,bg='#eb8334', fg='#fff',command= lambda: [in0_fr1.delete(0, 'end'), in1_fr1.delete(0, 'end'), fr1.grid_remove(), fr2.grid(row=0, column=0, pady=50)]).grid(row=4, column=1, sticky=W, padx=155)
 bt1_fr1 = Button(fr1, text='Voltar', font=('Mongolian Baiti', "18", "bold"),width=16,bg='#eb8334', fg='#fff', command= lambda: [in0_fr1.delete(0, 'end'), in1_fr1.delete(0, 'end'), fr1.grid_remove(), fr0.grid(row=0, column=0)]).grid(row=4, column=1, sticky=W,padx=380)
-bt2_fr1 = Button(fr1, text='👁', font=('Mongolian Baiti', "18", "bold"),bg='#eb8334', fg='#fff').grid(row=2, column=1, padx=620)
+bt2_fr1 = Button(fr1, text='👁', font=('Mongolian Baiti', "18", "bold"),bg='#eb8334', fg='#fff', command=mostrar).grid(row=2, column=1, padx=620)
 #---Configuração do Frame---
 #fr1.grid()
 
@@ -509,8 +525,10 @@ bt4_fr3_1 = Button(fr3_1, text='Voltar', font = ('Mongolian Baiti', '19', 'bold'
 
 #Frame 4 - Ewerson
 fr4 = LabelFrame(root, padx=10, pady=5, bg='#8a37cc', text='Usuário', font='Arial 25',fg='#f5f5f5', borderwidth=1, relief="sunken", width=5)
-lb0_fr4 = Label(fr4, text='Ewerson Ribeiro Brandina', font='Arial 20',padx=5, pady=0, bg='#8a37cc',fg='#f5f5f5').grid(row=0, column=0 , sticky=W)
-lb0_1_fr4 = Label(fr4, text='Número da Conta', font='Arial 20',padx=5, pady=0, bg='#8a37cc',fg='#f5f5f5').grid(row=0, column=2)
+lb0_fr4 = Label(fr4, text='Usuário', font='Arial 20',padx=5, pady=0, bg='#8a37cc',fg='#f5f5f5')
+lb0_fr4.grid(row=0, column=0 , sticky=W)
+lb0_1_fr4 = Label(fr4, text='Número da Conta', font='Arial 20',padx=5, pady=0, bg='#8a37cc',fg='#f5f5f5')
+lb0_1_fr4.grid(row=0, column=2)
 lb1_fr4 = Label(fr4, text='R$ 0.0', font='Arial 20',padx=5, pady=10, bg='#8a37cc',fg='#f5f5f5')
 lb1_fr4.grid(row=1, column=0, sticky=W)
 bt2_fr4 = Button(fr4, text='Depósito', font='Arial 20',padx=5, pady=0, bg='#eb8334',fg='#f5f5f5',width=12, command= lambda: [fr4.grid_remove(), fr4_1.grid(row=0, column=1)]).grid(row=2, column=0, sticky=W,pady=5)
@@ -518,6 +536,8 @@ bt3_fr4 = Button(fr4, text='Saque', font='Arial 20',padx=5, pady=0, bg='#eb8334'
 bt4_fr4 = Button(fr4, text='Transferência', font='Arial 20',padx=5, pady=0, bg='#eb8334',fg='#f5f5f5',width=12, command= lambda: [fr4.grid_remove(), fr4_3.grid(row=0, column=1)]).grid(row=4, column=0, sticky=W,pady=5)
 bt5_fr4 = Button(fr4, text='Extrato', font='Arial 20',padx=5, pady=0, bg='#eb8334',fg='#f5f5f5',width=12, command= lambda: [fr4.grid_remove(), fr4_4.grid(row=0, column=1)]).grid(row=5, column=0, sticky=W,pady=5)
 bt6_fr4 = Button(fr4, text='Logout', font='Arial 20',padx=5, pady=0, bg='#eb8334',fg='#f5f5f5',width=14, command= lambda:[fr4.grid_remove(), fr3.grid(row=0, column=0)]).grid(row=7, column=2, sticky=E)
+lb7_fr4 = Label(fr4, text='Teste',font='Arial 20',padx=5, pady=0, bg='#8a37cc',fg='#f5f5f5')
+lb7_fr4.grid(row=1, column=2, rowspan=2)
 #Frame 4_1 - Ewerson
 fr4_1 = LabelFrame(root, pady=5, bg= '#8a37cc', text='Depósito',fg='#f5f5f5', font=('Mongolian Baiti', "19" ), borderwidth=1, relief="sunken",width=150)
 lb0_fr4_1 = Label(fr4_1, text='Valor a Ser Depositado:',bg='#8a37cc',fg='#f5f5f5', font=('Mongolian Baiti', "17", "bold" ) ,padx=5, pady=0).grid(row=0, column=0 , sticky=W,padx=25)
@@ -556,7 +576,7 @@ in0_fr4_3 = Entry(fr4_3,font='Arial 20', bg='#f5f5f5')
 in0_fr4_3.bind('<KeyRelease>', transferencia)
 in0_fr4_3.grid(row=0, column=0, sticky=W,padx=280)
 lb1_1_fr4_3 = Label(fr4_3, text='Conta Destino:', font=('Mongolian Baiti', "17", "bold" ) ,padx=5, pady=0, bg= '#8a37cc',fg='#f5f5f5').grid(row=1, column=0, sticky=W,padx=117)
-in1_1_fr4_3 = Entry(fr4_3, font='Arial 20', bg='#f5f5f5',show="*")
+in1_1_fr4_3 = Entry(fr4_3, font='Arial 20', bg='#f5f5f5')
 in1_1_fr4_3.grid(row=1, column=0, sticky=W,padx=280)
 lb1_fr4_3 = Label(fr4_3, text='Senha:', font=('Mongolian Baiti', "17", "bold" ) ,padx=5, pady=0, bg= '#8a37cc',fg='#f5f5f5').grid(row=2, column=0, sticky=W,padx=203)
 in1_fr4_3 = Entry(fr4_3, font='Arial 20', bg='#f5f5f5',show="*")
@@ -577,7 +597,7 @@ in0_fr4_4.insert(0, 'MM/AAAA')
 lb1_fr4_4 = Label(fr4_4, text='Senha:', font=('Mongolian Baiti', "17", "bold" ) ,padx=5, pady=0, bg= '#8a37cc',fg='#f5f5f5').grid(row=1, column=0, sticky=W,padx=203)
 in1_fr4_4 = Entry(fr4_4, font='Arial 20', bg='#f5f5f5',show="*")
 in1_fr4_4.grid(row=1, column=0,sticky=W,padx=280)
-bt2_fr4_4 = Button(fr4_4, text='Confirmar', font=('Mongolian Baiti', '19', 'bold' ),padx=5, pady=0, bg= '#eb8334',fg='#f5f5f5',width=19).grid(row=2, column=0, sticky=W, padx=282,pady=5)
+bt2_fr4_4 = Button(fr4_4, text='Confirmar', font=('Mongolian Baiti', '19', 'bold' ),padx=5, pady=0, bg= '#eb8334',fg='#f5f5f5',width=19,command= lambda: extrato_calculo()).grid(row=2, column=0, sticky=W, padx=282,pady=5)
 lb3_fr4_4 = Label(fr4_4, text='Mensagem de Confirmação',  font=('Mongolian Baiti', "17" ),padx=5, pady=0,  bg= '#8a37cc',fg='#f5f5f5',width=31)
 lb3_fr4_4.grid(row=3, column=0, columnspan=3, sticky=W,padx=220)
 bt4_fr4_4 = Button(fr4_4, text='Voltar', font=('Mongolian Baiti', '19', 'bold' ),padx=5, pady=0,  bg= '#eb8334',fg='#f5f5f5',width=15, command= lambda: [in0_fr4_4.delete(0, 'end'), in1_fr4_4.delete(0, 'end'), fr4_4.grid_remove(),fr4.grid(row=0, column=0, sticky=NSEW)]).grid(row=4, column=0, sticky=W,padx=190,pady=5)
