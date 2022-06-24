@@ -177,7 +177,7 @@ def data_nasc(event=None):
     in2_fr2.delete(0, 'end')
     in2_fr2.insert(0, y)
 def dois_digitos_funcionario(event=None):
-    x=lb8_fr2.get()[:2]
+    x=lb8_fr2.get().replace(' ','')[:2]
     y=''
     if event.keysym.lower() == "backspace": return
     for i in range(len(x)):
@@ -253,7 +253,7 @@ def telefone_cliente(event=None):
     in5_fr3_1.delete(0, 'end')
     in5_fr3_1.insert(0, y)
 def dois_digitos_cliente(event=None):
-    x=in8_fr3_1.get()[:2]
+    x=in8_fr3_1.get().replace(' ','')[:2]
     y=''
     if event.keysym.lower() == "backspace": return
     for i in range(len(x)):
@@ -503,11 +503,20 @@ lb5_fr3_1 = Label(fr3_1, text='Nome:', font=('Mongolian Baiti', '17'), bg='#8a37
 lb6_fr3_1 = Label(fr3_1, text='Data de Nasc:', font=('Mongolian Baiti', '17'), bg='#8a37cc', fg='#f5f5f5').grid(row=2, column=0,sticky=W)
 lb7_fr3_1 = Label(fr3_1, text='CPF:', font=('Mongolian Baiti', '17'), bg='#8a37cc', fg='#f5f5f5').grid(row=2, column=0,sticky=W, padx=441)
 lb8_fr3_1 = Label(fr3_1, text='Telefone:', font=('Mongolian Baiti', '17'), bg='#8a37cc', foreground='#f5f5f5').grid(row=3, column=0,sticky=W, padx=400)
-lb9_fr3_1 = Label(fr3_1, text='Endereço:', font=('Mongolian Baiti', '17'), bg='#8a37cc', foreground='#f5f5f5').grid(row=3, column=0,sticky=W,padx=35)
-lb10_fr3_1 = Label(fr3_1, text='Cidade:', font=('Mongolian Baiti', '17'), bg='#8a37cc', foreground='#f5f5f5').grid(row=4, column=0,sticky=W,padx=56)
+lb9_fr3_1 = Label(fr3_1, text='Logradouro:', font=('Mongolian Baiti', '17'), bg='#8a37cc', foreground='#f5f5f5').grid(row=4, column=0,sticky=W,padx=10)
+lb10_fr3_1 = Label(fr3_1, text='Cidade:', font=('Mongolian Baiti', '17'), bg='#8a37cc', foreground='#f5f5f5').grid(row=5, column=0,sticky=W,padx=56)
 lb11_fr3_1 = Label(fr3_1, text='UF:',font=('Mongolian Baiti', '17'), bg='#8a37cc', foreground='#f5f5f5').grid(row=4, column=0,sticky=W, padx=453)
 lb12_fr3_1 = Label(fr3_1, text='N°:', font=('Mongolian Baiti', '17'), bg='#8a37cc', foreground='#f5f5f5').grid(row=5, column=0,sticky=W, padx=457)
-lb13_fr3_1 = Label(fr3_1, text='Email:', font=('Mongolian Baiti', '17'), bg='#8a37cc', foreground='#f5f5f5').grid(row=5, column=0,sticky=W,padx=66)
+lb13_fr3_1 = Label(fr3_1, text='Email:', font=('Mongolian Baiti', '17'), bg='#8a37cc', foreground='#f5f5f5').grid(row=6, column=0,sticky=W,padx=66)
+
+lb14_fr3_1 = Label(fr3_1, text="Bairro:", font=('Mongolian Baiti', '17'), bg='#8a37cc', foreground='#f5f5f5').grid(row=3, column=0,sticky=W,padx=62)
+in14_fr3_1 = Entry(fr3_1,  font= ('Arial 16'),width=22, bg='#f5f5f5')
+in14_fr3_1.grid(row=3, column=0, sticky=W,padx=132)
+lb15_fr3_1 = Label(fr3_1, text="Senha:", font=('Mongolian Baiti', '17'), bg='#8a37cc', foreground='#f5f5f5').grid(row=6, column=0,sticky=W, padx=425)
+in15_fr3_1 = Entry(fr3_1, font= ('Arial 16'), bg='#f5f5f5')
+in15_fr3_1.grid(row=6, column=0, sticky=W,padx=492)
+
+
 in2_fr3_1 = Entry(fr3_1, font= ('Arial 16'),textvariable=var ,width=50, bg='#f5f5f5')
 in2_fr3_1.grid(row=1, column=0, sticky=W,padx=132) #NOME OK
 in3_fr3_1 = Entry(fr3_1, font= ('Arial 16'),width=22, bg='#f5f5f5')
@@ -520,9 +529,9 @@ in5_fr3_1 = Entry(fr3_1,  font= ('Arial 16'), bg='#f5f5f5')
 in5_fr3_1.bind('<KeyRelease>', telefone_cliente)
 in5_fr3_1.grid(row=3, column=0, sticky=W,padx=492) #TELEFONE OK
 in6_fr3_1 = Entry(fr3_1,  font= ('Arial 16'), textvariable=var7,width=22, bg='#f5f5f5')
-in6_fr3_1.grid(row=3, column=0, sticky=W,padx=132) #LOGRADOURO
+in6_fr3_1.grid(row=4, column=0, sticky=W,padx=132) #LOGRADOURO
 in7_fr3_1 = Entry(fr3_1, font= ('Arial 16'), textvariable=var5,width=22,bg='#f5f5f5')
-in7_fr3_1.grid(row=4, column=0, sticky=W,padx=132) #CIDADE
+in7_fr3_1.grid(row=5, column=0, sticky=W,padx=132) #CIDADE
 in8_fr3_1 = Entry(fr3_1, font= ('Arial 16'),textvariable=var6, bg='#f5f5f5')
 in8_fr3_1.bind('<KeyRelease>', dois_digitos_cliente)
 in8_fr3_1.grid(row=4, column=0, sticky=W,padx=492) #UF OK
@@ -530,14 +539,14 @@ in9_fr3_1 = Entry(fr3_1, font= ('Arial 16'), bg='#f5f5f5')
 in9_fr3_1.bind('<KeyRelease>', numeros_cliente)
 in9_fr3_1.grid(row=5, column=0, sticky=W,padx=492) #Nº OK
 in10_fr3_1 = Entry(fr3_1, font= ('Arial 16'),width=22, bg='#f5f5f5')
-in10_fr3_1.grid(row=5, column=0, sticky=W,padx=132) #EMAIL
+in10_fr3_1.grid(row=6, column=0, sticky=W,padx=132) #EMAIL
 #botões
 bt0_fr3 = Button(fr3, text='Login', font = ('Mongolian Baiti', '20', 'bold' ) , bg='#eb8334', fg='#f5f5f5',width=13, command= lambda:[login()]).grid(row=4, column=0, sticky=W,padx=30,pady=10)
 bt1_fr3 = Button(fr3, text='Cadastrar', font = ('Mongolian Baiti', "20", 'bold' ) , bg='#eb8334', fg='#f5f5f5',width=13, command= lambda:[in0_fr3.delete(0, 'end'), in1_fr3.delete(0, 'end'), fr3.grid_remove(), fr3_1.grid(row=0, column=0)] ).grid(row=4, column=0, sticky=W,padx=265)
 bt2_fr3 = Button(fr3, text='Voltar', font = ('Mongolian Baiti', "20", 'bold') , bg='#eb8334', fg='#f5f5f5',width=13 , command= lambda:[in0_fr3.delete(0, 'end'), in1_fr3.delete(0, 'end'), fr3.grid_remove(), fr0.grid(row=0, column=0)]).grid(row=4, column=0, sticky=W,padx=500)
 bt7_fr3 = Button(fr3, text='👁', font=('Mongolian Baiti', "15", "bold"),bg='#eb8334', fg='#fff',command=mostrar_1).grid(row=3, column=0, sticky=W,padx=550,pady=5)
-bt3_fr3_1 = Button(fr3_1, text='Salvar', font = ('Mongolian Baiti', '19', 'bold' ), width= 18, bg='#eb8334', fg='#f5f5f5', command= lambda:[in2_fr3_1.delete(0, 'end'),in3_fr3_1.delete(0, 'end'),in4_fr3_1.delete(0, 'end'),in5_fr3_1.delete(0, 'end'),in6_fr3_1.delete(0, 'end'),in7_fr3_1.delete(0, 'end'),in8_fr3_1.delete(0, 'end'),in9_fr3_1.delete(0, 'end'),in10_fr3_1.delete(0, 'end'),fr3_1.grid_remove(), fr3.grid(row=0, column=0)]).grid(row=6, column=0,sticky=W,padx=130,pady=15)
-bt4_fr3_1 = Button(fr3_1, text='Voltar', font = ('Mongolian Baiti', '19', 'bold' ), width=18, bg='#eb8334', fg='#f5f5f5', command= lambda:[in2_fr3_1.delete(0, 'end'),in3_fr3_1.delete(0, 'end'),in4_fr3_1.delete(0, 'end'),in5_fr3_1.delete(0, 'end'),in6_fr3_1.delete(0, 'end'),in7_fr3_1.delete(0, 'end'),in8_fr3_1.delete(0, 'end'),in9_fr3_1.delete(0, 'end'),in10_fr3_1.delete(0, 'end'),fr3_1.grid_remove(), fr3.grid(row=0, column=0)]).grid(row=6, column=0, sticky=W,padx=460)
+bt3_fr3_1 = Button(fr3_1, text='Salvar', font = ('Mongolian Baiti', '19', 'bold' ), width= 18, bg='#eb8334', fg='#f5f5f5', command= lambda:[in2_fr3_1.delete(0, 'end'),in3_fr3_1.delete(0, 'end'),in4_fr3_1.delete(0, 'end'),in5_fr3_1.delete(0, 'end'),in6_fr3_1.delete(0, 'end'),in7_fr3_1.delete(0, 'end'),in8_fr3_1.delete(0, 'end'),in9_fr3_1.delete(0, 'end'),in10_fr3_1.delete(0, 'end'),fr3_1.grid_remove(), fr3.grid(row=0, column=0)]).grid(row=7, column=0,sticky=W,padx=130,pady=15)
+bt4_fr3_1 = Button(fr3_1, text='Voltar', font = ('Mongolian Baiti', '19', 'bold' ), width=18, bg='#eb8334', fg='#f5f5f5', command= lambda:[in2_fr3_1.delete(0, 'end'),in3_fr3_1.delete(0, 'end'),in4_fr3_1.delete(0, 'end'),in5_fr3_1.delete(0, 'end'),in6_fr3_1.delete(0, 'end'),in7_fr3_1.delete(0, 'end'),in8_fr3_1.delete(0, 'end'),in9_fr3_1.delete(0, 'end'),in10_fr3_1.delete(0, 'end'),fr3_1.grid_remove(), fr3.grid(row=0, column=0)]).grid(row=7, column=0, sticky=W,padx=460)
 
 #Frame 4 - Ewerson
 fr4 = LabelFrame(root, padx=10, pady=5, bg='#8a37cc', text='Usuário', font='Arial 25',fg='#f5f5f5', borderwidth=1, relief="sunken", width=5)
