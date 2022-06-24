@@ -315,10 +315,13 @@ def transfere_calculo():
                 V_Conta[login_aprovado].extrato()
                 lb3_fr4_3['text'] = 'Transferência de R$ '+ str(V_Conta[login_aprovado].saldo)+ ' Realizado Com Sucesso'
                 lb1_fr4['text']='R$ '+str(V_Conta[login_aprovado].saldo)
+                break
             else:
                 lb3_fr4_3['text'] = 'Conta Destino Errada'
+
 def extrato_calculo():
-    lb7_fr4['text']=V_Conta[login_aprovado].extrato()
+    lb7_fr4['text']=V_Conta[login_aprovado].historico.msg
+
 
 hello=StringVar()
 def mostrar(*args):
@@ -539,6 +542,14 @@ lb0_1_fr4 = Label(fr4, text='Número da Conta', font='Arial 20',padx=5, pady=0, 
 lb0_1_fr4.grid(row=0, column=2)
 lb1_fr4 = Label(fr4, text='R$ 0.0', font='Arial 20',padx=5, pady=10, bg='#8a37cc',fg='#f5f5f5')
 lb1_fr4.grid(row=1, column=0, sticky=W)
+
+lb1_1_fr4 = Label(fr4, text='Número da Conta', font='Arial 20',padx=5, pady=0, bg='#8a37cc',fg='#f5f5f5')
+lb1_1_fr4.grid(row=0, column=2)
+lb1_1_fr4 = Label(fr4, text='Número da Conta', font='Arial 20',padx=5, pady=0, bg='#8a37cc',fg='#f5f5f5')
+lb1_1_fr4.grid(row=0, column=2)
+lb1_1_fr4 = Label(fr4, text='Número da Conta', font='Arial 20',padx=5, pady=0, bg='#8a37cc',fg='#f5f5f5')
+lb1_1_fr4.grid(row=0, column=2)
+
 bt2_fr4 = Button(fr4, text='Depósito', font='Arial 20',padx=5, pady=0, bg='#eb8334',fg='#f5f5f5',width=12, command= lambda: [fr4.grid_remove(), fr4_1.grid(row=0, column=1)]).grid(row=2, column=0, sticky=W,pady=5)
 bt3_fr4 = Button(fr4, text='Saque', font='Arial 20',padx=5, pady=0, bg='#eb8334',fg='#f5f5f5',width=12, command= lambda: [fr4.grid_remove(), fr4_2.grid(row=0, column=1)]).grid(row=3, column=0, sticky=W,pady=5)
 bt4_fr4 = Button(fr4, text='Transferência', font='Arial 20',padx=5, pady=0, bg='#eb8334',fg='#f5f5f5',width=12, command= lambda: [fr4.grid_remove(), fr4_3.grid(row=0, column=1)]).grid(row=4, column=0, sticky=W,pady=5)
