@@ -317,7 +317,7 @@ def transfere_calculo():
                 lb1_fr4['text']='R$ '+str(V_Conta[login_aprovado].saldo)
                 break
             else:
-                lb3_fr4_3['text'] = 'Conta Destino Errada'
+                lb3_fr4_3['text'] = 'Conta Destino Errada' 
 
 def extrato_calculo():
     lb7_fr4['text']=V_Conta[login_aprovado].historico.msg
