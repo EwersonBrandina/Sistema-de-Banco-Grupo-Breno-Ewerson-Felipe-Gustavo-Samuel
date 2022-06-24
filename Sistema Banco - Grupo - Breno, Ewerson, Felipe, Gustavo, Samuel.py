@@ -1,4 +1,4 @@
-from multiprocessing.reduction import send_handle
+
 from tkinter import *
 from setuptools import Command
 from classe_cliente import *
@@ -272,7 +272,7 @@ def numeros_cliente(event=None):
             y+=x[i]
     in9_fr3_1.delete(0, 'end')
     in9_fr3_1.insert(0, y)
-
+    
 #Front & Back
 V_Cadastro = []
 V_Conta = []
