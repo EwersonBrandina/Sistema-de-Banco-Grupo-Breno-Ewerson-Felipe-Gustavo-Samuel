@@ -1,6 +1,7 @@
 from tkinter import *
 from classe_cliente import *
 from classe_conta import *
+from datetime import datetime
 #MODELO CRIADO POR BRENO
 root = Tk()
 altura = root.winfo_screenheight()
@@ -337,7 +338,10 @@ def apagar_conta():
                 lb3_fr2_2['text']='Conta ou Senha Errada'
 def deposito_calculo():
     if V_Senha[login_aprovado] == in1_fr4_1.get():
-        V_Conta[login_aprovado].deposito(float(in0_fr4_1.get()))
+        data = datetime.now()
+        data_em_texto = data.strftime('%d/%m/%Y %H:%M')
+        data = data_em_texto
+        V_Conta[login_aprovado].deposito(float(in0_fr4_1.get()),str(data))
         V_Conta[login_aprovado].extrato()
         lb3_fr4_1['text']='Depósito de R$ '+ str(in0_fr4_1.get())+ ' Realizado Com Sucesso'
         lb1_fr4['text']='R$ '+str(V_Conta[login_aprovado].saldo)
@@ -345,7 +349,10 @@ def deposito_calculo():
         lb3_fr4_1['text'] = 'Senha Errada'
 def saque_calculo():
     if V_Senha[login_aprovado] == in1_fr4_2.get():
-        V_Conta[login_aprovado].saque(float(in0_fr4_2.get()))
+        data = datetime.now()
+        data_em_texto = data.strftime('%d/%m/%Y %H:%M')
+        data = data_em_texto
+        V_Conta[login_aprovado].saque(float(in0_fr4_2.get()),str(data))
         V_Conta[login_aprovado].extrato()
         lb3_fr4_2['text'] = 'Saque de R$ '+ str(in0_fr4_2.get())+ ' Realizado Com Sucesso'
         lb1_fr4['text']='R$ '+str(V_Conta[login_aprovado].saldo)
@@ -355,8 +362,11 @@ def transfere_calculo():
     if V_Senha[login_aprovado] == in1_fr4_3.get():
         for i in range (len(V_Conta)):
                 if V_Conta[i].num == in1_1_fr4_3.get():
-                    V_Conta[login_aprovado].transfere(float(in0_fr4_3.get()),V_Conta[i])
-                    V_Conta[i].recebe_transferencia(float(in0_fr4_3.get()),V_Conta[login_aprovado])
+                    data = datetime.now()
+                    data_em_texto = data.strftime('%d/%m/%Y %H:%M')
+                    data = data_em_texto
+                    V_Conta[login_aprovado].transfere(float(in0_fr4_3.get()),V_Conta[i], data)
+                    V_Conta[i].recebe_transferencia(float(in0_fr4_3.get()),V_Conta[login_aprovado], data)
                     V_Conta[login_aprovado].extrato()
                     V_Conta[i].extrato()
                     lb3_fr4_3['text'] = 'Transferência de R$ '+ str(in0_fr4_3.get())+ ' Realizado Com Sucesso'
@@ -367,11 +377,14 @@ def transfere_calculo():
     else:
         lb3_fr4_3['text'] = 'Senha Errada'
 def extrato_calculo():
-    if V_Senha[login_aprovado] == in1_fr4_4.get():
-        lb7_fr4['text']=V_Conta[login_aprovado].historico.msg
-        lb3_fr4_4['text'] = 'Extrato Apresentado na Tela Inicial Com Sucesso'
+    if len(V_Conta[login_aprovado].historico.transacoes) != 0:
+        if V_Senha[login_aprovado] == in1_fr4_4.get():
+            lb7_fr4['text']=V_Conta[login_aprovado].historico.msg
+            lb3_fr4_4['text'] = 'Extrato Apresentado na Tela Inicial Com Sucesso'
+        else:
+            lb3_fr4_4['text'] = 'Senha Errada'
     else:
-        lb3_fr4_4['text'] = 'Senha Errada'
+        lb3_fr4_4['text'] = 'Nenhuma Movimentação Realizada'
 hello=StringVar()
 def mostrar(*args):
     in1_fr1 = Entry(fr1, textvariable=hello, font='Arial 18', width=35).grid(row=2,column=1,sticky=W,padx=154)
