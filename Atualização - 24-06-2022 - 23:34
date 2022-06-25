@@ -307,6 +307,17 @@ def login():
             break
         else:
             print('Usuário ou Senha incorretos')
+def mostrar_contas():
+    for i in range(len(V_Conta)):
+        V_Conta[i].extrato()
+def apagar_conta():
+    for i in range (len(V_Conta)):
+            if V_Conta[i].num == in0_fr2_1.get():
+                V_Cpf.pop(i)
+                V_Senha.pop(i)
+                V_Cadastro.pop(i)
+                V_Conta.pop(i)
+                break
 def deposito_calculo():
     V_Conta[login_aprovado].deposito(float(in0_fr4_1.get()))
     V_Conta[login_aprovado].extrato()
@@ -331,7 +342,6 @@ def transfere_calculo():
                 lb3_fr4_3['text'] = 'Conta Destino Errada'
 def extrato_calculo():
     lb7_fr4['text']=V_Conta[login_aprovado].historico.msg
-
 hello=StringVar()
 def mostrar(*args):
     in1_fr1 = Entry(fr1, textvariable=hello, font='Arial 18', width=35).grid(row=2,column=1,sticky=W,padx=154)
@@ -339,7 +349,6 @@ def mostrar(*args):
 def esconder(*args):
     in1_fr1 = Entry(fr1, textvariable=hello, font='Arial 18', width=35, show="*").grid(row=2,column=1,sticky=W,padx=154)
     bt2_fr1 = Button(fr1, text='👁', font=('Mongolian Baiti', "18", "bold"),bg='#eb8334', fg='#fff', command=mostrar).grid(row=2, column=1, padx=620)
-
 hello_1=StringVar()
 def mostrar_1(*args):
     in1_fr3 = Entry(fr3, textvariable=hello_1, font='Arial 20', bg='#fff').grid(row=3, column=0,sticky=W,padx=240,pady=10)
@@ -481,14 +490,14 @@ bt1_fr2 = Button(fr2_1, text="Voltar", font=("Mongolian Baiti", "17", "bold"),wi
 #Frame 2_2
 fr2_2 = LabelFrame(root, bg="#8a37cc",padx = 100)
 lb0_fr2_2 = Label(fr2_2, text="Faça aqui a exclusão de usuarios", font=("Mongolian Baiti", "25"),bg="#8a37cc", fg="#f5f5f5").grid(row=1, column=0, sticky=W, padx=70,pady=30)
-lb1_fr2_2 = Label(fr2_2, text="Nome do usuário:", font=("Mongolian Baiti", "17"),bg="#8a37cc", fg="#f5f5f5").grid(row=2, column=0, sticky=W,padx=24)
+lb1_fr2_2 = Label(fr2_2, text="Numero da conta:", font=("Mongolian Baiti", "17"),bg="#8a37cc", fg="#f5f5f5").grid(row=2, column=0, sticky=W,padx=24)
 in0_fr2_1 = Entry(fr2_2, font=('Arial 16'), bg="#f5f5f5", width=30)
 in0_fr2_1.grid(row=2, column=0, sticky=W,padx=195)
 lb2_fr2_2 = Label(fr2_2, text="Confirme sua senha:", font=("Mongolian Baiti", "17"),bg="#8a37cc", fg="#f5f5f5").grid(row=3, column=0, sticky=W)
 in1_fr2 = Entry(fr2_2, font=('Arial 16'), bg="#f5f5f5", width=30,show="*")
 in1_fr2.grid(row=3, column=0,sticky=W,padx=195)
 # Botões
-bt0_fr2 = Button(fr2_2, text="Deletar conta ", font=("Mongolian Baiti", "19", "bold"),width=18, bg="#eb8334", fg="#fff", command= lambda:[in0_fr2.delete(0,'end'),in0_fr2_1.delete(0,'end'),in1_fr2.delete(0,'end'), in1_fr2_1.delete(0,'end'), fr2_2.grid_remove(), fr2.grid(row=0,column=0)]).grid(row=4, column=0, sticky=W, padx=40,pady=30) #Pura Gambiarra e ta tudo bem
+bt0_fr2 = Button(fr2_2, text="Deletar conta ", font=("Mongolian Baiti", "19", "bold"),width=18, bg="#eb8334", fg="#fff", command= lambda:[apagar_conta(), in0_fr2.delete(0,'end'),in0_fr2_1.delete(0,'end'),in1_fr2.delete(0,'end'), in1_fr2_1.delete(0,'end'), fr2_2.grid_remove(), fr2.grid(row=0,column=0)]).grid(row=4, column=0, sticky=W, padx=40,pady=30) #Pura Gambiarra e ta tudo bem
 bt1_fr2 = Button(fr2_2, text="Voltar", font=("Mongolian Baiti", "19", "bold"),width=18, bg="#eb8334", fg="#fff", command= lambda:[in0_fr2.delete(0,'end'),in0_fr2_1.delete(0,'end'),in1_fr2.delete(0,'end'), in1_fr2_1.delete(0,'end'), fr2_2.grid_remove(), fr2.grid(row=0,column=0)]).grid(row=4, column=0, sticky=W, padx=330)
 bt2_fr2 = Button(fr2_2, text='👁', font=('Mongolian Baiti', "12", "bold"),bg='#eb8334', fg='#fff').grid(row=3, column=0, sticky=W,padx=563,pady=5)
 #grid(row=0, column=0,pady=50, padx=150)
@@ -517,6 +526,7 @@ lb10_fr3_1 = Label(fr3_1, text='Cidade:', font=('Mongolian Baiti', '17'), bg='#8
 lb11_fr3_1 = Label(fr3_1, text='UF:',font=('Mongolian Baiti', '17'), bg='#8a37cc', foreground='#f5f5f5').grid(row=4, column=0,sticky=W, padx=453)
 lb12_fr3_1 = Label(fr3_1, text='N°:', font=('Mongolian Baiti', '17'), bg='#8a37cc', foreground='#f5f5f5').grid(row=5, column=0,sticky=W, padx=457)
 lb13_fr3_1 = Label(fr3_1, text='Email:', font=('Mongolian Baiti', '17'), bg='#8a37cc', foreground='#f5f5f5').grid(row=6, column=0,sticky=W,padx=66)
+
 
 lb14_fr3_1 = Label(fr3_1, text="Bairro:", font=('Mongolian Baiti', '17'), bg='#8a37cc', foreground='#f5f5f5').grid(row=3, column=0,sticky=W,padx=62)
 in14_fr3_1 = Entry(fr3_1,  font= ('Arial 16'),width=22, bg='#f5f5f5')
@@ -569,7 +579,7 @@ bt2_fr4 = Button(fr4, text='Depósito', font='Arial 20',padx=5, pady=0, bg='#eb8
 bt3_fr4 = Button(fr4, text='Saque', font='Arial 20',padx=5, pady=0, bg='#eb8334',fg='#f5f5f5',width=12, command= lambda: [fr4.grid_remove(), fr4_2.grid(row=0, column=1)]).grid(row=3, column=0, sticky=W,pady=5)
 bt4_fr4 = Button(fr4, text='Transferência', font='Arial 20',padx=5, pady=0, bg='#eb8334',fg='#f5f5f5',width=12, command= lambda: [fr4.grid_remove(), fr4_3.grid(row=0, column=1)]).grid(row=4, column=0, sticky=W,pady=5)
 bt5_fr4 = Button(fr4, text='Extrato', font='Arial 20',padx=5, pady=0, bg='#eb8334',fg='#f5f5f5',width=12, command= lambda: [fr4.grid_remove(), fr4_4.grid(row=0, column=1)]).grid(row=5, column=0, sticky=W,pady=5)
-bt6_fr4 = Button(fr4, text='Logout', font='Arial 20',padx=5, pady=0, bg='#eb8334',fg='#f5f5f5',width=14, command= lambda:[fr4.grid_remove(), fr3.grid(row=0, column=0)]).grid(row=7, column=2, sticky=E)
+bt6_fr4 = Button(fr4, text='Logout', font='Arial 20',padx=5, pady=0, bg='#eb8334',fg='#f5f5f5',width=14, command= lambda:[mostrar_contas(), fr4.grid_remove(), fr3.grid(row=0, column=0)]).grid(row=7, column=2, sticky=E)
 lb7_fr4 = Label(fr4, text='Teste',font='Arial 20',padx=5, pady=0, bg='#8a37cc',fg='#f5f5f5')
 lb7_fr4.grid(row=1 ,column=2, rowspan=4)
 #Frame 4_1 - Ewerson
@@ -638,7 +648,5 @@ bt4_fr4_4 = Button(fr4_4, text='Voltar', font=('Mongolian Baiti', '19', 'bold' )
 bt4_1_fr4_4 = Button(fr4_4, text='Logout', font=('Mongolian Baiti', '19', 'bold' ),padx=5, pady=0, bg= '#eb8334',fg='#f5f5f5',width=15, command= lambda: [mensagem(), in0_fr4_4.delete(0, 'end'), in1_fr4_4.delete(0, 'end'), fr4_4.grid_remove(), fr3.grid(row=0, column=0)]).grid(row=4, column=0, sticky=W,padx=450)
 bt5_fr4_4 = Button(fr4_4, text='👁', font=('Mongolian Baiti', "14", "bold"),bg='#eb8334', fg='#fff').grid(row=1, column=0, sticky=W,padx=588,pady=5)
 #Looping para tudo
-
-
 
 root.mainloop()
