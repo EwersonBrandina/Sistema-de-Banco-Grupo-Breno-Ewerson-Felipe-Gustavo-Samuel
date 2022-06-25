@@ -134,20 +134,20 @@ def cpf_funcionario(event=None):
                 y+=x[i]
     in1_fr2_1.delete(0, 'end')
     in1_fr2_1.insert(0, y)
-def cpf_funcionario_login(event=None):
-    x=in0_fr1.get().replace('.','').replace('-', '')[:11]
-    y=''
-    if event.keysym.lower() == "backspace": return
-    for i in range(len(x)):
-        if x[i] in '0123456789':
-            if i in [2,5]:
-                y+=x[i] + '.'
-            elif i == 8:
-                y+=x[i] + '-'
-            else:
-                y+=x[i]
-    in0_fr1.delete(0, 'end')
-    in0_fr1.insert(0, y)
+#def cpf_funcionario_login(event=None):
+#    x=in0_fr1.get().replace('.','').replace('-', '')[:11]
+#    y=''
+#    if event.keysym.lower() == "backspace": return
+#    for i in range(len(x)):
+#        if x[i] in '0123456789':
+#            if i in [2,5]:
+#                y+=x[i] + '.'
+#            elif i == 8:
+#                y+=x[i] + '-'
+#            else:
+#                y+=x[i]
+#    in0_fr1.delete(0, 'end')
+#    in0_fr1.insert(0, y)
 def telefone_funcionario(event=None):
     x=in3_fr2.get().replace('(','').replace(')', '').replace('-', '')[:12]
     y=''
@@ -295,8 +295,10 @@ def confirmar_usuario():
     print(V_Conta[contagem].titular, V_Conta[contagem].num)
     contagem +=1
 login_aprovado=0
-def login():
+def login_cliente():
     global login_aprovado
+    if len(V_Conta) == 0:
+        lb16_fr3['text'] = 'Usuário ou Senha Incorretos'
     for i in range(len(V_Cadastro)):
         if in0_fr3.get() == V_Cpf[i] and in1_fr3.get() == V_Senha[i]:
             in0_fr3.delete(0, 'end'), in1_fr3.delete(0, 'end'), fr3.grid_remove(), fr4.grid(row=0, column=0)
@@ -307,7 +309,14 @@ def login():
             lb1_fr4['text']='R$ '+str(V_Conta[login_aprovado].saldo)
             break
         else:
+            lb16_fr3['text']='Usuário ou Senha Incorretos'
             print('Usuário ou Senha incorretos')
+def login_funcionário():
+    if in0_fr1.get() == 'adm' and in1_fr1.get() == 'adm':
+        in0_fr1.delete(0, 'end'), in1_fr1.delete(0, 'end'), fr1.grid_remove(), fr2.grid(row=0, column=0)
+        print('Usuário e Senha Corretos')
+    else:
+        print('Usuário e Senha Incorretos')
 def mostrar_contas():
     x=''
     for i in range(len(V_Conta)):
@@ -315,7 +324,7 @@ def mostrar_contas():
         lb0_fr2_3['text'] = x
 def apagar_conta():
     if len(V_Conta) == 0:
-        lb3_fr2_2['text'] = 'Não Existem Contas Cadastradas'
+        lb3_fr2_2['text'] = 'Conta ou Senha Errada'
     for i in range (len(V_Conta)):
             if V_Conta[i].num == in0_fr2_1.get():
                 V_Cpf.pop(i)
@@ -380,7 +389,7 @@ def esconder_1(*args):
 hello_2=StringVar()
 def mostrar_2(*args):
     in1_fr2 = Entry(fr2_2, textvariable=hello_2, font=('Arial 16'), bg="#f5f5f5", width=30).grid(row=3, column=0,sticky=W,padx=195)
-    feecho = Button(fr3, text='👁', font=('Mongolian Baiti', "12", "bold"),bg='#eb8334', fg='#fff',command=esconder_2).grid(row=3, column=0, sticky=W,padx=563,pady=5)
+    feecho = Button(fr2_2, text='👁', font=('Mongolian Baiti', "12", "bold"),bg='#eb8334', fg='#fff',command=esconder_2).grid(row=3, column=0, sticky=W,padx=563,pady=5)
 def esconder_2(*args):
     in1_fr2 = Entry(fr2_2, textvariable=hello_2, font=('Arial 16'), bg="#f5f5f5", width=30,show="*").grid(row=3, column=0,sticky=W,padx=195)
     bt2_fr2 = Button(fr2_2, text='👁', font=('Mongolian Baiti', "12", "bold"),bg='#eb8334', fg='#fff', command=mostrar_2).grid(row=3, column=0, sticky=W,padx=563,pady=5)
@@ -436,16 +445,16 @@ fr0.grid(row=0, column=0, sticky=NSEW)
 fr1 = LabelFrame(bg= '#8a37cc',pady=90)
 #criar os widgets
 lb0_fr1 = Label(fr1, text='Login do Funcionário', font= ('Mongolian Baiti', '32'),bg='#8a37cc',fg='#f5f5f5').grid(row=0,column=1,sticky=W,padx=180,pady=30)
-lb1_fr1 = Label(fr1, text='CPF:', font=('Mongolian Baiti', '22'),bg='#8a37cc',fg='#f5f5f5').grid(row=1, column=1,sticky=W, padx=87)
+lb1_fr1 = Label(fr1, text='User:', font=('Mongolian Baiti', '22'),bg='#8a37cc',fg='#f5f5f5').grid(row=1, column=1,sticky=W, padx=83)
 lb2_fr1 = Label(fr1, text='Senha:', font=('Mongolian Baiti', "22" ),bg='#8a37cc',fg='#f5f5f5',width=7).grid(row=2, column=1,sticky=W, padx=50)
 #--Entrada ---
 in0_fr1 = Entry(fr1, font='Arial 18', width=35)
-in0_fr1.bind('<KeyRelease>', cpf_funcionario_login)
+#in0_fr1.bind('<KeyRelease>', cpf_funcionario_login)
 in0_fr1.grid(row=1,column=1,sticky=W,padx=154)
 in1_fr1 = Entry(fr1, textvariable=hello, font='Arial 18', width=35,show="*")
 in1_fr1.grid(row=2,column=1,sticky=W,padx=154)
 #--Button ---
-bt0_fr1 = Button(fr1,text='Entrar', font= ('Mongolian Baiti', "18", "bold") ,width=15,bg='#eb8334', fg='#fff',command= lambda: [in0_fr1.delete(0, 'end'), in1_fr1.delete(0, 'end'), fr1.grid_remove(), fr2.grid(row=0, column=0, pady=50)]).grid(row=4, column=1, sticky=W, padx=155)
+bt0_fr1 = Button(fr1,text='Entrar', font= ('Mongolian Baiti', "18", "bold") ,width=15,bg='#eb8334', fg='#fff',command= lambda: [login_funcionário()]).grid(row=4, column=1, sticky=W, padx=155)
 bt1_fr1 = Button(fr1, text='Voltar', font=('Mongolian Baiti', "18", "bold"),width=16,bg='#eb8334', fg='#fff', command= lambda: [in0_fr1.delete(0, 'end'), in1_fr1.delete(0, 'end'), fr1.grid_remove(), fr0.grid(row=0, column=0)]).grid(row=4, column=1, sticky=W,padx=380)
 bt2_fr1 = Button(fr1, text='👁', font=('Mongolian Baiti', "18", "bold"),bg='#eb8334', fg='#fff', command=mostrar).grid(row=2, column=1, padx=620)
 #---Configuração do Frame---
@@ -527,7 +536,7 @@ lb2_fr2_2 = Label(fr2_2, text="Confirme sua senha:", font=("Mongolian Baiti", "1
 in1_fr2 = Entry(fr2_2, textvariable=hello_2, font=('Arial 16'), bg="#f5f5f5", width=30,show="*")
 in1_fr2.grid(row=3, column=0,sticky=W,padx=195)
 lb3_fr2_2 = Label(fr2_2, text='',font='Arial 20',padx=5, pady=0, bg='#8a37cc',fg='#f5f5f5')
-lb3_fr2_2.grid(row=4, column=0,sticky=W,padx=100)
+lb3_fr2_2.grid(row=4, column=0,sticky=W,padx=195)
 # Botões
 bt0_fr2 = Button(fr2_2, text="Deletar conta ", font=("Mongolian Baiti", "19", "bold"),width=18, bg="#eb8334", fg="#fff", command= lambda:[apagar_conta()]).grid(row=5, column=0, sticky=W, padx=40,pady=30) #Pura Gambiarra e ta tudo bem
 bt1_fr2 = Button(fr2_2, text="Voltar", font=("Mongolian Baiti", "19", "bold"),width=18, bg="#eb8334", fg="#fff", command= lambda:[lb3_fr2_2.grid_remove(), in0_fr2.delete(0,'end'),in0_fr2_1.delete(0,'end'),in1_fr2.delete(0,'end'), in1_fr2_1.delete(0,'end'), fr2_2.grid_remove(), fr2.grid(row=0,column=0)]).grid(row=5, column=0, sticky=W, padx=330)
@@ -599,9 +608,11 @@ in9_fr3_1.grid(row=5, column=0, sticky=W,padx=492) #Nº OK
 in10_fr3_1 = Entry(fr3_1, font= ('Arial 16'),width=22, bg='#f5f5f5')
 in10_fr3_1.grid(row=6, column=0, sticky=W,padx=132) #EMAIL
 #botões
-bt0_fr3 = Button(fr3, text='Login', font = ('Mongolian Baiti', '20', 'bold' ) , bg='#eb8334', fg='#f5f5f5',width=13, command= lambda:[login()]).grid(row=4, column=0, sticky=W,padx=30,pady=10)
-bt1_fr3 = Button(fr3, text='Cadastrar', font = ('Mongolian Baiti', "20", 'bold' ) , bg='#eb8334', fg='#f5f5f5',width=13, command= lambda:[in0_fr3.delete(0, 'end'), in1_fr3.delete(0, 'end'), fr3.grid_remove(), fr3_1.grid(row=0, column=0)] ).grid(row=4, column=0, sticky=W,padx=265)
-bt2_fr3 = Button(fr3, text='Voltar', font = ('Mongolian Baiti', "20", 'bold') , bg='#eb8334', fg='#f5f5f5',width=13 , command= lambda:[in0_fr3.delete(0, 'end'), in1_fr3.delete(0, 'end'), fr3.grid_remove(), fr0.grid(row=0, column=0)]).grid(row=4, column=0, sticky=W,padx=500)
+bt0_fr3 = Button(fr3, text='Login', font = ('Mongolian Baiti', '20', 'bold' ) , bg='#eb8334', fg='#f5f5f5',width=13, command= lambda:[login_cliente()]).grid(row=6, column=0, sticky=W,padx=30,pady=10)
+lb16_fr3 = Label(fr3, text='', font=('Mongolian Baiti', '23'), bg='#8a37cc', fg='#f5f5f5')
+lb16_fr3.grid(row=5, column=0, sticky=W,padx=200)
+bt1_fr3 = Button(fr3, text='Cadastrar', font = ('Mongolian Baiti', "20", 'bold' ) , bg='#eb8334', fg='#f5f5f5',width=13, command= lambda:[in0_fr3.delete(0, 'end'), in1_fr3.delete(0, 'end'), fr3.grid_remove(), fr3_1.grid(row=0, column=0)] ).grid(row=6, column=0, sticky=W,padx=265)
+bt2_fr3 = Button(fr3, text='Voltar', font = ('Mongolian Baiti', "20", 'bold') , bg='#eb8334', fg='#f5f5f5',width=13 , command= lambda:[in0_fr3.delete(0, 'end'), in1_fr3.delete(0, 'end'), fr3.grid_remove(), fr0.grid(row=0, column=0)]).grid(row=6, column=0, sticky=W,padx=500)
 bt7_fr3 = Button(fr3, text='👁', font=('Mongolian Baiti', "15", "bold"),bg='#eb8334', fg='#fff',command=mostrar_1).grid(row=3, column=0, sticky=W,padx=550,pady=5)
 bt3_fr3_1 = Button(fr3_1, text='Salvar', font = ('Mongolian Baiti', '19', 'bold' ), width= 18, bg='#eb8334', fg='#f5f5f5', command= lambda:[confirmar_usuario(), in15_fr3_1.delete(0, 'end'), in2_fr3_1.delete(0, 'end'),in3_fr3_1.delete(0, 'end'),in4_fr3_1.delete(0, 'end'),in5_fr3_1.delete(0, 'end'),in6_fr3_1.delete(0, 'end'),in7_fr3_1.delete(0, 'end'),in8_fr3_1.delete(0, 'end'),in9_fr3_1.delete(0, 'end'),in10_fr3_1.delete(0, 'end'),fr3_1.grid_remove(), fr3.grid(row=0, column=0)]).grid(row=7, column=0,sticky=W,padx=130,pady=15)
 bt4_fr3_1 = Button(fr3_1, text='Voltar', font = ('Mongolian Baiti', '19', 'bold' ), width=18, bg='#eb8334', fg='#f5f5f5', command= lambda:[in15_fr3_1.delete(0, 'end'), in2_fr3_1.delete(0, 'end'),in3_fr3_1.delete(0, 'end'),in4_fr3_1.delete(0, 'end'),in5_fr3_1.delete(0, 'end'),in6_fr3_1.delete(0, 'end'),in7_fr3_1.delete(0, 'end'),in8_fr3_1.delete(0, 'end'),in9_fr3_1.delete(0, 'end'),in10_fr3_1.delete(0, 'end'),fr3_1.grid_remove(), fr3.grid(row=0, column=0)]).grid(row=7, column=0, sticky=W,padx=460)
