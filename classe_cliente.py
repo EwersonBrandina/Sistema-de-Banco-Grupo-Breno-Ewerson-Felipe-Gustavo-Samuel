@@ -1,10 +1,10 @@
 class Cliente:
 
-    def __init__(self, nome: str, cpf: str, dataNasc: str, telefone: str, uf: str,logradouro:str,numero: str, bairro:str, cidade:str, email:str, senha:str):
+    def __init__(self, nome: str, cpf: str, dataNasc: str, tel: str, uf: str, logradouro: str, numero: str, bairro: str, cidade: str, email: str, senha: str):
         self.nome = nome
         self.cpf = cpf
         self.dataNasc = dataNasc
-        self.telefone = telefone
+        self.tel = tel
         self.uf = uf
         self.logradouro = logradouro
         self.numero = numero
@@ -15,4 +15,4 @@ class Cliente:
 
     def imprime_dados(self):
         print(f'Nome: {self.nome}\ncpf: {self.cpf}\n'
-              f'Data de Nasc: {self.dataNasc}')        
+              f'Data de Nasc: {self.dataNasc}')
