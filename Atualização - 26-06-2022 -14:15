@@ -107,15 +107,15 @@ def transferencia(event=None):
     in0_fr4_3.delete(0, 'end')
     in0_fr4_3.insert(0, y)
 def extrato(event=None):
-    x = in0_fr4_4.get().replace('/', '').replace('--','')[:12]
+    x = in0_fr4_4.get().replace('/', '').replace('-','')[:16]
     y = ''
     if event.keysym.lower() == "backspace": return
     for i in range(len(x)):
         if not x[i] in '0123456789': continue
-        if i in [1, 7]:
+        if i in [1, 3, 9, 11]:
             y += x[i] + '/'
-        elif i in [5]:
-            y += x[i] + '--'
+        elif i in [7]:
+            y += x[i] + '-'
         else:
             y += x[i]
     in0_fr4_4.delete(0, 'end')
@@ -277,15 +277,15 @@ V_Conta = []
 V_Cpf = []
 V_Senha = []
 contagem=0
+numero_conta = 0
 def confirmar_funcionario():
-    global contagem, V_Cadastro, V_Conta, V_Cpf, V_Senha, nome, cpf, dataNasc, tel, uf, logradouro, numero, bairro, cidade, email, senha
+    global numero_conta, contagem, V_Cadastro, V_Conta, V_Cpf, V_Senha, nome, cpf, dataNasc, tel, uf, logradouro, numero, bairro, cidade, email, senha
     V_Cadastro.append(Cliente(nome=in0_fr2.get(), cpf=in1_fr2_1.get(), dataNasc=in2_fr2.get(), tel=in3_fr2.get(), uf=lb8_fr2.get(), logradouro=lb4_fr2.get(), numero=lb5_fr2.get(), bairro=lb6_fr2.get(), cidade=lb7_fr2.get(), email=in9_fr2.get(), senha=in10_fr2.get()))
     V_Cpf.append(in1_fr2_1.get())
     V_Senha.append(in10_fr2.get())
-    V_Conta.append(Conta(V_Cadastro[contagem], '00'+str(contagem+1)))
-    print(V_Conta[contagem].titular, V_Conta[contagem].num)
+    V_Conta.append(Conta(V_Cadastro[contagem], '00'+str(numero_conta+1)))
     contagem +=1
-    print(contagem)
+    numero_conta += 1
 login_aprovado=0
 def confirmar_usuario():
     global contagem, V_Cadastro, V_Conta, V_Cpf, V_Senha, nome, cpf, dataNasc, tel, uf, logradouro, numero, bairro, cidade, email, senha
@@ -293,7 +293,6 @@ def confirmar_usuario():
     V_Cpf.append(in4_fr3_1.get())
     V_Senha.append(in15_fr3_1.get())
     V_Conta.append(Conta(V_Cadastro[contagem], '00'+str(contagem+1)))
-    print(V_Conta[contagem].titular, V_Conta[contagem].num)
     contagem +=1
 login_aprovado=0
 def login_cliente():
@@ -324,16 +323,22 @@ def mostrar_contas():
         x += f'------------0{i+1}-------------\nTitular: {str(V_Conta[i].titular)}\nConta:{str(V_Conta[i].num)}\nSaldo: {str(V_Conta[i].saldo)}\n'
         lb0_fr2_3['text'] = x
 def apagar_conta():
+    global contagem
     if len(V_Conta) == 0:
         lb3_fr2_2['text'] = 'Conta ou Senha Errada'
-    for i in range (len(V_Conta)):
+    for i in range(len(V_Conta)):
             if V_Conta[i].num == in0_fr2_1.get():
-                V_Cpf.pop(i)
-                V_Senha.pop(i)
-                V_Cadastro.pop(i)
-                V_Conta.pop(i)
-                lb3_fr2_2['text']='Conta Excluida Com Sucesso'
-                break
+                if V_Conta[i].saldo == 0:
+                    V_Cpf.pop(i)
+                    V_Senha.pop(i)
+                    V_Cadastro.pop(i)
+                    V_Conta.pop(i)
+                    lb3_fr2_2['text']='Conta Excluida Com Sucesso'
+                    contagem -= 1
+                    break
+                else:
+                    lb3_fr2_2['text'] = 'Erro. Conta Contem Saldo'
+                    break
             else:
                 lb3_fr2_2['text']='Conta ou Senha Errada'
 def deposito_calculo():
@@ -349,31 +354,38 @@ def deposito_calculo():
         lb3_fr4_1['text'] = 'Senha Errada'
 def saque_calculo():
     if V_Senha[login_aprovado] == in1_fr4_2.get():
-        data = datetime.now()
-        data_em_texto = data.strftime('%d/%m/%Y %H:%M')
-        data = data_em_texto
-        V_Conta[login_aprovado].saque(float(in0_fr4_2.get()),str(data))
-        V_Conta[login_aprovado].extrato()
-        lb3_fr4_2['text'] = 'Saque de R$ '+ str(in0_fr4_2.get())+ ' Realizado Com Sucesso'
-        lb1_fr4['text']='R$ '+str(V_Conta[login_aprovado].saldo)
+        if V_Conta[login_aprovado].saldo < float(in0_fr4_2.get()):
+            lb3_fr4_2['text'] = 'Saldo insuficiente'
+        else:
+            data = datetime.now()
+            data_em_texto = data.strftime('%d/%m/%Y %H:%M')
+            data = data_em_texto
+            V_Conta[login_aprovado].saque(float(in0_fr4_2.get()),str(data))
+            V_Conta[login_aprovado].extrato()
+            lb3_fr4_2['text'] = 'Saque de R$ '+ str(in0_fr4_2.get())+ ' Realizado Com Sucesso'
+            lb1_fr4['text']='R$ '+str(V_Conta[login_aprovado].saldo)
     else:
         lb3_fr4_2['text'] = 'Senha Errada'
 def transfere_calculo():
     if V_Senha[login_aprovado] == in1_fr4_3.get():
-        for i in range (len(V_Conta)):
-                if V_Conta[i].num == in1_1_fr4_3.get():
-                    data = datetime.now()
-                    data_em_texto = data.strftime('%d/%m/%Y %H:%M')
-                    data = data_em_texto
-                    V_Conta[login_aprovado].transfere(float(in0_fr4_3.get()),V_Conta[i], data)
-                    V_Conta[i].recebe_transferencia(float(in0_fr4_3.get()),V_Conta[login_aprovado], data)
-                    V_Conta[login_aprovado].extrato()
-                    V_Conta[i].extrato()
-                    lb3_fr4_3['text'] = 'Transferência de R$ '+ str(in0_fr4_3.get())+ ' Realizado Com Sucesso'
-                    lb1_fr4['text']='R$ '+str(V_Conta[login_aprovado].saldo)
-                    break
-                else:
-                    lb3_fr4_3['text'] = 'Conta Destino Errada'
+        if V_Conta[login_aprovado].saldo < float(in0_fr4_3.get()):
+            lb3_fr4_3['text'] = 'Saldo insuficiente'
+        else:
+            for i in range (len(V_Conta)):
+                    if V_Conta[i].num == in1_1_fr4_3.get():
+                        data = datetime.now()
+                        data_em_texto = data.strftime('%d/%m/%Y %H:%M')
+                        data = data_em_texto
+                        V_Conta[login_aprovado].transfere(float(in0_fr4_3.get()),V_Conta[i], data)
+                        V_Conta[login_aprovado].extrato()
+                        V_Conta[i].extrato()
+                        lb3_fr4_3['text'] = 'Transferência de R$ '+ str(in0_fr4_3.get())+ ' Realizado Com Sucesso'
+                        lb1_fr4['text']='R$ '+str(V_Conta[login_aprovado].saldo)
+                        break
+#                        V_Conta[i].recebe_transferencia(float(in0_fr4_3.get()), V_Conta[login_aprovado], data)
+
+                    else:
+                        lb3_fr4_3['text'] = 'Conta Destino Errada'
     else:
         lb3_fr4_3['text'] = 'Senha Errada'
 def extrato_calculo():
