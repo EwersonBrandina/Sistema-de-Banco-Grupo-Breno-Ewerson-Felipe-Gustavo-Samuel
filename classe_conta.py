@@ -15,23 +15,22 @@ class Conta:
         self.saldo += valor
         self.historico.transacoes.append(f'depósito: R$ {valor} - {data}')
         return self.saldo
-
     def saque(self, valor, data):
         if valor <= self.saldo:
             self.saldo -= valor
             self.historico.transacoes.append(f'saque de R$ {valor} - {data}')
             return self.saldo
         else:
-            print('Saldo insuficiente para o saque!')
+            print('Saldo Insuficiente!')
 
     def transfere(self, valor, destino, data):
         if valor <= self.saldo:
             self.saldo -= valor
             destino.saldo += valor
-            self.historico.transacoes.append(f'transferencia de R${valor} para a conta {destino.num} - {data}')
+            self.historico.transacoes.append(f'transferencia de R$ {valor} para a conta {destino.num} - {data}')
             return self.saldo
         else:
-            print('Saldo insuficiente para o saque!')
+            print('Saldo Insuficiente!')
 
     def transfere_para(self, valor, destino):
         if valor <= self.saldo:
@@ -44,4 +43,4 @@ class Conta:
 
     def recebe_transferencia(self, valor, origem, data):
         #self.saldo += valor
-        self.historico.transacoes.append(f'transferencia de {valor} da conta {origem.num}\n - {data}')
+        self.historico.transacoes.append(f'transferencia de R$ {valor} da conta {origem.num} - {data}')
