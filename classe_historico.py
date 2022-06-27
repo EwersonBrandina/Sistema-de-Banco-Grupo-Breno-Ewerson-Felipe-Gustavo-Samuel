@@ -1,9 +1,9 @@
 class Historico:
 
-    def __init__(self):
+    def __init__(self, msg= 'Transferência: ',):
         self.transacoes = []
-
+        self.msg = msg
     def transacoes_bancarias(self):
-        print('Transações: ')
+        self.msg = 'Transações:'
         for i in self.transacoes:
-            print("-", i)
+            self.msg += '\n - ' + i

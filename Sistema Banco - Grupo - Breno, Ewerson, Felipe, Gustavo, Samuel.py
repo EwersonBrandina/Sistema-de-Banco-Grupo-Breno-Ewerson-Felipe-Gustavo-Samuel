@@ -278,33 +278,36 @@ V_Conta = []
 V_Cpf = []
 V_Senha = []
 contagem=0
+numero_conta = 0
 def confirmar_funcionario():
-    global contagem, V_Cadastro, V_Conta, V_Cpf, V_Senha, nome, cpf, dataNasc, tel, uf, logradouro, numero, bairro, cidade, email, senha
-    V_Cadastro.append(Cliente(nome=in0_fr2.get(), cpf=in1_fr2_1.get(), dataNasc=in2_fr2.get(), tel=in3_fr2.get(), uf=lb8_fr2.get(), logradouro=lb4_fr2.get(), numero=lb5_fr2.get(), bairro=lb6_fr2.get(), cidade=lb7_fr2.get(), email=in9_fr2.get(), senha=in10_fr2.get()))
-    V_Cpf.append(in1_fr2_1.get())
-    V_Senha.append(in10_fr2.get())
-    V_Conta.append(Conta(V_Cadastro[contagem], '00'+str(contagem+1)))
-    print(V_Conta[contagem].titular, V_Conta[contagem].num)
-    contagem +=1
-    print(contagem)
+    global numero_conta, contagem, V_Cadastro, V_Conta, V_Cpf, V_Senha, nome, cpf, dataNasc, tel, uf, logradouro, numero, bairro, cidade, email, senha
+    if len(in0_fr2.get()) > 0 and len(in1_fr2_1.get()) == 14 and len(in2_fr2.get()) == 10 and len(in3_fr2.get()) == 16 and len(in10_fr2.get()) > 0:
+        V_Cadastro.append(Cliente(nome=in0_fr2.get(), cpf=in1_fr2_1.get(), dataNasc=in2_fr2.get(), tel=in3_fr2.get(), uf=lb8_fr2.get(), logradouro=lb4_fr2.get(), numero=lb5_fr2.get(), bairro=lb6_fr2.get(), cidade=lb7_fr2.get(), email=in9_fr2.get(), senha=in10_fr2.get()))
+        V_Cpf.append(in1_fr2_1.get())
+        V_Senha.append(in10_fr2.get())
+        V_Conta.append(Conta(V_Cadastro[contagem], '00'+str(numero_conta+1)))
+        contagem += 1
+        numero_conta += 1
+        lb15_fr2['text'] = 'A Conta Foi Criada Com Sucesso.'
+        in0_fr2.delete(0, 'end'), in1_fr2.delete(0, 'end'), in1_fr2_1.delete(0, 'end'), in2_fr2.delete(0,'end'), in3_fr2.delete(0, 'end'), lb4_fr2.delete(0, 'end'), lb5_fr2.delete(0, 'end'), lb6_fr2.delete(0, 'end'), lb7_fr2.delete(0,'end'), lb8_fr2.delete(0, 'end'), in9_fr2.delete(0, 'end'), in10_fr2.delete(0, 'end')
+    else:
+        lb15_fr2['text']='Erro Ao Preencher Algum Campo.'
 login_aprovado=0
 def confirmar_usuario():
-    global contagem, V_Cadastro, V_Conta, V_Cpf, V_Senha, nome, cpf, dataNasc, tel, uf, logradouro, numero, bairro, cidade, email, senha
+    global numero_conta, contagem, V_Cadastro, V_Conta, V_Cpf, V_Senha, nome, cpf, dataNasc, tel, uf, logradouro, numero, bairro, cidade, email, senha
     V_Cadastro.append(Cliente(nome=in2_fr3_1.get(), cpf=in4_fr3_1.get(), dataNasc=in3_fr3_1.get(), tel=in5_fr3_1.get(), uf=in8_fr3_1.get(), logradouro=in6_fr3_1.get(), numero=in9_fr3_1.get(), bairro=in14_fr3_1.get(), cidade=in7_fr3_1.get(), email=in10_fr3_1.get(), senha=in15_fr3_1.get()))
     V_Cpf.append(in4_fr3_1.get())
     V_Senha.append(in15_fr3_1.get())
     V_Conta.append(Conta(V_Cadastro[contagem], '00'+str(contagem+1)))
-    print(V_Conta[contagem].titular, V_Conta[contagem].num)
     contagem +=1
 login_aprovado=0
 def login_cliente():
-    global login_aprovado
+    global login_aprovado, numero_conta, contagem, V_Cadastro, V_Conta, V_Cpf, V_Senha, nome, cpf, dataNasc, tel, uf, logradouro, numero, bairro, cidade, email, senha
     if len(V_Conta) == 0:
         lb16_fr3['text'] = 'Usuário ou Senha Incorretos'
     for i in range(len(V_Cadastro)):
         if in0_fr3.get() == V_Cpf[i] and in1_fr3.get() == V_Senha[i]:
-            in0_fr3.delete(0, 'end'), in1_fr3.delete(0, 'end'), fr3.grid_remove(), fr4.grid(row=0, column=0)
-            print('Usuário e Senha Corretos')
+            in0_fr3.delete(0, 'end'), in1_fr3.delete(0, 'end'), lb16_fr3.grid_remove(), fr3.grid_remove(), fr4.grid(row=0, column=0)
             login_aprovado = i
             lb0_fr4['text']=V_Conta[login_aprovado].titular
             lb0_1_fr4['text']='Num. Conta: '+ V_Conta[login_aprovado].num
@@ -314,6 +317,7 @@ def login_cliente():
             lb16_fr3['text']='Usuário ou Senha Incorretos'
             print('Usuário ou Senha incorretos')
 def login_funcionário():
+    global login_aprovado, numero_conta, contagem, V_Cadastro, V_Conta, V_Cpf, V_Senha, nome, cpf, dataNasc, tel, uf, logradouro, numero, bairro, cidade, email, senha
     if in0_fr1.get() == 'adm' and in1_fr1.get() == 'adm':
         in0_fr1.delete(0, 'end'), in1_fr1.delete(0, 'end'), fr1.grid_remove(), fr2.grid(row=0, column=0)
         print('Usuário e Senha Corretos')
@@ -322,22 +326,29 @@ def login_funcionário():
 def mostrar_contas():
     x=''
     for i in range(len(V_Conta)):
-        x += f'------------0{i+1}-------------\nTitular: {str(V_Conta[i].titular)}\nConta:{str(V_Conta[i].num)}\nSaldo: {str(V_Conta[i].saldo)}\n'
+        x += f'------------0{i+1}-------------\nTitular: {str(V_Conta[i].titular)}\nConta: {str(V_Conta[i].num)}\nSaldo: {str(V_Conta[i].saldo)}\n'
         lb0_fr2_3['text'] = x
 def apagar_conta():
+    global login_aprovado, numero_conta, contagem, V_Cadastro, V_Conta, V_Cpf, V_Senha, nome, cpf, dataNasc, tel, uf, logradouro, numero, bairro, cidade, email, senha
     if len(V_Conta) == 0:
         lb3_fr2_2['text'] = 'Conta ou Senha Errada'
-    for i in range (len(V_Conta)):
-            if V_Conta[i].num == in0_fr2_1.get():
-                V_Cpf.pop(i)
-                V_Senha.pop(i)
-                V_Cadastro.pop(i)
-                V_Conta.pop(i)
-                lb3_fr2_2['text']='Conta Excluida Com Sucesso'
-                break
+    for i in range(len(V_Conta)):
+            if V_Conta[i].num == in0_fr2_1.get() and in1_fr2.get() == 'adm':
+                   if V_Conta[i].saldo == 0:
+                       V_Cpf.pop(i)
+                       V_Senha.pop(i)
+                       V_Cadastro.pop(i)
+                       V_Conta.pop(i)
+                       lb3_fr2_2['text']='Conta Excluida Com Sucesso'
+                       contagem -= 1
+                       break
+                   else:
+                       lb3_fr2_2['text'] = 'Erro. Conta Contem Saldo'
+                       break
             else:
                 lb3_fr2_2['text']='Conta ou Senha Errada'
 def deposito_calculo():
+    global login_aprovado, numero_conta, contagem, V_Cadastro, V_Conta, V_Cpf, V_Senha, nome, cpf, dataNasc, tel, uf, logradouro, numero, bairro, cidade, email, senha
     if V_Senha[login_aprovado] == in1_fr4_1.get():
         data = datetime.now()
         data_em_texto = data.strftime('%d/%m/%Y %H:%M')
@@ -349,41 +360,60 @@ def deposito_calculo():
     else:
         lb3_fr4_1['text'] = 'Senha Errada'
 def saque_calculo():
+    global login_aprovado, numero_conta, contagem, V_Cadastro, V_Conta, V_Cpf, V_Senha, nome, cpf, dataNasc, tel, uf, logradouro, numero, bairro, cidade, email, senha
     if V_Senha[login_aprovado] == in1_fr4_2.get():
-        data = datetime.now()
-        data_em_texto = data.strftime('%d/%m/%Y %H:%M')
-        data = data_em_texto
-        V_Conta[login_aprovado].saque(float(in0_fr4_2.get()),str(data))
-        V_Conta[login_aprovado].extrato()
-        lb3_fr4_2['text'] = 'Saque de R$ '+ str(in0_fr4_2.get())+ ' Realizado Com Sucesso'
-        lb1_fr4['text']='R$ '+str(V_Conta[login_aprovado].saldo)
+        if V_Conta[login_aprovado].saldo < float(in0_fr4_2.get()):
+            lb3_fr4_2['text'] = 'Saldo insuficiente'
+        else:
+            data = datetime.now()
+            data_em_texto = data.strftime('%d/%m/%Y %H:%M')
+            data = data_em_texto
+            V_Conta[login_aprovado].saque(float(in0_fr4_2.get()),str(data))
+            V_Conta[login_aprovado].extrato()
+            lb3_fr4_2['text'] = 'Saque de R$ '+ str(in0_fr4_2.get())+ ' Realizado Com Sucesso'
+            lb1_fr4['text']='R$ '+str(V_Conta[login_aprovado].saldo)
     else:
         lb3_fr4_2['text'] = 'Senha Errada'
 def transfere_calculo():
+    global login_aprovado, numero_conta, contagem, V_Cadastro, V_Conta, V_Cpf, V_Senha, nome, cpf, dataNasc, tel, uf, logradouro, numero, bairro, cidade, email, senha
     if V_Senha[login_aprovado] == in1_fr4_3.get():
-        for i in range (len(V_Conta)):
-                if V_Conta[i].num == in1_1_fr4_3.get():
-                    data = datetime.now()
-                    data_em_texto = data.strftime('%d/%m/%Y %H:%M')
-                    data = data_em_texto
-                    V_Conta[login_aprovado].transfere(float(in0_fr4_3.get()),V_Conta[i], data)
-                    V_Conta[i].recebe_transferencia(float(in0_fr4_3.get()),V_Conta[login_aprovado], data)
-                    V_Conta[login_aprovado].extrato()
-                    V_Conta[i].extrato()
-                    lb3_fr4_3['text'] = 'Transferência de R$ '+ str(in0_fr4_3.get())+ ' Realizado Com Sucesso'
-                    lb1_fr4['text']='R$ '+str(V_Conta[login_aprovado].saldo)
-                    break
-                else:
-                    lb3_fr4_3['text'] = 'Conta Destino Errada'
+        if in0_fr4_3.get().isdigit():
+            if V_Conta[login_aprovado].saldo < float(in0_fr4_3.get()):
+                lb3_fr4_3['text'] = 'Saldo insuficiente'
+            else:
+                for i in range (len(V_Conta)):
+                        if V_Conta[i].num == in1_1_fr4_3.get():
+                            data = datetime.now()
+                            data_em_texto = data.strftime('%d/%m/%Y %H:%M')
+                            data = data_em_texto
+                            V_Conta[login_aprovado].transfere(float(in0_fr4_3.get()),V_Conta[i], data)
+                            V_Conta[i].recebe_transferencia(float(in0_fr4_3.get()), V_Conta[login_aprovado], data)
+                            V_Conta[login_aprovado].extrato()
+                            V_Conta[i].extrato()
+                            lb3_fr4_3['text'] = 'Transferência de R$ '+ str(in0_fr4_3.get())+ ' Realizado Com Sucesso'
+                            lb1_fr4['text']='R$ '+str(V_Conta[login_aprovado].saldo)
+                            break
+                        else:
+                            lb3_fr4_3['text'] = 'Conta Destino Errada'
+        else:
+            lb3_fr4_3['text'] = 'Valor Não Inserido'
     else:
         lb3_fr4_3['text'] = 'Senha Errada'
+vetor=[]
+vetor1=[]
 def extrato_calculo():
-    if len(V_Conta[login_aprovado].historico.transacoes) != 0:
-        if V_Senha[login_aprovado] == in1_fr4_4.get():
-            lb7_fr4['text']=V_Conta[login_aprovado].historico.msg
-            lb3_fr4_4['text'] = 'Extrato Apresentado na Tela Inicial Com Sucesso'
+    global login_aprovado, numero_conta, contagem, V_Cadastro, V_Conta, V_Cpf, V_Senha, nome, cpf, dataNasc, tel, uf, logradouro, numero, bairro, cidade, email, senha
+    vetor.append(V_Conta[login_aprovado].extrato())
+    vetor1.append(in0_fr4_3.get())
+    if len(vetor) != 0:
+        if len(vetor1) != 0:
+            if V_Senha[login_aprovado] == in1_fr4_4.get():
+                lb7_fr4['text']=V_Conta[login_aprovado].historico.msg
+                lb3_fr4_4['text'] = 'Extrato Exibido na Tela Inicial'
+            else:
+                lb3_fr4_4['text'] = 'Senha Errada'
         else:
-            lb3_fr4_4['text'] = 'Senha Errada'
+            lb3_fr4_4['text'] = 'Valor Não Inserido'
     else:
         lb3_fr4_4['text'] = 'Nenhuma Movimentação Realizada'
 hello=StringVar()
@@ -535,30 +565,30 @@ fr2_1 = LabelFrame(root, bg="#8a37cc") #grid(row=0, column=0)
 lb0_fr2_1 = Label(fr2_1, text="Faça aqui o cadastro de novos Clientes", font=("Mongolian Baiti", "20"),background="#8a37cc", fg="#f5f5f5").grid(row=0, column=0,sticky=W,pady=60,padx=165)
 
 #Linha 1 Atualizado o texto e a entrar
-llb1_fr2 = Label(fr2_1, text="Nome:", font=("Mongolian Baiti", "17"),background="#8a37cc", fg="#f5f5f5" ).grid(row=1, column=0, sticky=W,padx=55)
+llb1_fr2 = Label(fr2_1, text="Nome*:", font=("Mongolian Baiti", "17"),background="#8a37cc", fg="#f5f5f5" ).grid(row=1, column=0, sticky=W,padx=45)
 in0_fr2 = Entry(fr2_1, font=('Arial 15'), textvariable=var,width=52, bg="#f5f5f5")
 in0_fr2.grid(row=1, column=0, columnspan=1, sticky=W,padx=122)
 
 #Linha 2 Atualizado o texto e a entrar
-b2_fr2 = Label(fr2_1, text="CPF:", font=("Mongolian Baiti", "17"),background="#8a37cc", fg="#f5f5f5" ).grid(row=2, column=0, sticky=W,padx=71)
+b2_fr2 = Label(fr2_1, text="CPF*:", font=("Mongolian Baiti", "17"),background="#8a37cc", fg="#f5f5f5" ).grid(row=2, column=0, sticky=W,padx=60)
 in1_fr2_1 = Entry(fr2_1, font=('Arial 15'), bg="#f5f5f5",width=22)
 in1_fr2_1.bind('<KeyRelease>', cpf_funcionario)
 in1_fr2_1.grid(row=2, column=0, sticky=W,padx=122)
-lb3_fr2 = Label(fr2_1, text="Data Nasc:", font=("Mongolian Baiti", "16"),background="#8a37cc", fg="#f5f5f5" )
-lb3_fr2.grid(row=2, column=0,sticky=W,padx=378)
+lb3_fr2 = Label(fr2_1, text="Data Nasc*:", font=("Mongolian Baiti", "16"),background="#8a37cc", fg="#f5f5f5" )
+lb3_fr2.grid(row=2, column=0,sticky=W,padx=369)
 in2_fr2 = Entry(fr2_1, font=('Arial 15'),width=20, bg="#f5f5f5", cursor="gobbler")
 in2_fr2.bind('<KeyRelease>', data_nasc)
 in2_fr2.grid(row=2, column=0, sticky=W,padx=474)
 
 #Linha 3 Atualizado o texto e a entrar
-lb4_fr2 = Label(fr2_1, text="Tel:", font=("Mongolian Baiti", "17"),background="#8a37cc", fg="#f5f5f5" ).grid(row=3, column=0, sticky=W,padx=82)
+lb4_fr2 = Label(fr2_1, text="Tel*:", font=("Mongolian Baiti", "17"),background="#8a37cc", fg="#f5f5f5" ).grid(row=3, column=0, sticky=W,padx=70)
 in3_fr2 = Entry(fr2_1, font=('Arial 15'), bg="#f5f5f5",width=22)
 in3_fr2.bind('<KeyRelease>', telefone_funcionario)
 in3_fr2.grid(row=3, column=0, sticky=W,padx=122)
 lb5_fr2 = Label(fr2_1, text="Logradouro:", font=("Mongolian Baiti", "17"),background="#8a37cc", fg="#f5f5f5" ).grid(row=4, column=0, sticky=W,padx=0)
 lb4_fr2 = Entry(fr2_1, font=('Arial 15'),textvariable=var4, bg="#f5f5f5",width=22)
 lb4_fr2.grid(row=4, column=0, sticky=W,padx=122)
-lb6_fr2 = Label(fr2_1, text="N°:", font=("Mongolian Baiti", "17"),background="#8a37cc", fg="#f5f5f5" ).grid(row=4, column=0,sticky=W,padx=435)
+lb6_fr2 = Label(fr2_1, text="N°:", font=("Mongolian Baiti", "17"),background="#8a37cc", fg="#f5f5f5" ).grid(row=4, column=0,sticky=W,padx=440)
 lb5_fr2 = Entry(fr2_1, font=('Arial 15'), bg="#f5f5f5")
 lb5_fr2.bind('<KeyRelease>', numeros_funcionario)
 lb5_fr2.grid(row=4, column=0,sticky=W,padx=474)
@@ -567,23 +597,25 @@ lb5_fr2.grid(row=4, column=0,sticky=W,padx=474)
 lb7_fr2 = Label(fr2_1, text="Bairro:", font=("Mongolian Baiti", "17"),background="#8a37cc", fg="#f5f5f5" ).grid(row=5, column=0, sticky=W,padx=53)
 lb6_fr2 = Entry(fr2_1, font=('Arial 15'), textvariable=var3, bg="#f5f5f5",width=22)
 lb6_fr2.grid(row=5, column=0, sticky=W,padx=122)
-lb8_fr2 = Label(fr2_1, text="Cidade:", font=("Mongolian Baiti", "17"),background="#8a37cc", fg="#f5f5f5" ).grid(row=5, column=0,sticky=W,padx=398)
+lb8_fr2 = Label(fr2_1, text="Cidade:", font=("Mongolian Baiti", "17"),background="#8a37cc", fg="#f5f5f5" ).grid(row=5, column=0,sticky=W,padx=399)
 lb7_fr2 = Entry(fr2_1, font=('Arial 15'), textvariable=var1, bg="#f5f5f5")
 lb7_fr2.grid(row=5, column=0, sticky=W,padx=474)
-lb9_fr2 = Label(fr2_1, text="UF:", font=("Mongolian Baiti", "17"),background="#8a37cc", fg="#f5f5f5" ).grid(row=3, column = 0,sticky=W,padx=431)
+lb9_fr2 = Label(fr2_1, text="UF:", font=("Mongolian Baiti", "17"),background="#8a37cc", fg="#f5f5f5" ).grid(row=3, column = 0,sticky=W,padx=435)
 lb8_fr2 = Entry(fr2_1, font=('Arial 15'), textvariable=var2, bg="#f5f5f5")
 lb8_fr2.bind('<KeyRelease>', dois_digitos_funcionario)
 lb8_fr2.grid(row=3, column=0, sticky=W,padx=474)
 lb10_fr2 = Label(fr2_1, text="Email:", font=("Mongolian Baiti", "17"),background="#8a37cc", fg="#f5f5f5" ).grid(row=6, column=0, sticky=W,padx=58)
 in9_fr2 = Entry(fr2_1, font=('Arial 15'), bg="#f5f5f5",width=22)
 in9_fr2.grid(row=6, column=0, sticky=W,padx=122)
-lb11_fr2 = Label(fr2_1, text="Senha:", font=("Mongolian Baiti", "17"),background="#8a37cc", fg="#f5f5f5" ).grid(row=6, column=0,sticky=W,padx=403)
+lb11_fr2 = Label(fr2_1, text="Senha*:", font=("Mongolian Baiti", "17"),background="#8a37cc", fg="#f5f5f5" ).grid(row=6, column=0,sticky=W,padx=395)
 in10_fr2 = Entry(fr2_1, font=('Arial 15'), bg="#f5f5f5")
 in10_fr2.grid(row=6, column=0, sticky=W,padx=474)
 
 # Botões
-bt0_fr2 = Button(fr2_1, text="Criar conta ", font=("Mongolian Baiti", "17", "bold"),width=18, bg="#eb8334", fg="#fff", command= lambda:[confirmar_funcionario(), in0_fr2.delete(0,'end'),in1_fr2.delete(0,'end'),in1_fr2_1.delete(0,'end'), in2_fr2.delete(0,'end'),in3_fr2.delete(0,'end'),lb4_fr2.delete(0,'end'),lb5_fr2.delete(0,'end'),lb6_fr2.delete(0,'end'),lb7_fr2.delete(0,'end'),lb8_fr2.delete(0,'end'),in9_fr2.delete(0,'end'),in10_fr2.delete(0,'end'), fr2_1.grid_remove(), fr2.grid(row=0, column=0)]).grid(row=8, column=0, sticky=W,pady=20,padx=119)
+bt0_fr2 = Button(fr2_1, text="Criar conta ", font=("Mongolian Baiti", "17", "bold"),width=18, bg="#eb8334", fg="#fff", command= lambda:[confirmar_funcionario()]).grid(row=8, column=0, sticky=W,pady=20,padx=119)
 bt1_fr2 = Button(fr2_1, text="Voltar", font=("Mongolian Baiti", "17", "bold"),width=18, bg="#eb8334", fg="#fff", command= lambda:[in0_fr2.delete(0,'end'),in1_fr2.delete(0,'end'), in1_fr2_1.delete(0,'end'), in2_fr2.delete(0,'end'),in3_fr2.delete(0,'end'),lb4_fr2.delete(0,'end'),lb5_fr2.delete(0,'end'),lb6_fr2.delete(0,'end'),lb7_fr2.delete(0,'end'),lb8_fr2.delete(0,'end'),in9_fr2.delete(0,'end'),in10_fr2.delete(0,'end'), fr2_1.grid_remove(), fr2.grid(row=0, column=0)]).grid(row=8, column=0, sticky=W,padx=455)
+lb15_fr2 = Label(fr2_1, text='',font=("Mongolian Baiti", "17"),background="#8a37cc", fg="#f5f5f5" )
+lb15_fr2.grid(row=9, column=0, sticky=W,padx=245)
 #bt2_fr2 = Button(fr2_1, text='👁', font=('Mongolian Baiti', "12", "bold"),bg='#eb8334', fg='#fff').grid(row=6, column=0, sticky=W,padx=712)
 #Frame 2_2
 
@@ -694,7 +726,7 @@ bt2_fr4 = Button(fr4, text='Depósito', font='Arial 20',padx=5, pady=0, bg='#eb8
 bt3_fr4 = Button(fr4, text='Saque', font='Arial 20',padx=5, pady=0, bg='#eb8334',fg='#f5f5f5',width=12, command= lambda: [lb7_fr4.grid_remove(), fr4.grid_remove(), fr4_2.grid(row=0, column=1)]).grid(row=3, column=0, sticky=W,pady=5)
 bt4_fr4 = Button(fr4, text='Transferência', font='Arial 20',padx=5, pady=0, bg='#eb8334',fg='#f5f5f5',width=12, command= lambda: [lb7_fr4.grid_remove(), fr4.grid_remove(), fr4_3.grid(row=0, column=1)]).grid(row=4, column=0, sticky=W,pady=5)
 bt5_fr4 = Button(fr4, text='Extrato', font='Arial 20',padx=5, pady=0, bg='#eb8334',fg='#f5f5f5',width=12, command= lambda: [lb7_fr4.grid_remove(), fr4.grid_remove(), fr4_4.grid(row=0, column=1)]).grid(row=5, column=0, sticky=W,pady=5)
-bt6_fr4 = Button(fr4, text='Sair', font='Arial 20',padx=5, pady=0, bg='#eb8334',fg='#f5f5f5',width=14, command= lambda:[lb7_fr4.grid_remove(), mostrar_contas(), fr4.grid_remove(), fr3.grid(row=0, column=0)]).grid(row=7, column=2, sticky=E) #Atualizado o texto
+bt6_fr4 = Button(fr4, text='Sair', font='Arial 20',padx=5, pady=0, bg='#eb8334',fg='#f5f5f5',width=14, command= lambda:[lb7_fr4.grid_remove(), fr4.grid_remove(), fr3.grid(row=0, column=0)]).grid(row=7, column=2, sticky=E) #Atualizado o texto
 lb7_fr4 = Label(fr4, text='',font='Arial 20',padx=5, pady=0, bg='#8a37cc',fg='#f5f5f5')
 lb7_fr4.grid(row=1 ,column=2, rowspan=4)
 
