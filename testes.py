@@ -11,8 +11,5 @@ print('------------------------------')
 
 date = datetime.strptime(data, '%d/%m/%Y %H:%M')
 
-<<<<<<< HEAD
+
 print(date, type(date))
-=======
-print(date, type(date))
->>>>>>> 54f780f37029f36fa764a52d33eadc97d8469e6d

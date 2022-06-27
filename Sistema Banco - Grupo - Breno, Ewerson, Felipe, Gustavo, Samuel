@@ -745,8 +745,5 @@ bt4_1_fr4_4 = Button(fr4_4, text='Logout', font=('Mongolian Baiti', '19', 'bold'
 bt5_fr4_4 = Button(fr4_4, text='👁', font=('Mongolian Baiti', "14", "bold"),bg='#eb8334', fg='#fff').grid(row=1, column=0, sticky=W,padx=588,pady=5)
 #Looping para tudo
 
-<<<<<<< HEAD:Sistema Banco - Grupo - Breno, Ewerson, Felipe, Gustavo, Samuel.py
+
 root.mainloop()
-=======
-root.mainloop()
->>>>>>> 54f780f37029f36fa764a52d33eadc97d8469e6d:Sistema Banco - Grupo - Breno, Ewerson, Felipe, Gustavo, Samuel
