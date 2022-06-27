@@ -43,4 +43,8 @@ class Conta:
 
     def recebe_transferencia(self, valor, origem, data):
         #self.saldo += valor
+<<<<<<< HEAD
         self.historico.transacoes.append(f'transferencia de R$ {valor} da conta {origem.num} - {data}')
+=======
+        self.historico.transacoes.append(f'transferencia de R$ {valor} da conta {origem.num} - {data}')
+>>>>>>> 54f780f37029f36fa764a52d33eadc97d8469e6d
