@@ -683,7 +683,7 @@ fr4_1 = LabelFrame(root, pady=5, bg= '#8a37cc', text='Depósito',fg='#f5f5f5', f
 lb0_fr4_1 = Label(fr4_1, text='Valor a Ser Depositado:',bg='#8a37cc',fg='#f5f5f5', font=('Mongolian Baiti', "17", "bold" ) ,padx=5, pady=0).grid(row=0, column=0 , sticky=W,padx=25)
 in0_fr4_1 = Entry(fr4_1, font='Arial 20', bg='#f5f5f5')
 in0_fr4_1.bind("<KeyRelease>", deposito)
-in0_fr4_1.grid(row=0, column=0,sticky=W,padx=280)
+in0_fr4_1.grid(row=0, column=0,sticky=W,padx=280) 
 lb1_fr4_1 = Label(fr4_1, text='Senha:', font=('Mongolian Baiti', "17", "bold" ) ,padx=5, pady=0, bg= '#8a37cc',fg='#f5f5f5').grid(row=1, column=0, sticky=W,padx=203)
 in1_fr4_1 = Entry(fr4_1, font='Arial 20', bg='#f5f5f5',show="*")
 in1_fr4_1.grid(row=1, column=0,sticky=W,padx=280)
