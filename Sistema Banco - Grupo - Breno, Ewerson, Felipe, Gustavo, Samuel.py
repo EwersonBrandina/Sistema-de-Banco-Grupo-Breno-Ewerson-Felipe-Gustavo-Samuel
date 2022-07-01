@@ -800,7 +800,4 @@ bt4_1_fr4_4 = Button(fr4_4, text='Sair', font=('Mongolian Baiti', '19', 'bold' )
 bt5_fr4_4 = Button(fr4_4, text='👁', font=('Mongolian Baiti', "14", "bold"),bg='#eb8334', fg='#fff', command=mostrar_6).grid(row=1, column=0, sticky=W,padx=588,pady=5) #Atualizado o entrar e o botão
 
 #Looping para tudo
-
-
-
 root.mainloop()
